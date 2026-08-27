@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react'
-import { ArrowRight, Check, Menu, X } from 'lucide-react'
+import { ArrowRight, Check, ChevronDown, Menu, Plus, X } from 'lucide-react'
+import Lenis from 'lenis'
 import Reveal from './components/Reveal'
 import { copy, localeNames, type Locale } from './content'
 import './App.css'
@@ -12,6 +13,9 @@ const products = [
   { number: '05', title: 'SHOE CARE', image: './images/series-shoe.jpg' },
   { number: '06', title: 'PODS', image: './images/series-pods.jpg' },
 ]
+
+// Module-level so scrollToSection can route through Lenis when active.
+let lenisInstance: Lenis | null = null
 
 function detectLocale(): Locale {
   try {
@@ -28,7 +32,15 @@ function detectLocale(): Locale {
 }
 
 function scrollToSection(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const el = document.getElementById(id)
+  if (!el) return
+  if (lenisInstance) lenisInstance.scrollTo(el, { offset: -72, duration: 1.4 })
+  else el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
+function scrollToElement(el: HTMLElement) {
+  if (lenisInstance) lenisInstance.scrollTo(el, { duration: 1.2 })
+  else el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
 function SectionLabel({ children, light = false }: { children: ReactNode; light?: boolean }) {
@@ -43,13 +55,54 @@ function Media({ src, alt, parallax = false }: { src: string; alt: string; paral
   )
 }
 
+function LocaleMenu({ locale, setLocale }: { locale: Locale; setLocale: (value: Locale) => void }) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+    const onPointer = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) setOpen(false)
+    }
+    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') setOpen(false) }
+    document.addEventListener('mousedown', onPointer)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onPointer)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
+  return (
+    <div className={`locale-menu${open ? ' is-open' : ''}`} ref={ref}>
+      <button className="locale-button" onClick={() => setOpen(!open)} aria-haspopup="listbox" aria-expanded={open}>
+        {localeNames[locale]}<ChevronDown size={12} strokeWidth={1.5} />
+      </button>
+      {open && (
+        <div className="locale-panel" role="listbox" aria-label="Language">
+          {(Object.keys(localeNames) as Locale[]).map((key) => (
+            <button key={key} role="option" aria-selected={locale === key} className={locale === key ? 'is-active' : ''}
+              onClick={() => { setLocale(key); setOpen(false) }}>
+              <span>{localeNames[key]}</span><span className="locale-code">{key.toUpperCase()}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function App() {
   const [locale, setLocale] = useState<Locale>(detectLocale)
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [verification, setVerification] = useState('')
   const [verificationResult, setVerificationResult] = useState('')
+  const [stage, setStage] = useState(0)
+  const [activeProduct, setActiveProduct] = useState<number | null>(null)
   const sentinel = useRef<HTMLDivElement>(null)
+  const stageMarks = useRef<(HTMLDivElement | null)[]>([])
+  const overlayClose = useRef<HTMLButtonElement>(null)
   const t = copy[locale]
 
   useEffect(() => {
@@ -65,10 +118,53 @@ export default function App() {
     return () => io.disconnect()
   }, [])
 
+  // Buttery inertial scrolling; disabled for reduced-motion users.
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const lenis = new Lenis({ duration: 1.15 })
+    lenisInstance = lenis
+    let raf = 0
+    const loop = (time: number) => { lenis.raf(time); raf = requestAnimationFrame(loop) }
+    raf = requestAnimationFrame(loop)
+    return () => {
+      cancelAnimationFrame(raf)
+      lenis.destroy()
+      lenisInstance = null
+    }
+  }, [])
+
+  // Pinned quality story: the mark crossing the viewport centre line becomes the active stage.
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setStage(Number((entry.target as HTMLElement).dataset.stage))
+        })
+      },
+      { rootMargin: '-50% 0px -50% 0px' },
+    )
+    stageMarks.current.forEach((el) => { if (el) io.observe(el) })
+    return () => io.disconnect()
+  }, [])
+
+  // Freeze page scroll behind the menu / product overlay.
+  useEffect(() => {
+    const locked = menuOpen || activeProduct !== null
+    document.body.style.overflow = locked ? 'hidden' : ''
+    if (lenisInstance) locked ? lenisInstance.stop() : lenisInstance.start()
+    return () => {
+      document.body.style.overflow = ''
+      lenisInstance?.start()
+    }
+  }, [menuOpen, activeProduct])
+
+  useEffect(() => {
+    if (activeProduct === null) return
+    overlayClose.current?.focus()
+    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') setActiveProduct(null) }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [activeProduct])
 
   const navigate = (id: string) => {
     setMenuOpen(false)
@@ -80,7 +176,10 @@ export default function App() {
     setVerificationResult(verification.trim() ? t.searchResult : t.emptyResult)
   }
 
+  const openProduct = (index: number) => setActiveProduct(index)
+
   const ids = ['heritage', 'quality', 'products', 'global', 'official']
+  const overlayProduct = activeProduct !== null ? products[activeProduct] : null
 
   return (
     <div className="site-shell">
@@ -94,10 +193,7 @@ export default function App() {
           {t.nav.map((item, index) => <button key={item} onClick={() => navigate(ids[index])}>{item}</button>)}
         </nav>
         <div className="header-actions">
-          <label className="sr-only" htmlFor="locale">Language</label>
-          <select id="locale" value={locale} onChange={(event) => setLocale(event.target.value as Locale)}>
-            {(Object.keys(localeNames) as Locale[]).map((key) => <option key={key} value={key}>{localeNames[key]}</option>)}
-          </select>
+          <LocaleMenu locale={locale} setLocale={setLocale} />
           <button className="button button--outline desktop-verify" onClick={() => navigate('official')}>{t.verify}</button>
           <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu" aria-expanded={menuOpen}>
             {menuOpen ? <X /> : <Menu />}<span>MENU</span>
@@ -149,6 +245,11 @@ export default function App() {
           <Reveal className="pillar-grid stagger">{t.heritagePillars.map(([number, title, body]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{body}</p></article>)}</Reveal>
         </section>
 
+        <section className="statement" aria-label="RANTO principle">
+          <Media src="./images/brand/heritage-japan.jpg" alt="Traditional Japanese craft and material culture" parallax />
+          <Reveal className="statement-copy"><h2>{t.manifesto}</h2></Reveal>
+        </section>
+
         <section className="content-section places-section">
           <Reveal><div className="section-heading"><div><SectionLabel>{t.placesEyebrow}</SectionLabel><h2>{t.placesTitle}</h2></div><p>{t.placesBody}</p></div></Reveal>
           <Reveal className="place-grid stagger">
@@ -163,9 +264,33 @@ export default function App() {
           <Media src="./images/brand/factory-quality.jpg" alt="Qualified production and manufacturing environment" parallax />
         </section>
 
-        <section id="process" className="content-section process-section">
-          <Reveal><div className="section-heading"><div><SectionLabel>{t.processEyebrow}</SectionLabel><h2>{t.processTitle}</h2></div><p>{t.qualityBody}</p></div></Reveal>
-          <Reveal className="process-list stagger">{t.process.map(([number, title, body]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{body}</p></article>)}</Reveal>
+        <section id="process" className="process-section">
+          <Reveal><div className="section-heading process-heading"><div><SectionLabel>{t.processEyebrow}</SectionLabel><h2>{t.processTitle}</h2></div></div></Reveal>
+          <div className="process-runway">
+            <div className="process-view">
+              <div className="process-stage-info" aria-live="polite">
+                {t.process.map(([number, title, body], index) => (
+                  <article key={number} className={`process-stage${index === stage ? ' is-active' : ''}`} aria-hidden={index !== stage}>
+                    <h3>{title}</h3><p>{body}</p>
+                  </article>
+                ))}
+              </div>
+              <div className="process-numerals" aria-hidden="true">
+                {t.process.map(([number], index) => <span key={number} className={index === stage ? 'is-active' : ''}>{number}</span>)}
+              </div>
+              <div className="process-counter" aria-hidden="true"><strong>{t.process[stage][0]}</strong><span>/ 0{t.process.length}</span></div>
+              <div className="process-rail" role="tablist" aria-label={t.processTitle}>
+                {t.process.map((proc, index) => (
+                  <button key={proc[0]} role="tab" aria-selected={index === stage} aria-label={proc[1]} className={index === stage ? 'is-active' : ''}
+                    onClick={() => { const el = stageMarks.current[index]; if (el) scrollToElement(el) }} />
+                ))}
+              </div>
+            </div>
+            {t.process.map((proc, index) => (
+              <div key={proc[0]} data-stage={index} className="process-mark" aria-hidden="true"
+                ref={(el) => { stageMarks.current[index] = el }} />
+            ))}
+          </div>
         </section>
 
         <section className="lab-section">
@@ -176,7 +301,18 @@ export default function App() {
         <section id="products" className="content-section products-section">
           <Reveal><div className="section-heading"><div><SectionLabel>{t.productsEyebrow}</SectionLabel><h2>{t.productsTitle}</h2></div><p>{t.productsBody}</p></div></Reveal>
           <Reveal className="product-grid stagger">{products.map((product, index) => (
-            <article key={product.title}><Media src={product.image} alt={`RANTO ${product.title} system`} /><div className="product-copy"><span>{product.number}</span><h3>{product.title}</h3><p>{t.productDescriptions[index]}</p><button onClick={() => navigate('official')}>{t.verify}<ArrowRight /></button></div></article>
+            <article key={product.title}>
+              <div className="media product-media">
+                <img src={product.image} alt={`RANTO ${product.title} system`} loading="lazy" decoding="async" />
+                <button className="product-open" onClick={() => openProduct(index)} aria-label={`${product.title} details`}><Plus size={18} strokeWidth={1.25} /></button>
+              </div>
+              <div className="product-copy">
+                <span>{product.number}</span>
+                <h3><button className="product-title-button" onClick={() => openProduct(index)}>{product.title}</button></h3>
+                <p>{t.productDescriptions[index]}</p>
+                <button onClick={() => navigate('official')}>{t.verify}<ArrowRight /></button>
+              </div>
+            </article>
           ))}</Reveal>
         </section>
 
@@ -238,6 +374,22 @@ export default function App() {
         <div className="footer-links">{t.nav.map((item, index) => <button key={item} onClick={() => navigate(ids[index])}>{item}</button>)}</div>
         <div className="footer-bottom"><span>© 2026 RANTO GLOBAL</span><span>{t.footerLocation}</span></div>
       </footer>
+
+      {overlayProduct && activeProduct !== null && (
+        <div className="product-overlay" role="dialog" aria-modal="true" aria-label={`${overlayProduct.title} details`}>
+          <button ref={overlayClose} className="product-overlay-close" onClick={() => setActiveProduct(null)} aria-label="Close details"><X size={20} strokeWidth={1.25} /></button>
+          <div className="product-overlay-media">
+            <img src={overlayProduct.image} alt={`RANTO ${overlayProduct.title} system`} />
+          </div>
+          <div className="product-overlay-copy">
+            <span className="product-overlay-eyebrow">CARE SYSTEM {overlayProduct.number}</span>
+            <h2>{overlayProduct.title}</h2>
+            <p className="product-overlay-desc">{t.productDescriptions[activeProduct]}</p>
+            <p className="product-overlay-ritual">{t.productRituals[activeProduct]}</p>
+            <button className="text-link" onClick={() => { setActiveProduct(null); scrollToSection('official') }}>{t.verify}<ArrowRight /></button>
+          </div>
+        </div>
+      )}
 
       <div className="grain" aria-hidden="true" />
     </div>

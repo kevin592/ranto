@@ -1,5 +1,17 @@
 # RANTO Design QA
 
+## Signature-moments round (2026-08, round 3)
+
+- Scope: one memorable scroll story, a product detail ritual, a manifesto screen, buttery scrolling, custom language UI. All copy keys additive (`manifesto`, `productRituals`); no existing copy touched.
+- New experiences:
+  - Pinned quality story: the six-stage process is now a sticky full-viewport runway (sticky view + six IntersectionObserver marks on the viewport centre line). Stage copy crossfades left while a giant ghost serif numeral resolves right; mono counter and a six-segment progress rail (clickable, jumps via Lenis) sit at the bottom. No scroll listeners, no animation libraries.
+  - Manifesto screen: full-bleed `heritage-japan.jpg` (previously unused asset) under a tuned scrim with one huge localized serif line (`t.manifesto`, written in EN/ZH/JA/TH).
+  - Product detail overlay: clicking a product image or title opens a full-screen paper takeover (52/48 media/copy) with mono system eyebrow, oversized serif title, description, an italic serif usage-ritual line (new `productRituals` copy), and verify link. Escape closes, focus moves to the close button, page scroll locks (body + Lenis stop).
+  - Smooth scrolling: Lenis inertial scroll (duration 1.15s), disabled under `prefers-reduced-motion`; all in-page navigation routes through `lenis.scrollTo` with header offset.
+  - Custom locale menu replaces the native `<select>`: mono button, glass panel, per-language native names + codes, outside-click and Escape dismissal.
+- Fixed during QA: ecosystem grid used percentage columns plus an 8vw gap (tracks overflowed the container since v1, masked by the old `overflow: hidden` shell) now uses `fr` tracks; removed the shell `overflow: hidden` which had silently broken `position: sticky` (header never actually stuck before this round).
+- Verification: four locales (EN/ZH/JA/TH) x desktop 1440 + mobile 390. Sticky header confirmed at top:0 after scroll; pinned stages switch correctly through the runway (0, 1, 4 sampled); overlay opens/closes via Escape; statement, runway, Lenis present in all locales; zero console errors; zero horizontal overflow everywhere. Evidence: `qa-r3-process-s4.png`, `qa-r3-statement.png`, `qa-r3-overlay.png`, `qa-r3-locale.png`, `qa-r3-mobile-process.png`.
+
 ## Visual elevation round (2026-08) — luxury upgrade
 
 - Scope: visual layer only. Content, copy keys, section IDs, anchors and i18n structure untouched.
