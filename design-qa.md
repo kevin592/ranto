@@ -1,5 +1,23 @@
 # RANTO Design QA
 
+## Multi-page architecture round (2026-08, round 4)
+
+- Scope: split the single-page site into a real six-page structure and enrich/de-duplicate all copy. No new images (product photography arrives later and will slot into the existing media frames).
+- Architecture:
+  - Vite multi-entry MPA: `index.html` (home), `story.html`, `quality.html`, `products.html`, `global.html`, `official.html`. One shared JS/CSS bundle. Per-page titles, descriptions and OG tags (also fixes basic SEO per page).
+  - Shared `Chrome` component (header with page-aware active nav, custom locale menu, mobile menu, footer, grain, Lenis, scroll state). Page components render inside it; locale persists across pages via localStorage (verified).
+  - `main.tsx` resolves the page from `#root[data-page]`. BrowserRouter removed (was unused; avoids GitHub Pages deep-link 404s).
+- Content enrichment (4 locales, all new keys additive):
+  - Home rebuilt as a cover: hero, proof band, a chapters index (photo + four editorial rows linking to pages), manifesto statement, contact CTA.
+  - Story page: page hero with new long-form `storyIntro`, heritage body promoted to a serif statement block, pillars, trusted-places grid.
+  - Quality page: hero, quality feature with new `qualityFeatureTitle`, pinned six-stage runway, lab section with new unique `labBody` (no longer reusing qualityBody).
+  - Products page: hero, six systems with overlay detail (ritual copy), refill section.
+  - Global page: hero, markets, scene cards now using unique `offlineBody`/`hospitalityBody` (no longer reusing partnersBody/placesBody), ecosystem, partner marquee.
+  - Official page: hero, verification, channel rows, static contact channels (LINE / email / site), confidence grid, contact CTA.
+  - `nextLabel` drives the NEXT CHAPTER footer device chaining story, quality, products, global, official.
+- Fixed during QA: mobile menu was trapped inside the header because the header's `backdrop-filter` creates a containing block for fixed descendants; the menu now renders as a header sibling and covers the viewport correctly.
+- Verification: all six pages load with correct localized titles/h1s, zero console errors, zero horizontal overflow; internal links resolve (200); locale persistence verified (th); products overlay and pinned runway regressions pass; mobile menu navigates with correct active state. Evidence: `qa-r4-home-chapters.png`, `qa-r4-story-hero.png`, `qa-r4-story-next.png`, `qa-r4-official.png`, `qa-r4-mobile-menu.png`.
+
 ## Signature-moments round (2026-08, round 3)
 
 - Scope: one memorable scroll story, a product detail ritual, a manifesto screen, buttery scrolling, custom language UI. All copy keys additive (`manifesto`, `productRituals`); no existing copy touched.
