@@ -1,5 +1,16 @@
 # RANTO Design QA
 
+## Product concept imagery round (2026-08, round 5)
+
+- Context: real product photography arrives later; a unified AI-generated concept set now fills the product imagery gap so the site reads as a complete product brand.
+- Generated via the no-key Pollinations endpoint (`gen-products.py`, locked style prefix + fixed seeds): warm off-white paper background, soft left window light, matte minimal bottles with pale blue caps, blank unlabeled packaging (no garbled text risk). 886x665 each, ~17-23 KB.
+- Integration:
+  - Products page: six system cards + full-screen detail overlay now use `public/images/products/system-*.jpg`.
+  - Home chapters index uses `family-lineup.jpg` (six-bottle lineup) instead of reusing the heritage interior.
+  - `products.html` OG image updated to the laundry still life.
+- Verification: all seven images load (naturalWidth check), zero console errors; visual QA confirms the six cards read as one consistent family. Evidence: `qa-r5-products.png`, `qa-r5-overlay.png`, `qa-r5-home-chapters.png`.
+- Replacement plan: drop real photography into `public/images/products/` with the same filenames (`system-laundry.jpg` etc.), rebuild, push. No code changes needed.
+
 ## Multi-page architecture round (2026-08, round 4)
 
 - Scope: split the single-page site into a real six-page structure and enrich/de-duplicate all copy. No new images (product photography arrives later and will slot into the existing media frames).

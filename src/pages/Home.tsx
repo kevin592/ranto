@@ -30,7 +30,7 @@ export default function Home() {
       <section className="content-section chapters-section">
         <Reveal><SectionLabel>{t.homeIndexLabel}</SectionLabel></Reveal>
         <div className="chapters">
-          <Reveal className="chapters-media"><Media src="./images/brand/heritage-home.jpg" alt="Quiet Japanese hospitality interior" parallax /></Reveal>
+          <Reveal className="chapters-media"><Media src="./images/products/family-lineup.jpg" alt="The RANTO product family: six minimal care bottles" parallax /></Reveal>
           <Reveal className="chapter-list stagger">
             {t.homeChapterLines.map((line, index) => (
               <a key={line} href={pageHrefs[index]} className="chapter-row">

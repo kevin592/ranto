@@ -6,12 +6,12 @@ import { Media, SectionLabel, useCopy } from '../components/bits'
 import { lockPageScroll } from '../lib/scroll'
 
 const products = [
-  { number: '01', title: 'LAUNDRY', image: './images/series-laundry.jpg' },
-  { number: '02', title: 'KITCHEN', image: './images/series-kitchen.jpg' },
-  { number: '03', title: 'BATHROOM', image: './images/series-care.jpg' },
-  { number: '04', title: 'HOME', image: './images/series-home.jpg' },
-  { number: '05', title: 'SHOE CARE', image: './images/series-shoe.jpg' },
-  { number: '06', title: 'PODS', image: './images/series-pods.jpg' },
+  { number: '01', title: 'LAUNDRY', image: './images/products/system-laundry.jpg' },
+  { number: '02', title: 'KITCHEN', image: './images/products/system-kitchen.jpg' },
+  { number: '03', title: 'BATHROOM', image: './images/products/system-bathroom.jpg' },
+  { number: '04', title: 'HOME', image: './images/products/system-home.jpg' },
+  { number: '05', title: 'SHOE CARE', image: './images/products/system-shoe.jpg' },
+  { number: '06', title: 'PODS', image: './images/products/system-pods.jpg' },
 ]
 
 export default function Products() {
