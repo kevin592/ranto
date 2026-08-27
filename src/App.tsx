@@ -81,6 +81,9 @@ export default function App() {
         {menuOpen && (
           <div className="mobile-menu">
             {t.nav.map((item, index) => <button key={item} onClick={() => navigate(ids[index])}>{item}<ArrowRight size={16} /></button>)}
+            <div className="mobile-languages" aria-label="Language">
+              {(Object.keys(localeNames) as Locale[]).map((key) => <button key={key} className={locale === key ? 'is-active' : ''} onClick={() => setLocale(key)} aria-pressed={locale === key}>{localeNames[key]}</button>)}
+            </div>
             <button className="button button--blue" onClick={() => navigate('official')}>{t.verify}</button>
           </div>
         )}
@@ -136,7 +139,7 @@ export default function App() {
 
         <section className="lab-section">
           <img src="./images/brand/laboratory.jpg" alt="Laboratory testing for material compatibility" />
-          <div><SectionLabel>MATERIAL CARE & TESTING</SectionLabel><h2>Designed for surfaces, fabrics and routines that deserve care.</h2><p>{t.qualityBody}</p><div className="mini-list">{t.qualityPoints.slice(0, 3).map((point, index) => <div key={point}><span>0{index + 1}</span><p>{point}</p></div>)}</div></div>
+          <div><SectionLabel>MATERIAL CARE & TESTING</SectionLabel><h2>{t.labTitle}</h2><p>{t.qualityBody}</p><div className="mini-list">{t.qualityPoints.slice(0, 3).map((point, index) => <div key={point}><span>0{index + 1}</span><p>{point}</p></div>)}</div></div>
         </section>
 
         <section id="products" className="content-section products-section">
@@ -149,7 +152,7 @@ export default function App() {
         <section className="content-section network-section">
           <SectionLabel>{t.partnersEyebrow}</SectionLabel><div className="section-heading"><h2>{t.partnersTitle}</h2><p>{t.partnersBody}</p></div>
           <div className="partner-types">{t.partnerTypes.map((type) => <span key={type}>{type}</span>)}</div>
-          <p className="verification-note">Only confirmed relationships should be named publicly. Supporting factory, retail and channel documents can be reviewed through the official business contact.</p>
+          <p className="verification-note">{t.partnerDisclaimer}</p>
         </section>
 
         <section id="global" className="split-section global-section">
@@ -163,8 +166,8 @@ export default function App() {
         </section>
 
         <section className="content-section scene-grid">
-          <article><img src="./images/brand/retail-global.jpg" alt="Offline and specialty retail" /><div><SectionLabel>OFFLINE & SPECIALTY RETAIL</SectionLabel><h3>Seen where trust is built in person.</h3><p>{t.partnersBody}</p></div></article>
-          <article><img src="./images/brand/hospitality.jpg" alt="Hospitality and professional environment" /><div><SectionLabel>HOSPITALITY & PROFESSIONAL USE</SectionLabel><h3>Used where consistency is visible.</h3><p>{t.placesBody}</p></div></article>
+          <article><img src="./images/brand/retail-global.jpg" alt="Offline and specialty retail" /><div><SectionLabel>OFFLINE & SPECIALTY RETAIL</SectionLabel><h3>{t.offlineTitle}</h3><p>{t.partnersBody}</p></div></article>
+          <article><img src="./images/brand/hospitality.jpg" alt="Hospitality and professional environment" /><div><SectionLabel>HOSPITALITY & PROFESSIONAL USE</SectionLabel><h3>{t.hospitalityTitle}</h3><p>{t.placesBody}</p></div></article>
         </section>
 
         <section className="ecosystem-section">
