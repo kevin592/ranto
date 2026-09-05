@@ -5,6 +5,7 @@ import { useCopy } from '../components/bits'
 import { ContactBand, ProductCards } from '../components/Brand'
 import { SelectionGuide } from '../components/Editorial'
 import { ProductGallery, SceneStories } from '../components/Visuals'
+import { ProductComparison } from '../components/PageDepth'
 import { isProductId, products } from '../products'
 import { keepDialogFocus } from '../lib/dialog'
 import type { ProductId } from '../types'
@@ -40,6 +41,7 @@ export default function Products() {
     <section className="page-intro section-wrap"><p className="eyebrow">{t.nav.products}</p><h1>{t.productUI.title}</h1><p>{t.productUI.intro}</p></section>
     <section className="section-wrap product-catalog"><ProductCards t={t} onSelect={open} /><div className="collection-note"><span className="availability">{t.productUI.comingSoon}</span><p>{t.contact.availability}</p></div></section>
     <SelectionGuide t={t} onSelect={open} />
+    <ProductComparison t={t} onSelect={open} />
     <SceneStories t={t} />
     <ContactBand t={t} />
     <dialog className="product-dialog" ref={dialog} aria-labelledby="product-dialog-title" onKeyDown={keepDialogFocus} onCancel={event => { event.preventDefault(); close() }} onClick={event => { if (event.target === event.currentTarget) close() }}>

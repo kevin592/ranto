@@ -9,14 +9,18 @@
 .scene-story-grid article:first-child { grid-column: 1/-1; }
 .scene-story-grid article:first-child .scene-composition { aspect-ratio: 2/1; }
 .scene-story-grid article:first-child .scene-background { object-position: center 65%; }
-.scene-composition { position: relative; overflow: hidden; aspect-ratio: 3/2; background: #eff2f2; }
+.scene-composition { position: relative; overflow: hidden; width: 100%; min-width: 0; aspect-ratio: 3/2; background: #eff2f2; }
 .scene-background { width: 100%; height: 100%; object-fit: cover; }
 .scene-story-caption { display: flex; align-items: flex-start; gap: 25px; justify-content: space-between; padding-top: 18px; }
 .scene-story-caption p { margin-top: 7px; max-width: 700px; font-size: 14px; }
 .scene-story-caption a { flex-shrink: 0; padding: 10px; color: var(--blue); }
-.story-closing--visual { align-items: center; }
+.story-closing--visual { grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); align-items: center; max-width: 1536px; margin-inline: auto; }
 .story-closing--visual > .scene-visual { align-self: stretch; padding: 0; }
-.story-closing--visual .scene-composition { min-height: 360px; height: calc(100% - 46px); }
+.story-closing--visual .scene-composition { min-height: 0; height: 440px; width: 100%; aspect-ratio: auto; }
+.story-closing--visual .scene-background { object-position: 42% center; }
+.story-closing--visual > .story-closing-copy { min-width: 0; padding: 42px clamp(28px,4vw,64px); }
+.story-closing-copy h2 { font-size: clamp(27px,3vw,44px); }
+.story-closing-copy p { margin-top: 18px; font-size: 14px; }
 .story-closing--visual figcaption { padding: 9px 20px; }
 .detail-collection,.design-section,.evidence-section { padding-bottom: 90px; }
 .visual-selector { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 22px; }
@@ -68,6 +72,31 @@
 .product-gallery .detail-plate > figcaption { display: block; }
 .product-gallery .detail-plate > figcaption span { display: block; margin-top: 9px; }
 .technical-heading { font-size: 17px; margin-top: 30px; }
+.brand-reading,.product-comparison,.evidence-reading,.launch-preparation { padding-bottom: 80px; }
+.brand-reading-links { border-top: 1px solid var(--line); }
+.brand-reading-links > a { display: grid; grid-template-columns: 48px minmax(0,1fr) 26px; align-items: start; gap: 25px; padding-block: 25px; border-bottom: 1px solid var(--line); }
+.brand-reading-links h3 { color: var(--blue); }
+.brand-reading-links p { max-width: 780px; font-size: 14px; margin-top: 10px; }
+.brand-reading-links svg { color: var(--blue); }
+.reading-number { font-size: 12px; color: var(--blue); line-height: 2.3; }
+.comparison-columns { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 30px; }
+.comparison-columns article { border-top: 2px solid var(--blue); padding: 24px; background: #f1f5f7; min-width: 0; }
+.comparison-columns h3 { min-height: 2.8em; }
+.comparison-columns dl { margin-block: 20px; }
+.comparison-columns dl > div { border-top: 1px solid var(--line); padding-block: 12px; }
+.comparison-columns dt { font-size: 11px; color: var(--muted); }
+.comparison-columns dd { margin: 5px 0 0; font-size: 14px; }
+.comparison-columns button { background: transparent; border: 0; border-bottom: 1px solid #8dacd2; }
+.evidence-reading { padding-top: 10px; }
+.evidence-reading ol { padding: 0; margin: 0; list-style: none; display: grid; gap: 0; }
+.evidence-reading li { display: grid; grid-template-columns: 48px minmax(0,1fr); gap: 25px; padding: 24px 0; border-top: 1px solid var(--line); }
+.evidence-reading h3 { font-size: 23px; }
+.evidence-reading li p { max-width: 900px; font-size: 15px; margin-top: 12px; }
+.launch-preparation dl { margin: 0; }
+.launch-preparation dl > div { display: grid; grid-template-columns: minmax(0,.75fr) minmax(0,1fr); gap: 40px; border-top: 1px solid var(--line); padding-block: 26px; }
+.launch-preparation dt { font-size: 22px; color: var(--blue); }
+.launch-preparation dd { margin: 0; font-size: 15px; line-height: 1.8; color: var(--muted); }
+.business-checklist-title { font-size: 17px; margin-top: 24px; }
 .product-detail-copy .technical-heading + dl { margin-top: 13px; }
 .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; }
 .approach-list--compact { display: grid; grid-template-columns: 1fr 1fr; column-gap: 50px; }
@@ -105,6 +134,15 @@
   .design-object { height: 245px; }
 }
 @media(max-width:700px) {
+  .brand-reading,.product-comparison,.evidence-reading,.launch-preparation { padding-bottom: 55px; }
+  .brand-reading-links > a { grid-template-columns: 25px minmax(0,1fr) 22px; gap: 12px; }
+  .comparison-columns { grid-template-columns: 1fr; gap: 20px; }
+  .comparison-columns h3 { min-height: 0; }
+  .comparison-columns dl > div { display: grid; grid-template-columns: minmax(0,.65fr) minmax(0,1fr); gap: 18px; }
+  .comparison-columns dd { margin: 0; }
+  .evidence-reading li { grid-template-columns: 24px minmax(0,1fr); gap: 14px; }
+  .launch-preparation dl > div { grid-template-columns: 1fr; gap: 15px; }
+  .story-closing--visual { grid-template-columns: minmax(0,1fr); }
   .approach-list--compact { grid-template-columns: 1fr; }
   .care-space-feature { grid-template-columns: 1fr; gap: 28px; padding-block: 20px 62px; }
   .scene-stories { padding-bottom: 60px; }
@@ -112,7 +150,7 @@
   .scene-story-grid article:first-child .scene-composition { aspect-ratio: 3/2; }
   .scene-story-caption p { font-size: 13px; }
   .story-hero { padding-top: 45px; }
-  .story-closing--visual .scene-composition { min-height: 0; height: auto; }
+  .story-closing--visual .scene-composition { height: auto; aspect-ratio: 3/2; }
   .detail-collection,.design-section,.evidence-section { padding-bottom: 60px; }
   .visual-selector { gap: 7px; }
   .visual-selector button { font-size: 12px; padding: 9px 11px; }

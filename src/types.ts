@@ -15,6 +15,14 @@ export interface ProductCopy {
   suitability?: string
 }
 export interface SiteCopy {
+  depth: {
+    home: { title: string; intro: string; items: TextItem[] }
+    story: { closingBody: string[] }
+    comparison: { title: string; intro: string; format: string; spray: string; bottle: string }
+    reading: { title: string; intro: string; items: TextItem[] }
+    preparation: { title: string; intro: string; items: TextItem[] }
+    business: { title: string; items: string[] }
+  }
   nav: Record<Exclude<PageId, 'home'>, string>
   common: { menu: string; close: string; language: string; navigation: string; skip: string; home: string; explore: string; contact: string; back: string }
   hero: { eyebrow: string; title: string; body: string; cta: string }

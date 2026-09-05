@@ -28,7 +28,7 @@ export function ProductCards({ t, onSelect }: { t: SiteCopy; onSelect?: (id: Pro
 }
 
 export function ContactBand({ t }: { t: SiteCopy }) {
-  return <section className="contact-band"><div><h2>{t.footer.headline}</h2><p>{t.contact.consumerBody}</p></div><a href="./official.html" className="button button--blue">{t.footer.contact}<ArrowUpRight size={18} strokeWidth={1.5} /></a></section>
+  return <section className="contact-band"><div><h2>{t.footer.headline}</h2><p>{t.footer.body}</p></div><a href="./official.html" className="button button--blue">{t.footer.contact}<ArrowUpRight size={18} strokeWidth={1.5} /></a></section>
 }
 
 export function TextLink({ href, children }: { href: string; children: ReactNode }) {

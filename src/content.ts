@@ -1,7 +1,7 @@
 import type { Locale, SiteCopy } from './types'
 export type { Locale } from './types'
 
-type CoreCopy = Omit<SiteCopy, 'visual'>
+type CoreCopy = Omit<SiteCopy, 'visual' | 'depth'>
 
 const visualCopy: Record<Locale, SiteCopy['visual']> = {
   "en": {
@@ -612,7 +612,7 @@ const en: CoreCopy = {
 
 const zh: CoreCopy = {
   "nav": {
-    "products": "产品",
+    "products": "产品系列",
     "quality": "品牌理念",
     "story": "关于 RANTO",
     "global": "国际视野",
@@ -1669,9 +1669,320 @@ const ja: CoreCopy = {
   }
 }
 
+const depthCopy: Record<Locale, SiteCopy['depth']> = {
+  "zh": {
+    "home": {
+      "title": "从认识品牌，到看清产品。",
+      "intro": "沿着三个入口，了解系列的设计取舍、对应资料与首发安排。",
+      "items": [
+        {
+          "title": "关于我们的选择",
+          "body": "为什么从厨房、浴室和贴身衣物开始？从护理空间的灵感，看到三款包装如何形成一个系列。"
+        },
+        {
+          "title": "把细节与资料放在一起看",
+          "body": "近看瓶型和标签，再查看对应产品的申报摘录，分清设计信息与产品记录。"
+        },
+        {
+          "title": "关注泰国首发",
+          "body": "了解当前已经展示的内容，以及上市与官方联系信息后续公布的位置。"
+        }
+      ]
+    },
+    "story": {
+      "closingBody": [
+        "一套护理用品，应该容易分辨，也能自然地放进日常。厨房、浴室与贴身衣物分别对应不同的家务，三款产品让这些用途在选择时就清楚可见。",
+        "白色瓶身与蓝绿标识维持系列感，瓶型和正面标签保留各自特点。我们希望这份一致与区别，让日常用品在家里各得其所。"
+      ]
+    },
+    "comparison": {
+      "title": "同样 500 ml，用在不同日常。",
+      "intro": "先按清洁对象选择产品，再查看对应包装与产品说明。容量相同，不代表用途或使用方法相同。",
+      "format": "包装形式",
+      "spray": "扳机喷雾瓶",
+      "bottle": "圆肩翻盖瓶"
+    },
+    "reading": {
+      "title": "一份资料，回答一个具体问题。",
+      "intro": "看产品时，把外观、申报信息和实际使用要求分别核对，会更容易找到需要的答案。",
+      "items": [
+        {
+          "title": "包装图：这是什么产品？",
+          "body": "先看品名、用途和容量，再查看瓶型与开盖方式。当前图片展示包装设计，标签上的全部细节可在产品页放大查看。"
+        },
+        {
+          "title": "申报摘录：对应哪款记录？",
+          "body": "多功能清洁剂对应 สค 99/2569，内衣洗衣液对应 สค 95/2569。查看产品名称、编号和日期，避免把一款资料套用到整个系列。"
+        },
+        {
+          "title": "实际使用：以哪份说明为准？",
+          "body": "请以随实际产品提供的最终包装为准。使用量、操作方式与适用范围要按具体产品核对；衣物还需结合自身洗护标签。"
+        }
+      ]
+    },
+    "preparation": {
+      "title": "首发进展，看得到的每一步。",
+      "intro": "这里按信息是否已经公开，说明目前可以了解什么、后续还会公布什么。",
+      "items": [
+        {
+          "title": "产品预览 · 已提供",
+          "body": "首发三款 500 ml 产品的包装、用途分类和细节预览已在产品页展示。"
+        },
+        {
+          "title": "产品资料 · 已提供两款摘录",
+          "body": "多功能清洁剂和内衣洗衣液的申报摘录可在品牌理念页查看；资料分别对应具体产品。"
+        },
+        {
+          "title": "发售与联系 · 待公布",
+          "body": "正式发售时间、购买入口，以及邮箱、Instagram、Facebook、TikTok 的官方地址，将在准备就绪后更新。"
+        }
+      ]
+    },
+    "business": {
+      "title": "商务联系开放后，可准备这些信息",
+      "items": [
+        "公司或机构名称、所在市场与业务类型。",
+        "希望了解的产品，以及零售、分销、内容或其他合作方向。",
+        "计划覆盖的渠道、地区与时间安排，方便明确沟通范围。"
+      ]
+    }
+  },
+  "en": {
+    "home": {
+      "title": "From the brand to the details.",
+      "intro": "Explore the design choices, product records and plans for our first launch.",
+      "items": [
+        {
+          "title": "Understand our choices",
+          "body": "Why begin with the kitchen, bathroom and lingerie laundry? Follow the inspiration behind the collection and the choices that connect its three packs."
+        },
+        {
+          "title": "Read the details alongside the records",
+          "body": "Look closely at bottles and labels, then read the relevant notification excerpts. Each source answers a different question."
+        },
+        {
+          "title": "Follow the Thai launch",
+          "body": "See what is available to explore today and where release updates and official contact details will appear."
+        }
+      ]
+    },
+    "story": {
+      "closingBody": [
+        "Care products should be easy to tell apart and feel at home in everyday spaces. The kitchen, bathroom and lingerie laundry each call for a different task; the collection makes these uses visible from the moment of selection.",
+        "White bottles and the blue-green mark connect the collection, while bottle shapes and front labels retain their own character. We want that balance to help each product find its place at home."
+      ]
+    },
+    "comparison": {
+      "title": "One size. Different everyday tasks.",
+      "intro": "Choose by the object you need to clean, then read the relevant pack and instructions. The same volume does not mean the same use or method.",
+      "format": "Pack format",
+      "spray": "Trigger spray bottle",
+      "bottle": "Rounded flip-top bottle"
+    },
+    "reading": {
+      "title": "A specific question for each source.",
+      "intro": "Consider appearance, notified information and practical directions separately to find the answer you need.",
+      "items": [
+        {
+          "title": "Packaging: which product is this?",
+          "body": "Start with the name, use and volume, then look at the bottle and closure. The current images show packaging designs; open the full pack view on the product page for a closer look."
+        },
+        {
+          "title": "Notification: which record applies?",
+          "body": "Multi-Purpose Cleaner corresponds to สค 99/2569 and Lingerie Laundry Detergent to สค 95/2569. Match the product name, reference and date; a record for one product does not cover the whole collection."
+        },
+        {
+          "title": "In use: which instructions should I follow?",
+          "body": "Follow the final packaging supplied with the actual product. Check the quantity, method and suitability for that product; for garments, also consult the fabric care label."
+        }
+      ]
+    },
+    "preparation": {
+      "title": "The first launch, step by step.",
+      "intro": "An overview of the information already available and the details still to be announced.",
+      "items": [
+        {
+          "title": "Product previews · Available",
+          "body": "The three 500 ml launch products can be explored through their packaging, use categories and detail views."
+        },
+        {
+          "title": "Product records · Two excerpts available",
+          "body": "Notification excerpts for Multi-Purpose Cleaner and Lingerie Laundry Detergent are on the approach page. Each record relates to a specific product."
+        },
+        {
+          "title": "Release and contacts · To be announced",
+          "body": "The release date, purchase destinations and official email, Instagram, Facebook and TikTok details will be updated when ready."
+        }
+      ]
+    },
+    "business": {
+      "title": "For future business enquiries",
+      "items": [
+        "Your company or organisation, market and type of business.",
+        "The products of interest and your proposed retail, distribution, content or other collaboration.",
+        "The channels, locations and timeframe you have in mind, to help define the discussion."
+      ]
+    }
+  },
+  "ja": {
+    "home": {
+      "title": "ブランドから、製品の細部へ。",
+      "intro": "デザインの選択、製品ごとの資料、最初の発売に向けた案内をご覧ください。",
+      "items": [
+        {
+          "title": "私たちの選択を知る",
+          "body": "なぜキッチン、浴室、下着の洗濯から始めるのか。着想から、3つのパッケージをつなぐ工夫までをご紹介します。"
+        },
+        {
+          "title": "細部と資料を見比べる",
+          "body": "ボトルとラベルを近くで見たあと、対応する届出の抜粋をご確認ください。デザインと製品記録を分けて読み取れます。"
+        },
+        {
+          "title": "タイでの発売に向けて",
+          "body": "現在ご覧いただける情報と、発売や公式連絡先の今後の案内をご確認いただけます。"
+        }
+      ]
+    },
+    "story": {
+      "closingBody": [
+        "ケア用品は見分けやすく、日々の暮らしになじむものであってほしい。キッチン、浴室、下着の洗濯。それぞれの家事に対応する3つの製品で、選ぶときから用途が伝わることを目指しています。",
+        "白いボトルと青緑のマークでシリーズをつなぎ、ボトルの形と正面ラベルにはそれぞれの特徴を残します。その共通点と違いが、家の中での置き場所を考えるきっかけになります。"
+      ]
+    },
+    "comparison": {
+      "title": "同じ500 ml、それぞれの用途。",
+      "intro": "まず洗う対象に合わせて選び、製品ごとの表示と使い方をご確認ください。同じ容量でも、用途や使用方法は異なります。",
+      "format": "容器の形",
+      "spray": "トリガースプレーボトル",
+      "bottle": "丸い肩のフリップトップボトル"
+    },
+    "reading": {
+      "title": "資料ごとに、確かめること。",
+      "intro": "外観、届出情報、実際の使い方を分けて確認すると、必要な情報を見つけやすくなります。",
+      "items": [
+        {
+          "title": "パッケージ：どの製品？",
+          "body": "製品名、用途、容量を確認し、容器と開け方をご覧ください。現在の画像はパッケージデザインのプレビューです。製品ページで全体図を拡大できます。"
+        },
+        {
+          "title": "届出：どの記録に対応？",
+          "body": "多目的クリーナーは สค 99/2569、ランジェリー用洗剤は สค 95/2569 に対応します。製品名、番号、日付を照合し、1製品の資料をシリーズ全体に当てはめないでください。"
+        },
+        {
+          "title": "使うとき：どの説明に従う？",
+          "body": "実際の製品に付属する最終パッケージの説明に従ってください。使用量、手順、適用範囲は製品ごとに確認し、衣類は洗濯表示も併せてご覧ください。"
+        }
+      ]
+    },
+    "preparation": {
+      "title": "最初の発売に向けた案内。",
+      "intro": "現在公開している情報と、今後お知らせする内容をまとめています。",
+      "items": [
+        {
+          "title": "製品プレビュー · 公開中",
+          "body": "最初の3製品、各500 mlのパッケージ、用途区分、細部を製品ページでご覧いただけます。"
+        },
+        {
+          "title": "製品資料 · 2製品の抜粋を公開",
+          "body": "多目的クリーナーとランジェリー用洗剤の届出抜粋を理念ページに掲載しています。資料はそれぞれの製品に対応しています。"
+        },
+        {
+          "title": "発売・連絡先 · 後日ご案内",
+          "body": "発売日、購入先、公式メール、Instagram、Facebook、TikTokの連絡先は、準備が整い次第更新します。"
+        }
+      ]
+    },
+    "business": {
+      "title": "今後のお取引のご相談に向けて",
+      "items": [
+        "会社・団体名、対象市場、事業の種類。",
+        "関心のある製品と、小売・流通・コンテンツなど希望する協業の内容。",
+        "想定する販売経路、地域、時期など、ご相談の範囲が分かる情報。"
+      ]
+    }
+  },
+  "th": {
+    "home": {
+      "title": "จากเรื่องราวแบรนด์ สู่รายละเอียดผลิตภัณฑ์",
+      "intro": "สำรวจแนวคิดการออกแบบ เอกสารของแต่ละผลิตภัณฑ์ และข้อมูลการเปิดตัวครั้งแรก",
+      "items": [
+        {
+          "title": "เข้าใจสิ่งที่เราเลือก",
+          "body": "ทำไมจึงเริ่มจากห้องครัว ห้องน้ำ และการซักชุดชั้นใน ติดตามแรงบันดาลใจและแนวคิดที่เชื่อมบรรจุภัณฑ์ทั้งสามเข้าด้วยกัน"
+        },
+        {
+          "title": "ดูรายละเอียดควบคู่กับเอกสาร",
+          "body": "ดูขวดและฉลากอย่างใกล้ชิด แล้วอ่านข้อความคัดย่อจากเอกสารแจ้งข้อเท็จจริงที่ตรงกับผลิตภัณฑ์ เพื่อแยกข้อมูลการออกแบบออกจากบันทึกผลิตภัณฑ์"
+        },
+        {
+          "title": "ติดตามการเปิดตัวในไทย",
+          "body": "ดูข้อมูลที่เปิดให้อ่านแล้ว และจุดที่จะประกาศกำหนดวางจำหน่ายกับช่องทางติดต่อทางการ"
+        }
+      ]
+    },
+    "story": {
+      "closingBody": [
+        "ของใช้เพื่อการดูแลควรแยกแยะได้ง่ายและเข้ากับชีวิตประจำวัน ห้องครัว ห้องน้ำ และชุดชั้นในเป็นงานดูแลคนละแบบ ผลิตภัณฑ์ทั้งสามจึงแสดงหน้าที่ของตนให้เห็นตั้งแต่ขั้นตอนการเลือก",
+        "ขวดสีขาวและเครื่องหมายสีน้ำเงินเขียวเชื่อมคอลเลกชันเข้าด้วยกัน ขณะที่รูปทรงขวดและฉลากด้านหน้ายังคงมีลักษณะเฉพาะ เราอยากให้ความเหมือนและความต่างนี้ช่วยให้ของใช้แต่ละชิ้นมีที่ของตัวเองในบ้าน"
+      ]
+    },
+    "comparison": {
+      "title": "ขนาด 500 มล. เท่ากัน ดูแลคนละงาน",
+      "intro": "เลือกตามสิ่งที่ต้องการทำความสะอาด แล้วอ่านฉลากและคำแนะนำของผลิตภัณฑ์นั้น ปริมาณเท่ากันไม่ได้หมายถึงการใช้งานหรือวิธีใช้ที่เหมือนกัน",
+      "format": "รูปแบบบรรจุภัณฑ์",
+      "spray": "ขวดสเปรย์แบบไกปืน",
+      "bottle": "ขวดไหล่มนฝาเปิดปิด"
+    },
+    "reading": {
+      "title": "เอกสารแต่ละแบบ ตอบคำถามต่างกัน",
+      "intro": "แยกดูรูปลักษณ์ ข้อมูลที่แจ้ง และคำแนะนำการใช้งาน เพื่อค้นหาคำตอบที่ต้องการได้ชัดเจนขึ้น",
+      "items": [
+        {
+          "title": "บรรจุภัณฑ์: คือผลิตภัณฑ์ใด",
+          "body": "เริ่มจากชื่อ การใช้งาน และปริมาณ แล้วดูขวดและวิธีเปิด ภาพปัจจุบันเป็นตัวอย่างการออกแบบ สามารถเปิดภาพบรรจุภัณฑ์เต็มในหน้าผลิตภัณฑ์เพื่อดูรายละเอียด"
+        },
+        {
+          "title": "เอกสารแจ้งข้อเท็จจริง: ตรงกับรายการใด",
+          "body": "ผลิตภัณฑ์ทำความสะอาดอเนกประสงค์ตรงกับ สค 99/2569 และผลิตภัณฑ์ซักผ้าสำหรับชุดชั้นในตรงกับ สค 95/2569 ตรวจชื่อ เลขที่ และวันที่ โดยไม่ใช้เอกสารของผลิตภัณฑ์หนึ่งอ้างแทนทั้งคอลเลกชัน"
+        },
+        {
+          "title": "การใช้งาน: ควรยึดคำแนะนำใด",
+          "body": "ปฏิบัติตามฉลากฉบับสุดท้ายที่มาพร้อมผลิตภัณฑ์จริง ตรวจปริมาณ วิธีใช้ และขอบเขตการใช้งานของแต่ละผลิตภัณฑ์ สำหรับเสื้อผ้าให้อ่านป้ายดูแลผ้าร่วมด้วย"
+        }
+      ]
+    },
+    "preparation": {
+      "title": "ข้อมูลการเปิดตัวในแต่ละขั้น",
+      "intro": "สรุปสิ่งที่เปิดให้ดูแล้ว และรายละเอียดที่จะประกาศในภายหลัง",
+      "items": [
+        {
+          "title": "ภาพผลิตภัณฑ์ · เปิดให้ดูแล้ว",
+          "body": "หน้าผลิตภัณฑ์แสดงบรรจุภัณฑ์ ประเภทการใช้งาน และรายละเอียดของผลิตภัณฑ์เปิดตัวทั้งสาม ขนาด 500 มล."
+        },
+        {
+          "title": "เอกสารผลิตภัณฑ์ · มีข้อความคัดย่อสองรายการ",
+          "body": "ดูข้อความคัดย่อจากเอกสารแจ้งข้อเท็จจริงของผลิตภัณฑ์ทำความสะอาดอเนกประสงค์และผลิตภัณฑ์ซักผ้าสำหรับชุดชั้นในได้ในหน้าแนวคิดของเรา แต่ละเอกสารตรงกับผลิตภัณฑ์นั้นโดยเฉพาะ"
+        },
+        {
+          "title": "การจำหน่ายและการติดต่อ · รอประกาศ",
+          "body": "จะอัปเดตวันวางจำหน่าย ช่องทางซื้อ และอีเมล Instagram Facebook กับ TikTok ทางการเมื่อพร้อม"
+        }
+      ]
+    },
+    "business": {
+      "title": "ข้อมูลที่เตรียมไว้สำหรับการติดต่อธุรกิจในอนาคต",
+      "items": [
+        "ชื่อบริษัทหรือองค์กร ตลาดที่ดำเนินงาน และประเภทธุรกิจ",
+        "ผลิตภัณฑ์ที่สนใจและรูปแบบความร่วมมือ เช่น ค้าปลีก จัดจำหน่าย หรือเนื้อหา",
+        "ช่องทาง พื้นที่ และช่วงเวลาที่วางแผนไว้ เพื่อให้กำหนดขอบเขตการพูดคุยได้ชัดเจน"
+      ]
+    }
+  }
+}
+
 export const copy: Record<Locale, SiteCopy> = {
-  en: { ...en, visual: visualCopy.en },
-  zh: { ...zh, visual: visualCopy.zh },
-  th: { ...th, visual: visualCopy.th },
-  ja: { ...ja, visual: visualCopy.ja },
+  en: { ...en, visual: visualCopy.en, depth: depthCopy.en },
+  zh: { ...zh, visual: visualCopy.zh, depth: depthCopy.zh },
+  th: { ...th, visual: visualCopy.th, depth: depthCopy.th },
+  ja: { ...ja, visual: visualCopy.ja, depth: depthCopy.ja },
 }

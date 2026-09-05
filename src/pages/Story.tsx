@@ -12,7 +12,7 @@ export default function Story() {
     <section className="story-body story-body--expanded section-wrap"><h2>{t.philosophy.title}</h2><div>{t.story.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div></section>
     <section className="story-values-note section-wrap" aria-label={t.philosophy.eyebrow}><dl>{t.story.principles.map(item => <div key={item.title}><dt>{item.title}</dt><dd>{item.body}</dd></div>)}</dl></section>
     <DesignBoard t={t} />
-    <section className="story-closing story-closing--visual"><SceneVisual id="lingerie" t={t} /><div><h2>{t.story.closing}</h2><TextLink href="./products.html">{t.hero.cta}</TextLink></div></section>
+    <section className="story-closing story-closing--visual" id="everyday"><SceneVisual id="lingerie" t={t} /><div className="story-closing-copy"><h2>{t.story.closing}</h2>{t.depth.story.closingBody.map(paragraph => <p key={paragraph}>{paragraph}</p>)}<TextLink href="./products.html">{t.hero.cta}</TextLink></div></section>
     <ContactBand t={t} />
   </Chrome>
 }

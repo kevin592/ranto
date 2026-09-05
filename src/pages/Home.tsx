@@ -4,6 +4,7 @@ import { useCopy } from '../components/bits'
 import { ProductFamily, ProductCards, ContactBand, TextLink } from '../components/Brand'
 import { FAQSection } from '../components/Editorial'
 import { CareSpace, SceneStories } from '../components/Visuals'
+import { BrandReadingGuide } from '../components/PageDepth'
 
 export default function Home() {
   const { locale, setLocale, t } = useCopy('home')
@@ -15,7 +16,7 @@ export default function Home() {
     <section className="collection-section section-wrap"><div className="section-heading"><h2>{t.collection.title}</h2><p>{t.collection.intro}</p></div><ProductCards t={t} /><TextLink href="./products.html">{t.collection.viewAll}</TextLink></section>
     <CareSpace t={t} />
     <SceneStories t={t} />
-    <section className="home-care-reading section-wrap"><div><h2>{t.philosophy.title}</h2><p>{t.philosophy.body}</p><TextLink href="./quality.html">{t.nav.quality}</TextLink></div><dl className="home-care-principles">{t.philosophy.points.map(point => <div key={point.title}><dt>{point.title}</dt><dd>{point.body}</dd></div>)}</dl></section>
+    <BrandReadingGuide t={t} />
     <FAQSection t={t} limit={2} />
     <ContactBand t={t} />
   </Chrome>

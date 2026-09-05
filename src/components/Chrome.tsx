@@ -7,8 +7,7 @@ import '../visuals.css'
 import type { Locale, PageId, SiteCopy } from '../types'
 
 export type { PageId } from '../types'
-const pageHrefs = ['products.html', 'quality.html', 'story.html', 'global.html', 'official.html']
-const navigation = ['products', 'quality', 'story', 'global', 'official'] as const
+const navigation = ['story', 'products', 'quality', 'global', 'official'] as const
 
 export default function Chrome({ page, locale, setLocale, t, children }: {
   page: PageId; locale: Locale; setLocale: (locale: Locale) => void; t: SiteCopy; children: ReactNode
@@ -22,8 +21,8 @@ export default function Chrome({ page, locale, setLocale, t, children }: {
     return () => { dialog?.removeEventListener('close', unlock); document.body.style.overflow = '' }
   }, [])
   const closeMenu = () => menu.current?.close()
-  const links = (mobile = false) => navigation.map((id, index) => (
-    <a key={id} href={`./${pageHrefs[index]}`} aria-current={page === id ? 'page' : undefined} onClick={mobile ? closeMenu : undefined}>
+  const links = (mobile = false) => navigation.map(id => (
+    <a key={id} href={`./${id}.html`} aria-current={page === id ? 'page' : undefined} onClick={mobile ? closeMenu : undefined}>
       {t.nav[id]}{mobile && <ArrowUpRight size={20} strokeWidth={1.5} />}
     </a>
   ))
