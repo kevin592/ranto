@@ -3,9 +3,9 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { products, productIds } from '../products'
 import type { ProductId, SiteCopy } from '../types'
 
-// CSS crops the supplied photographs for display. Product artwork is never recreated.
+// CSS masks align the product photographs and the approved white-bottle variant for display.
 export function Packshot({ id, name, eager = false }: { id: ProductId; name: string; eager?: boolean }) {
-  return <div className={`packshot packshot--${id}`}><img src={products[id].displayImage} alt={name} width={id === 'lingerie' ? 1600 : 1448} height={id === 'lingerie' ? 1600 : 1086} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager && id === 'multipurpose' ? 'high' : 'auto'} decoding="async" /></div>
+  return <div className={`packshot packshot--${id}`}><img src={products[id].displayImage} alt={name} width={id === 'lingerie' ? 1254 : 1448} height={id === 'lingerie' ? 1254 : 1086} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager && id === 'multipurpose' ? 'high' : 'auto'} decoding="async" /></div>
 }
 
 export function ProductFamily({ t, compact = false }: { t: SiteCopy; compact?: boolean }) {

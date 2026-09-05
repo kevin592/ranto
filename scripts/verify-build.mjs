@@ -114,7 +114,7 @@ async function checkHtml(file, page) {
     fail(file, 'Canonical and og:url must both be ' + expectedCanonical)
   }
   const image = metadata.get('og:image') ?? ''
-  const allowedShareImages = ['multipurpose', 'bathroom', 'lingerie']
+  const allowedShareImages = ['multipurpose', 'bathroom', 'lingerie-white']
     .map((product) => new URL('images/launch/' + product + '.png', siteUrl).href)
   if (!allowedShareImages.includes(image)) {
     fail(file, 'Share image must be an absolute URL to one of the three real launch products on the canonical site')
