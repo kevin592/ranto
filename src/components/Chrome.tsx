@@ -1,145 +1,53 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react'
-import Lenis from 'lenis'
-import { localeNames, type Locale } from '../content'
-import { setLenis, lockPageScroll } from '../lib/scroll'
+import { useEffect, useRef, type ReactNode } from 'react'
+import { ArrowUpRight, Menu, X, Globe2 } from 'lucide-react'
+import { localeNames } from '../content'
+import { keepDialogFocus } from '../lib/dialog'
+import type { Locale, PageId, SiteCopy } from '../types'
 
-export const pageHrefs = ['story.html', 'quality.html', 'products.html', 'global.html', 'official.html']
-const homeHref = 'index.html'
+export type { PageId } from '../types'
+const pageHrefs = ['products.html', 'quality.html', 'story.html', 'global.html', 'official.html']
+const navigation = ['products', 'quality', 'story', 'global', 'official'] as const
 
-export type PageId = 'home' | 'story' | 'quality' | 'products' | 'global' | 'official'
-
-function LocaleMenu({ locale, setLocale }: { locale: Locale; setLocale: (value: Locale) => void }) {
-  const [open, setOpen] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!open) return
-    const onPointer = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) setOpen(false)
-    }
-    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') setOpen(false) }
-    document.addEventListener('mousedown', onPointer)
-    document.addEventListener('keydown', onKey)
-    return () => {
-      document.removeEventListener('mousedown', onPointer)
-      document.removeEventListener('keydown', onKey)
-    }
-  }, [open])
-
-  return (
-    <div className={`locale-menu${open ? ' is-open' : ''}`} ref={ref}>
-      <button className="locale-button" onClick={() => setOpen(!open)} aria-haspopup="listbox" aria-expanded={open}>
-        {localeNames[locale]}<ChevronDown size={12} strokeWidth={1.5} />
-      </button>
-      {open && (
-        <div className="locale-panel" role="listbox" aria-label="Language">
-          {(Object.keys(localeNames) as Locale[]).map((key) => (
-            <button key={key} role="option" aria-selected={locale === key} className={locale === key ? 'is-active' : ''}
-              onClick={() => { setLocale(key); setOpen(false) }}>
-              <span>{localeNames[key]}</span><span className="locale-code">{key.toUpperCase()}</span>
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  )
-}
-
-export default function Chrome({
-  page, locale, setLocale, nav, verify, footerBody, footerLocation, children,
-}: {
-  page: PageId
-  locale: Locale
-  setLocale: (value: Locale) => void
-  nav: string[]
-  verify: string
-  footerBody: string
-  footerLocation: string
-  children: ReactNode
+export default function Chrome({ page, locale, setLocale, t, children }: {
+  page: PageId; locale: Locale; setLocale: (locale: Locale) => void; t: SiteCopy; children: ReactNode
 }) {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const sentinel = useRef<HTMLDivElement>(null)
-
+  const menu = useRef<HTMLDialogElement>(null)
+  const menuTrigger = useRef<HTMLButtonElement>(null)
   useEffect(() => {
-    const el = sentinel.current
-    if (!el) return
-    const io = new IntersectionObserver(([entry]) => setScrolled(!entry.isIntersecting))
-    io.observe(el)
-    return () => io.disconnect()
+    const dialog = menu.current
+    const unlock = () => { document.body.style.overflow = ''; menuTrigger.current?.focus() }
+    dialog?.addEventListener('close', unlock)
+    return () => { dialog?.removeEventListener('close', unlock); document.body.style.overflow = '' }
   }, [])
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const lenis = new Lenis({ duration: 1.15 })
-    setLenis(lenis)
-    let raf = 0
-    const loop = (time: number) => { lenis.raf(time); raf = requestAnimationFrame(loop) }
-    raf = requestAnimationFrame(loop)
-    return () => {
-      cancelAnimationFrame(raf)
-      lenis.destroy()
-      setLenis(null)
-    }
-  }, [])
-
-  useEffect(() => {
-    lockPageScroll(menuOpen)
-    return () => lockPageScroll(false)
-  }, [menuOpen])
-
-  const navIndex = ['story', 'quality', 'products', 'global', 'official'].indexOf(page)
-
-  return (
-    <div className="site-shell">
-      <div ref={sentinel} className="header-sentinel" aria-hidden="true" />
-      <header className={`site-header${scrolled ? ' is-scrolled' : ''}`} data-menu-open={menuOpen}>
-        <a className="brand-lockup" href={homeHref} aria-label="RANTO home">
-          <img src="./images/logo.png" alt="RANTO" />
-          <span>JAPAN / GLOBAL CARE</span>
-        </a>
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          {nav.map((item, index) => (
-            <a key={item} href={pageHrefs[index]} className={index === navIndex ? 'is-active' : ''} aria-current={index === navIndex ? 'page' : undefined}>{item}</a>
-          ))}
-        </nav>
-        <div className="header-actions">
-          <LocaleMenu locale={locale} setLocale={setLocale} />
-          <a className="button button--outline desktop-verify" href={pageHrefs[4]}>{verify}</a>
-          <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu" aria-expanded={menuOpen}>
-            {menuOpen ? <X /> : <Menu />}<span>MENU</span>
-          </button>
-        </div>
-      </header>
-
-      {menuOpen && (
-        <div className="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu">
-          <nav aria-label="Mobile navigation">
-            {nav.map((item, index) => (
-              <a key={item} href={pageHrefs[index]}>
-                <span className="mobile-menu-index">0{index + 1}</span>{item}<ArrowRight size={18} className="mobile-menu-arrow" />
-              </a>
-            ))}
-          </nav>
-          <div className="mobile-languages" aria-label="Language">
-            {(Object.keys(localeNames) as Locale[]).map((key) => <button key={key} className={locale === key ? 'is-active' : ''} onClick={() => setLocale(key)} aria-pressed={locale === key}>{localeNames[key]}</button>)}
-          </div>
-          <a className="button button--blue" href={pageHrefs[4]}>{verify}</a>
-        </div>
-      )}
-
-      <main id="top">{children}</main>
-
-      <footer>
-        <div className="footer-brand"><h2>RANTO</h2><p>{footerBody}</p></div>
-        <div className="footer-links">
-          {nav.map((item, index) => <a key={item} href={pageHrefs[index]}>{item}</a>)}
-        </div>
-        <div className="footer-bottom"><span>© 2026 RANTO GLOBAL</span><span>{footerLocation}</span></div>
-      </footer>
-
-      <div className="grain" aria-hidden="true" />
-    </div>
-  )
+  const closeMenu = () => menu.current?.close()
+  const links = (mobile = false) => navigation.map((id, index) => (
+    <a key={id} href={`./${pageHrefs[index]}`} aria-current={page === id ? 'page' : undefined} onClick={mobile ? closeMenu : undefined}>
+      {t.nav[id]}{mobile && <ArrowUpRight size={20} strokeWidth={1.5} />}
+    </a>
+  ))
+  return <div className="site-shell">
+    <a href="#main-content" className="skip-link">{t.common.skip}</a>
+    <header className="site-header">
+      <a className="brand-lockup" href="./index.html" aria-label={t.common.home}><img src="./images/logo.svg" alt="RANTO" width="1248" height="624" /></a>
+      <nav className="desktop-nav" aria-label={t.common.navigation}>{links()}</nav>
+      <div className="header-actions">
+        <label className="language-select"><Globe2 size={16} strokeWidth={1.5} aria-hidden="true" /><span className="sr-only">{t.common.language}</span>
+          <select value={locale} onChange={event => setLocale(event.target.value as Locale)}>
+            {(Object.keys(localeNames) as Locale[]).map(key => <option key={key} value={key}>{localeNames[key]}</option>)}
+          </select>
+        </label>
+        <button ref={menuTrigger} className="menu-toggle icon-button" aria-label={t.common.menu} aria-haspopup="dialog" onClick={() => { menu.current?.showModal(); document.body.style.overflow = 'hidden' }}><Menu size={24} strokeWidth={1.5} /></button>
+      </div>
+    </header>
+    <dialog ref={menu} className="mobile-menu" aria-label={t.common.navigation} onKeyDown={keepDialogFocus} onClick={event => { if (event.target === event.currentTarget) closeMenu() }}>
+      <div className="mobile-menu-header"><img src="./images/logo.svg" alt="RANTO" width="100" height="50" /><button className="icon-button" onClick={closeMenu} aria-label={t.common.close}><X /></button></div>
+      <nav aria-label={t.common.navigation}>{links(true)}</nav>
+      <div className="mobile-languages" aria-label={t.common.language}>{(Object.keys(localeNames) as Locale[]).map(key => <button key={key} aria-pressed={locale === key} onClick={() => { setLocale(key); closeMenu() }}>{localeNames[key]}</button>)}</div>
+    </dialog>
+    <main id="main-content" tabIndex={-1}>{children}</main>
+    <footer className="site-footer">
+      <div className="footer-top"><a href="./index.html" aria-label={t.common.home}><img src="./images/logo.svg" alt="RANTO" width="150" height="75" /></a><p>{t.footer.body}</p><nav aria-label={t.common.navigation}>{links()}</nav></div>
+      <div className="footer-bottom"><span>© {new Date().getFullYear()} RANTO</span><span>{t.footer.legal}</span><a href="mailto:hello@ranto.co.th">hello@ranto.co.th <ArrowUpRight size={13} aria-hidden="true" /></a></div>
+    </footer>
+  </div>
 }

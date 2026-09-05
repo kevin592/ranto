@@ -20,4 +20,22 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  {
+    files: ['src/components/ui/**/*.tsx'],
+    rules: {
+      // The bundled shadcn primitives intentionally expose these shared APIs.
+      'react-refresh/only-export-components': ['error', {
+        allowConstantExport: true,
+        allowExportNames: [
+          'badgeVariants',
+          'buttonGroupVariants',
+          'buttonVariants',
+          'navigationMenuTriggerStyle',
+          'toggleVariants',
+          'useFormField',
+          'useSidebar',
+        ],
+      }],
+    },
+  },
 ])

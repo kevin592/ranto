@@ -1,12 +1,19 @@
+@import './fonts.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-body { margin: 0; min-width: 320px; background: #faf8f3; color: #1d1c1a; font-family: 'Inter','Noto Sans Thai','Noto Sans SC','Noto Sans JP',sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
-button, a, select, input { -webkit-font-smoothing: antialiased; }
-::selection { background: #075dc2; color: white; }
-html[lang='zh'] body { font-family: 'Inter','Noto Sans SC','PingFang SC',sans-serif; }
-html[lang='ja'] body { font-family: 'Inter','Noto Sans JP',sans-serif; }
-html[lang='th'] body { font-family: 'Inter','Noto Sans Thai',sans-serif; }
-@media (max-width: 760px) { html { scroll-padding-top: 70px; } }
+:root { color-scheme: light; font-family: 'Manrope', 'Noto Sans Thai', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'Microsoft YaHei', sans-serif; color: #192f40; background: #fcfcfa; font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+:root:lang(zh) { font-family: 'Manrope', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif; }
+:root:lang(ja) { font-family: 'Manrope', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif; }
+html { scroll-behavior: smooth; scroll-padding-top: 95px; }
+body { margin: 0; min-width: 320px; }
+button, input, select, textarea { font: inherit; }
+button, a, select { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+img { display: block; max-width: 100%; }
+* { box-sizing: border-box; }
+::selection { background: #0554b8; color: #fff; }
+:focus-visible { outline: 2px solid #0554b8; outline-offset: 5px; }
+#main-content:focus { outline: none; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; animation-iteration-count: 1 !important; } }

@@ -24,5 +24,8 @@ export function scrollToElement(el: HTMLElement) {
 
 export function lockPageScroll(locked: boolean) {
   document.body.style.overflow = locked ? 'hidden' : ''
-  if (lenisInstance) locked ? lenisInstance.stop() : lenisInstance.start()
+  if (lenisInstance) {
+    if (locked) lenisInstance.stop()
+    else lenisInstance.start()
+  }
 }

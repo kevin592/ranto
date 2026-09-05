@@ -1,42 +1,29 @@
-import { useEffect, useState, type ReactNode } from 'react'
-import { copy, type Locale } from '../content'
+import { useEffect, useState } from 'react'
+import { copy } from '../content'
+import type { Locale, PageId } from '../types'
 
 export function detectLocale(): Locale {
   try {
-    const saved = localStorage.getItem('ranto-global-lang') as Locale | null
-    if (saved && ['en', 'ja', 'th', 'zh'].includes(saved)) return saved
-    const language = navigator.language.toLowerCase()
-    if (language.startsWith('zh')) return 'zh'
-    if (language.startsWith('ja')) return 'ja'
-    if (language.startsWith('th')) return 'th'
-  } catch {
-    // Browser storage can be unavailable in privacy mode.
-  }
-  return 'en'
+    const saved = localStorage.getItem('ranto-global-lang')
+    if (saved && ['en', 'ja', 'th', 'zh'].includes(saved)) return saved as Locale
+  } catch { /* Language detection still works when storage is unavailable. */ }
+  const language = navigator.language.toLowerCase().split('-')[0]
+  return ['zh', 'ja', 'th'].includes(language) ? language as Locale : 'en'
 }
 
-export function useLocale(): [Locale, (value: Locale) => void] {
+export function useCopy(page: PageId = 'home') {
   const [locale, setLocale] = useState<Locale>(detectLocale)
+  const t = copy[locale]
   useEffect(() => {
     document.documentElement.lang = locale
+    document.title = t.meta[page].title
+    const values = [
+      ['meta[name="description"]', t.meta[page].description],
+      ['meta[property="og:title"]', t.meta[page].title],
+      ['meta[property="og:description"]', t.meta[page].description],
+    ]
+    values.forEach(([selector, value]) => document.querySelector(selector)?.setAttribute('content', value))
     try { localStorage.setItem('ranto-global-lang', locale) } catch { /* private mode */ }
-  }, [locale])
-  return [locale, setLocale]
-}
-
-export function useCopy() {
-  const [locale, setLocale] = useLocale()
-  return { locale, setLocale, t: copy[locale] }
-}
-
-export function SectionLabel({ children, light = false }: { children: ReactNode; light?: boolean }) {
-  return <p className={`section-label${light ? ' section-label--light' : ''}`}>{children}</p>
-}
-
-export function Media({ src, alt, parallax = false }: { src: string; alt: string; parallax?: boolean }) {
-  return (
-    <div className={`media${parallax ? ' media--parallax' : ''}`}>
-      <img src={src} alt={alt} loading="lazy" decoding="async" />
-    </div>
-  )
+  }, [locale, page, t])
+  return { locale, setLocale, t }
 }
