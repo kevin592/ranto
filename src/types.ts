@@ -19,10 +19,15 @@ export interface SiteCopy {
   collection: { title: string; intro: string; viewAll: string }
   scenes: { title: string; body: string; items: TextItem[] }
   philosophy: { eyebrow: string; title: string; body: string; points: TextItem[] }
+  inspiration: { eyebrow: string; title: string; body: string; items: TextItem[] }
+  routines: { title: string; intro: string; items: TextItem[] }
+  selection: { title: string; intro: string; items: TextItem[] }
+  faq: { title: string; intro: string; items: TextItem[] }
+  localLife: { title: string; intro: string; items: TextItem[] }
   story: { title: string; intro: string; paragraphs: string[]; principles: TextItem[]; closing: string }
   quality: { title: string; intro: string; items: TextItem[]; readLabelTitle: string; readLabelBody: string }
   global: { title: string; intro: string; visionTitle: string; visionBody: string; marketTitle: string; marketBody: string; languagesTitle: string; languagesBody: string }
-  contact: { title: string; intro: string; emailLabel: string; emailBody: string; cooperationTitle: string; cooperationBody: string; prepareTitle: string; prepareItems: string[]; availability: string }
+  contact: { title: string; intro: string; consumerTitle: string; consumerBody: string; emailLabel: string; emailBody: string; cooperationTitle: string; cooperationBody: string; prepareTitle: string; prepareItems: string[]; availability: string }
   productUI: { title: string; intro: string; details: string; comingSoon: string; volume: string; usage: string; category: string; directions: string; precautions: string; origin: string; packView: string; fullImage: string; labelNote: string }
   products: Record<ProductId, ProductCopy>
   footer: { headline: string; body: string; contact: string; legal: string }

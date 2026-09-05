@@ -1,6 +1,6 @@
 # 品牌素材记录
 
-产品图片来自本次用户提供的三张包装效果图。三份 PNG 保留原始文件，哈希与源文件一致。页面通过 CSS 轮廓遮罩和尺寸控制展示正面瓶身，不重绘标签。WebP 是同一图片的网页显示副本：两张喷雾图维持 1448 × 1086，内衣洗衣液显示副本为 1600 × 1600，原始 4096 × 4096 文件保留作来源参考；本次白瓶更新后的详情使用下述编辑版本。
+产品图片来自本次用户提供的三张包装效果图。三份 PNG 保留原始文件，哈希与源文件一致。页面通过 SVG 平滑轮廓遮罩和尺寸控制展示正面瓶身，不重绘标签。WebP 是同一图片的网页显示副本：两张喷雾图维持 1448 × 1086，内衣洗衣液显示副本为 1600 × 1600，原始 4096 × 4096 文件保留作来源参考；本次白瓶更新后的详情使用下述编辑版本。
 
 官网使用原有透明矢量 logo.svg；logo.png 保留用于比对。
 
@@ -23,3 +23,7 @@
 > Bright, natural editorial photograph of an everyday apartment kitchen and laundry corner. Pale stone countertop, sink, folded white cloths, a small blue bowl, a wooden cleaning brush, a muted blue towel and a small green plant. Soft daylight, white and pale gray palette, understated home-care atmosphere. No people, product bottles, logos, words, advertisements or invented labels. High-fidelity lifestyle photography, landscape composition.
 
 英文字体 Manrope 与泰文字体 Noto Sans Thai 已随站点保存；授权及来源见 public/fonts 内的说明与 OFL 文件。中文和日文使用系统字体。
+
+## 本轮边缘清理
+
+三款瓶身采用 SVG 贝塞尔轮廓，向瓶体内侧避开源照片背景与接触阴影。已清理两款喷雾瓶左下底部、内衣瓶左肩的残边，移除网页额外投影。内衣产品卡改为中性浅灰背景。此次只调整展示遮罩与样式，没有再次生成、重绘或修改标签图像。

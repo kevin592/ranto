@@ -1,0 +1,164 @@
+/* Editorial modules share the site palette and system; no extra theme or assets. */
+.editorial-section-heading { max-width: 760px; margin-bottom: 38px; }
+.editorial-section-heading > p:not(.eyebrow) { max-width: 650px; margin-top: 19px; }
+.editorial-section-heading h2 { max-width: 24ch; }
+.inspiration-preview { display: grid; grid-template-columns: 1.35fr .8fr; gap: clamp(45px,8vw,115px); align-items: end; padding-top: 67px; padding-bottom: 72px; border-top: 1px solid var(--line); }
+.inspiration-preview-heading h2 { max-width: 24ch; color: var(--blue); font-size: clamp(32px,3.4vw,48px); }
+.inspiration-preview-heading > p:last-child { max-width: 610px; margin-top: 23px; }
+.inspiration-preview-note { border-left: 1px solid #bdccd8; padding-left: 31px; padding-bottom: 4px; }
+.inspiration-preview-note h3 { font-size: 20px; }
+.inspiration-preview-note p { font-size: 14px; margin-top: 14px; }
+.inspiration-preview-note .text-link { margin-top: 22px; }
+.home-care-reading { padding-top: 77px; padding-bottom: 68px; display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(45px,8vw,110px); }
+.home-care-reading > div:first-child h2 { max-width: 15ch; }
+.home-care-reading > div:first-child > p { margin-top: 22px; max-width: 430px; }
+.home-care-reading > div:first-child > .text-link { margin-top: 25px; }
+.home-care-principles { margin: 0; }
+.home-care-principles > div + div { margin-top: 26px; }
+.home-care-principles dt { font-size: 18px; font-weight: 600; line-height: 1.5; }
+.home-care-principles dd { margin: 9px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+.inspiration-story { padding-top: 54px; padding-bottom: 72px; background: #f0f4f7; }
+.inspiration-story .editorial-section-heading { max-width: 780px; margin-bottom: 43px; }
+.inspiration-story .editorial-section-heading > p:not(.eyebrow) { max-width: 670px; }
+.inspiration-story .editorial-section-heading h2 { color: var(--blue); }
+.inspiration-chapter { display: grid; grid-template-columns: 60px .76fr 1fr; gap: 34px; border-top: 1px solid #cfdce5; padding: 29px 0 31px; align-items: start; }
+.inspiration-chapter:last-child { padding-bottom: 0; }
+.chapter-number { font-size: 14px; line-height: 2.1; color: var(--blue); font-weight: 500; }
+.inspiration-chapter h3 { font-size: clamp(23px,2.2vw,29px); max-width: 17ch; }
+.inspiration-chapter p { font-size: 15px; line-height: 1.85; }
+.story-body--expanded { padding-top: 61px; padding-bottom: 65px; }
+.story-body--expanded > h2 { max-width: 16ch; }
+.story-body--expanded > div > p { font-size: 16px; line-height: 1.9; }
+.story-values-note { padding-top: 0; padding-bottom: 65px; }
+.story-values-note dl { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 37px; padding-top: 25px; margin: 0; border-top: 1px solid var(--line); }
+.story-values-note dt { color: var(--blue); font-size: 15px; font-weight: 600; line-height: 1.6; }
+.story-values-note dd { margin: 10px 0 0; font-size: 13px; line-height: 1.8; color: var(--muted); }
+.care-routines { padding-top: 52px; padding-bottom: 63px; background: #f0f4f7; }
+.routine-sequence { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 35px; }
+.routine-sequence li { min-width: 0; border-top: 1px solid #bed0de; padding-top: 21px; }
+.routine-number { display: block; font-size: 12px; font-weight: 600; color: var(--blue); margin-bottom: 15px; }
+.routine-sequence h3 { font-size: 23px; }
+.routine-sequence p { font-size: 14px; margin-top: 13px; line-height: 1.85; }
+.care-faq { padding-top: 58px; padding-bottom: 76px; }
+.care-faq .editorial-section-heading { margin-bottom: 33px; }
+.faq-list { max-width: 1030px; }
+.faq-item { border-top: 1px solid var(--line); }
+.faq-item:last-child { border-bottom: 1px solid var(--line); }
+.faq-item summary { list-style: none; display: flex; align-items: baseline; justify-content: space-between; gap: 28px; cursor: pointer; min-height: 65px; padding: 21px 5px 21px 0; font-size: 17px; line-height: 1.6; font-weight: 550; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::marker { content: ''; }
+.faq-item summary > span { min-width: 0; }
+.faq-item summary svg { flex-shrink: 0; align-self: center; color: var(--blue); transition: transform .18s ease; }
+.faq-item[open] summary { color: var(--blue); }
+.faq-item[open] summary svg { transform: rotate(45deg); }
+.faq-answer { padding: 0 55px 24px 0; max-width: 820px; }
+.faq-answer p { font-size: 14px; line-height: 1.85; }
+.care-faq > .text-link { margin-top: 25px; }
+.care-faq--preview { background: #f4f7f9; padding-top: 48px; padding-bottom: 53px; margin-bottom: 70px; }
+.quality-label { padding-top: 65px; padding-bottom: 20px; }
+.selection-guide { padding-top: 9px; padding-bottom: 76px; }
+.selection-row { display: grid; grid-template-columns: 1.3fr .8fr; gap: 65px; align-items: center; padding: 27px 0; border-top: 1px solid var(--line); }
+.selection-row:last-child { border-bottom: 1px solid var(--line); }
+.selection-row h3 { font-size: 24px; }
+.selection-row p { max-width: 660px; font-size: 14px; line-height: 1.85; margin-top: 11px; }
+.selection-product { display: flex; justify-content: space-between; align-items: center; gap: 24px; color: var(--blue); padding: 20px 22px; border: 1px solid #d6e2ec; border-radius: 4px; background: #f0f5fa; text-align: left; min-width: 0; width: 100%; }
+.selection-product:hover { background: #e8f0f8; border-color: #a4bfda; }
+.selection-product > span { min-width: 0; }
+.selection-product svg { flex-shrink: 0; }
+.selection-category { display: block; font-size: 11px; color: var(--muted); font-weight: 500; line-height: 1.7; }
+.selection-product-name { display: block; font-size: 18px; font-weight: 550; line-height: 1.5; margin-top: 5px; }
+.local-life { padding-top: 55px; padding-bottom: 61px; background: #f0f4f7; margin-bottom: 62px; }
+.local-life-notes { display: grid; grid-template-columns: 1fr 1fr; column-gap: 8%; }
+.local-life-primary { grid-row: span 2; padding: 25px 7% 5px 0; border-top: 2px solid var(--blue); }
+.local-life-primary h3 { font-size: 29px; max-width: 21ch; }
+.local-life-primary p { font-size: 15px; line-height: 1.85; margin-top: 18px; }
+.local-life-primary .text-link { margin-top: 24px; }
+.local-life-secondary { border-top: 1px solid #c8d6e1; padding: 22px 0 26px; }
+.local-life-secondary:last-child { padding-bottom: 0; }
+.local-life-secondary h3 { font-size: 22px; }
+.local-life-secondary p { margin-top: 12px; font-size: 14px; line-height: 1.85; }
+.contact-information--consumer { padding-bottom: 46px; }
+.contact-consumer .consumer-link { margin-top: 24px; }
+.contact-consumer > h2 { max-width: 22ch; }
+.contact-cooperation { margin-bottom: 63px; }
+.contact-cooperation-inner { border-top: 1px solid var(--line); padding-top: 28px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 8%; }
+.contact-cooperation h2 { font-size: 22px; }
+.contact-cooperation p { font-size: 14px; line-height: 1.85; max-width: 620px; }
+.contact-cooperation .text-link { margin-top: 16px; font-size: 13px; }
+.inspiration-preview > *, .home-care-reading > *, .inspiration-chapter > *, .selection-row > *, .local-life-notes > *, .contact-cooperation-inner > * { min-width: 0; }
+.inspiration-preview h2, .inspiration-chapter h3, .selection-product-name, .faq-item summary, .care-routines h3, .local-life h3 { overflow-wrap: anywhere; }
+@media (max-width: 900px) {
+  .inspiration-preview { grid-template-columns: 1.1fr .9fr; gap: 35px; padding-block: 49px; }
+  .inspiration-preview-note { padding-left: 25px; }
+  .home-care-reading { gap: 37px; padding-top: 61px; padding-bottom: 52px; }
+  .inspiration-chapter { grid-template-columns: 38px .8fr 1fr; gap: 22px; }
+  .inspiration-chapter h3 { font-size: 25px; }
+  .routine-sequence { gap: 23px; }
+  .routine-sequence h3 { font-size: 21px; }
+  .selection-row { gap: 35px; }
+  .selection-product { padding: 17px; gap: 17px; }
+  .story-values-note dl { gap: 25px; }
+}
+@media (max-width: 640px) {
+  .editorial-section-heading { margin-bottom: 28px; }
+  .editorial-section-heading > p:not(.eyebrow) { margin-top: 17px; font-size: 14px; }
+  .inspiration-preview { grid-template-columns: 1fr; gap: 27px; padding-block: 39px; }
+  .inspiration-preview-heading h2 { font-size: 31px; max-width: 22ch; }
+  .inspiration-preview-heading > p:last-child { margin-top: 19px; font-size: 14px; }
+  .inspiration-preview-note { padding-left: 21px; }
+  .inspiration-preview-note h3 { font-size: 19px; }
+  .inspiration-preview-note p { font-size: 13px; margin-top: 11px; }
+  .inspiration-preview-note .text-link { margin-top: 17px; }
+  .home-care-reading { grid-template-columns: 1fr; gap: 28px; padding-block: 43px; }
+  .home-care-reading > div:first-child > p { margin-top: 18px; font-size: 14px; }
+  .home-care-reading > div:first-child > .text-link { margin-top: 18px; }
+  .home-care-principles > div + div { margin-top: 22px; }
+  .home-care-principles dt { font-size: 18px; }
+  .home-care-principles dd { font-size: 13px; }
+  .inspiration-story { padding-block: 38px 41px; }
+  .inspiration-story .editorial-section-heading { margin-bottom: 28px; }
+  .inspiration-chapter { grid-template-columns: 31px 1fr; gap: 10px 17px; padding-block: 24px; }
+  .chapter-number { font-size: 12px; }
+  .inspiration-chapter h3 { font-size: 24px; max-width: none; }
+  .inspiration-chapter p { grid-column: 2; font-size: 14px; }
+  .story-body--expanded { padding-top: 37px; padding-bottom: 34px; }
+  .story-body--expanded > div > p { font-size: 14px; line-height: 1.9; }
+  .story-values-note { padding-bottom: 41px; }
+  .story-values-note dl { grid-template-columns: 1fr; gap: 23px; padding-top: 22px; }
+  .story-values-note dd { margin-top: 7px; }
+  .care-routines { padding-block: 36px 39px; }
+  .routine-sequence { grid-template-columns: 1fr; gap: 23px; }
+  .routine-sequence li { display: grid; grid-template-columns: 31px 1fr; gap: 17px; padding-top: 21px; }
+  .routine-number { margin: 3px 0 0; line-height: 1.8; }
+  .routine-sequence h3 { font-size: 22px; }
+  .routine-sequence p { font-size: 13px; margin-top: 11px; }
+  .care-faq { padding-top: 39px; padding-bottom: 47px; }
+  .care-faq .editorial-section-heading { margin-bottom: 25px; }
+  .faq-item summary { font-size: 16px; gap: 19px; padding-block: 18px; min-height: 62px; }
+  .faq-answer { padding-right: 22px; padding-bottom: 21px; }
+  .faq-answer p { font-size: 13px; }
+  .care-faq--preview { padding-block: 34px 37px; margin-bottom: 42px; }
+  .quality-label { padding-top: 40px; padding-bottom: 8px; }
+  .selection-guide { padding-top: 4px; padding-bottom: 45px; }
+  .selection-row { grid-template-columns: 1fr; gap: 18px; padding-block: 24px; }
+  .selection-row h3 { font-size: 22px; }
+  .selection-row p { font-size: 13px; }
+  .selection-product { padding: 15px 18px; }
+  .selection-category { font-size: 10px; }
+  .selection-product-name { font-size: 17px; }
+  .local-life { padding-top: 38px; padding-bottom: 39px; margin-bottom: 37px; }
+  .local-life-notes { grid-template-columns: 1fr; gap: 25px; }
+  .local-life-primary { grid-row: auto; padding: 23px 0 0; }
+  .local-life-primary h3 { font-size: 26px; }
+  .local-life-primary p { font-size: 14px; margin-top: 15px; }
+  .local-life-primary .text-link { margin-top: 19px; }
+  .local-life-secondary { padding: 23px 0 0; }
+  .local-life-secondary h3 { font-size: 21px; }
+  .local-life-secondary p { font-size: 13px; }
+  .contact-information--consumer { padding-bottom: 34px; }
+  .contact-consumer .consumer-link { margin-top: 18px; }
+  .contact-cooperation { margin-bottom: 43px; }
+  .contact-cooperation-inner { grid-template-columns: 1fr; gap: 16px; padding-top: 24px; }
+  .contact-cooperation h2 { font-size: 21px; }
+  .contact-cooperation p { font-size: 13px; }
+}

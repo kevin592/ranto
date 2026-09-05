@@ -4,6 +4,9 @@ import { fileURLToPath } from 'node:url'
 import ts from 'typescript'
 
 const projectDir = fileURLToPath(new URL('../', import.meta.url))
+const copySource = await readFile(path.join(projectDir, 'src/content.ts'), 'utf8')
+const copyModule = ts.transpileModule(copySource, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } }).outputText
+const { copy } = await import('data:text/javascript;base64,' + Buffer.from(copyModule).toString('base64'))
 const outputDir = path.resolve(projectDir, process.argv[2] ?? 'dist')
 const siteUrl = new URL('https://kevin592.github.io/ranto/')
 const pages = {
@@ -107,7 +110,12 @@ async function checkHtml(file, page) {
   for (const key of ['description', 'og:title', 'og:description', 'og:image', 'og:url']) {
     if (!metadata.get(key)?.trim()) fail(file, 'Missing ' + key)
   }
-  if (!title.startsWith('RANTO')) fail(file, 'Missing RANTO page title')
+  if (!/\bRANTO\b/.test(title)) fail(file, 'Missing RANTO page title')
+  if (title !== copy.en.meta[page].title || metadata.get('og:title') !== title
+    || metadata.get('description') !== copy.en.meta[page].description
+    || metadata.get('og:description') !== copy.en.meta[page].description) {
+    fail(file, 'Page and share metadata must match the current English content')
+  }
   const expectedCanonical = new URL(page === 'home' ? './' : path.basename(file), siteUrl).href
   const canonical = tags.find(({ name, attrs }) => name === 'link' && attrs.rel === 'canonical')?.attrs.href
   if (canonical !== expectedCanonical || metadata.get('og:url') !== expectedCanonical) {
@@ -125,7 +133,7 @@ async function checkHtml(file, page) {
   }
   const publicMetadata = [title, ...metadata.values()].join(' ')
   const obsoleteClaims = [
-    /\b(?:japan|japanese)\b/i,
+    /\b(?:made in japan|japanese (?:origin|heritage|technology)|japan[- ]founded)\b/i,
     /\bsix (?:care |controlled )?(?:systems|categories|stages)\b/i,
     /\b(?:shoe care|pods|traceable release|professional first|verified markets)\b/i,
     /\b(?:verify an official|channel verification|quality and manufacturing|brand heritage)\b/i,
@@ -198,6 +206,16 @@ async function checkJavaScript(content, file) {
 }
 
 try {
+  const flatten = (value, prefix = '') => Object.entries(value).flatMap(([key, item]) => {
+    const field = prefix ? prefix + '.' + key : key
+    return typeof item === 'string' ? [[field, item]] : flatten(item, field)
+  })
+  const expectedFields = flatten(copy.en).map(([key]) => key).sort().join('|')
+  for (const locale of ['en', 'zh', 'th', 'ja']) {
+    const fields = flatten(copy[locale])
+    if (fields.map(([key]) => key).sort().join('|') !== expectedFields) errors.add(locale + ': Incomplete translation structure')
+    if (fields.some(([, value]) => !value.trim())) errors.add(locale + ': Empty translated content')
+  }
   await collectFiles(outputDir)
   await Promise.all(Object.entries(pages).map(([filename, page]) => checkHtml(path.join(outputDir, filename), page)))
   await checkReference('./.nojekyll', path.join(outputDir, 'index.html'))

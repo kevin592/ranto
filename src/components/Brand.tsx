@@ -1,11 +1,16 @@
-import type { ReactNode } from 'react'
+import { useId, type ReactNode } from 'react'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { products, productIds } from '../products'
 import type { ProductId, SiteCopy } from '../types'
+import { packshotMasks } from '../packshot-masks'
 
-// CSS masks align the product photographs and the approved white-bottle variant for display.
 export function Packshot({ id, name, eager = false }: { id: ProductId; name: string; eager?: boolean }) {
-  return <div className={`packshot packshot--${id}`}><img src={products[id].displayImage} alt={name} width={id === 'lingerie' ? 1254 : 1448} height={id === 'lingerie' ? 1254 : 1086} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager && id === 'multipurpose' ? 'high' : 'auto'} decoding="async" /></div>
+  const clipId = `bottle-${useId().replace(/:/g, '')}`
+  const mask = packshotMasks[id]
+  return <div className={`packshot packshot--${id}`}>
+    <svg className="packshot-mask" aria-hidden="true" width="0" height="0"><defs><clipPath id={clipId} clipPathUnits="objectBoundingBox"><path transform={`scale(${1 / mask.width} ${1 / mask.height})`} d={mask.path} /></clipPath></defs></svg>
+    <img src={products[id].displayImage} alt={name} width={mask.width} height={mask.height} style={{ clipPath: `url(#${clipId})` }} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager && id === 'multipurpose' ? 'high' : 'auto'} decoding="async" />
+  </div>
 }
 
 export function ProductFamily({ t, compact = false }: { t: SiteCopy; compact?: boolean }) {
@@ -23,7 +28,7 @@ export function ProductCards({ t, onSelect }: { t: SiteCopy; onSelect?: (id: Pro
 }
 
 export function ContactBand({ t }: { t: SiteCopy }) {
-  return <section className="contact-band"><div><h2>{t.footer.headline}</h2><p>{t.contact.cooperationBody}</p></div><a href="./official.html" className="button button--blue">{t.footer.contact}<ArrowUpRight size={18} strokeWidth={1.5} /></a></section>
+  return <section className="contact-band"><div><h2>{t.footer.headline}</h2><p>{t.contact.consumerBody}</p></div><a href="./official.html" className="button button--blue">{t.footer.contact}<ArrowUpRight size={18} strokeWidth={1.5} /></a></section>
 }
 
 export function TextLink({ href, children }: { href: string; children: ReactNode }) {
