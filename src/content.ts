@@ -573,8 +573,8 @@ const en: CoreCopy = {
         "body": "Our first collection is for households in Thailand, with products for household cleaning, the bathroom and lingerie laundry."
       },
       {
-        "title": "What is the connection to Japan?",
-        "body": "Japanese salons and spas are an inspiration for our approach to orderly spaces and attentive care. This describes inspiration, not Japanese origin, manufacture or salon supply. See the individual product details for manufacturing information."
+        "title": "What does considered care mean at home?",
+        "body": "Start with the task, give each product its place, and keep its instructions easy to find. RANTO draws on the order and attention to detail of Japanese care spaces, bringing that idea into everyday household cleaning and fabric care."
       },
       {
         "title": "How do I choose a product?",
@@ -926,8 +926,8 @@ const zh: CoreCopy = {
         "body": "首发系列面向泰国家庭消费者，提供日常家居清洁、浴室清洁与贴身衣物洗护三种选择。"
       },
       {
-        "title": "RANTO 与日本有什么关系？",
-        "body": "日本沙龙与 SPA 的整洁秩序和细致照顾，是我们的灵感来源。这份联系不代表日本起源、日本制造或已经向沙龙供货。制造地请查看各款产品详情。"
+        "title": "RANTO 如何理解日常护理？",
+        "body": "从分清用途开始，让每件用品各有其位，让每一次使用有清楚的指引。RANTO 借鉴日本护理空间对整洁、秩序与细节的关注，将这份态度融入家庭清洁和织物护理。"
       },
       {
         "title": "三款产品怎么选？",
@@ -1279,8 +1279,8 @@ const th: CoreCopy = {
         "body": "คอลเลกชันแรกสำหรับครัวเรือนในประเทศไทย มีผลิตภัณฑ์สำหรับทำความสะอาดบ้าน ห้องน้ำ และซักชุดชั้นใน"
       },
       {
-        "title": "RANTO เกี่ยวข้องกับญี่ปุ่นอย่างไร",
-        "body": "ซาลอนและสปาญี่ปุ่นเป็นแรงบันดาลใจด้านพื้นที่ที่เป็นระเบียบและความใส่ใจในการดูแล ความเชื่อมโยงนี้ไม่ได้หมายถึงแบรนด์มีต้นกำเนิดหรือผลิตในญี่ปุ่น หรือมีการส่งสินค้าให้ซาลอนแล้ว โปรดดูข้อมูลประเทศที่ผลิตในรายละเอียดผลิตภัณฑ์"
+        "title": "RANTO มองการดูแลบ้านในชีวิตประจำวันอย่างไร",
+        "body": "เริ่มจากเลือกผลิตภัณฑ์ให้ตรงกับงาน จัดวางของใช้ให้เป็นที่ และอ่านคำแนะนำได้สะดวก RANTO ได้แรงบันดาลใจจากความเป็นระเบียบและความใส่ใจในรายละเอียดของพื้นที่ดูแลในญี่ปุ่น เพื่อนำแนวคิดนี้มาใช้กับการทำความสะอาดบ้านและดูแลผ้าในทุกวัน"
       },
       {
         "title": "ควรเลือกผลิตภัณฑ์อย่างไร",
@@ -1632,8 +1632,8 @@ const ja: CoreCopy = {
         "body": "最初のコレクションは、タイの家庭向けです。住まいの掃除、浴室の掃除、下着の洗濯のための製品をご用意します。"
       },
       {
-        "title": "日本との関係は何ですか？",
-        "body": "日本のサロンやスパの整った空間と細やかな心配りを、着想源としています。日本発・日本製という意味や、サロンへの納入実績を示すものではありません。製造国については、各製品の情報をご確認ください。"
+        "title": "RANTO が考える日々のケアとは？",
+        "body": "用途に合うものを選び、使うものの置き場所を整え、使い方を確かめやすくすること。RANTO は日本のケア空間に見られる整頓と細部への心配りに着想を得て、その考え方を家庭の掃除と衣類のケアに取り入れています。"
       },
       {
         "title": "製品はどのように選べばよいですか？",

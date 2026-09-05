@@ -11,8 +11,8 @@ export function SpaceImage({ t, eager = false }: { t: SiteCopy; eager?: boolean 
 export function CareSpace({ t }: { t: SiteCopy }) {
   return <section className="care-space-feature section-wrap"><SpaceImage t={t} /><div><p className="eyebrow">{t.inspiration.eyebrow}</p><h2>{t.visual.spaceTitle}</h2><p>{t.visual.spaceBody}</p><TextLink href="./story.html#inspiration">{t.nav.story}</TextLink></div></section>
 }
-export function SceneVisual({ id, t, bottle = true }: { id: ProductId; t: SiteCopy; bottle?: boolean }) {
-  return <figure className={`scene-visual scene-visual--${id}`}><div className="scene-composition"><img className="scene-background" src={sceneMedia[id]} alt={t.visual.sceneLabels[id]} width="1536" height="1024" loading="lazy" decoding="async" />{bottle && <div className="scene-product"><Packshot id={id} name={t.products[id].name} /></div>}</div><figcaption>{t.visual.conceptCaption}{bottle && <> · {t.visual.productPreviewCaption}</>}</figcaption></figure>
+export function SceneVisual({ id, t }: { id: ProductId; t: SiteCopy }) {
+  return <figure className={`scene-visual scene-visual--${id}`}><div className="scene-composition"><img className="scene-background" src={sceneMedia[id]} alt={t.visual.sceneLabels[id]} width="1536" height="1024" loading="lazy" decoding="async" /></div><figcaption>{t.visual.conceptCaption}</figcaption></figure>
 }
 export function SceneStories({ t }: { t: SiteCopy }) {
   return <section className="scene-stories section-wrap"><div className="section-heading"><h2>{t.scenes.title}</h2><p>{t.scenes.body}</p></div><div className="scene-story-grid">{productIds.map((id, i) => <article key={id}><SceneVisual id={id} t={t} /><div className="scene-story-caption"><div><h3>{t.scenes.items[i].title}</h3><p>{t.scenes.items[i].body}</p></div><a href={`./products.html#${id}`} aria-label={`${t.productUI.details}: ${t.products[id].name}`}><ArrowUpRight size={24} strokeWidth={1.5} /></a></div></article>)}</div></section>
