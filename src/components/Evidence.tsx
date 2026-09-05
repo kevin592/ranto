@@ -1,0 +1,6 @@
+import { ArrowUpRight } from 'lucide-react'
+import { productEvidence } from '../evidence'
+import type { SiteCopy } from '../types'
+export function EvidenceSection({ t }: { t: SiteCopy }) {
+  return <section className="evidence-section section-wrap" id="documents"><div className="section-heading"><h2>{t.quality.evidenceTitle}</h2><p>{t.quality.evidenceIntro}</p></div><div className="evidence-grid">{productEvidence.map(item => <article className="evidence-card" key={item.product}><a className="evidence-preview" href={item.fullPreview} target="_blank" rel="noopener noreferrer" aria-label={`${t.quality.evidenceOpen}: ${t.products[item.product].name}`}><img src={item.preview} alt={`${t.products[item.product].name} · ${t.quality.evidenceTypes.notification} · ${item.number}`} loading="lazy" width="480" height="679" /></a><div><span className="evidence-type">{t.quality.evidenceTypes.notification}</span><h3>{t.products[item.product].name}</h3><p className="evidence-number" lang="th">{item.number}</p><p><time dateTime={item.date}>{item.date}</time></p><a className="text-link" href={item.pdf} target="_blank" rel="noopener noreferrer">{t.quality.evidenceOpen} · PDF<ArrowUpRight size={16} aria-hidden="true" /></a></div></article>)}</div><p className="evidence-scope">{t.quality.evidenceScope}</p></section>
+}

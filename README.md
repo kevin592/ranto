@@ -30,6 +30,15 @@ npm run preview
 
 多语言文案集中管理；产品图片使用实际上市产品素材。只公开已经确认的品牌事实、产品说明和渠道信息。所有页面共用导航、页脚、设计样式与语言逻辑。
 
+- `src/content.ts`：英文、中文、泰文和日文正文、图片说明与分享摘要。
+- `src/products.ts` / `src/media.ts`：三款 500 ml 产品及场景、包装设计素材。
+- `src/evidence.ts`：与具体产品对应的脱敏申报摘录；申报不代表功效检测或品质认证。
+- `src/contact-channels.ts`：邮箱、Instagram、Facebook、TikTok 全站共用配置。目前四项为 `pending`，没有地址。收到真实地址后将对应项改为 `active` 并提供 `href`；邮箱用 `mailto:`，社媒用完整个人主页 HTTPS 链接。待公布项目不会生成按钮或链接。
+
+护理空间与三个家庭场景均为概念图；产品为计划包装效果图，内衣款使用已经确认的白色编辑版本。日本沙龙与 SPA 只作为护理理念和视觉灵感，不表示日本经营历史或现有合作。原始公司登记及商标申请文件不包含在公开资料目录。
+
+构建后可运行 `node scripts/export-visuals.mjs <输出目录>`，生成三个产品细节图版及一个包装设计图版的独立 HTML，内嵌所需图片、字体和样式，便于离线查看或导出。
+
 GitHub Actions 在拉取请求中只构建和验证，不部署。合并到 `main`，或在 `main` 手动运行工作流，才会上传并部署本次新构建的完整站点。GitHub Pages 使用 GitHub Actions 作为发布来源，当前地址为 <https://kevin592.github.io/ranto/>。
 
 `dist` 是构建产物。构建会先清空旧产物，再统一生成六个 HTML 和对应资源；不要手工修改脚本哈希或拼接不同构建的页面。静态图片、字体和 `.nojekyll` 由 Vite 从 `public` 一并复制。

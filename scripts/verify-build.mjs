@@ -23,6 +23,58 @@ const files = []
 const label = (file) => path.relative(outputDir, file).split(path.sep).join('/')
 const fail = (file, message) => errors.add(label(file) + ': ' + message)
 const decodeHtml = (value) => value.replace(/&amp;/gi, '&').replace(/&quot;/gi, '"').replace(/&#39;/g, "'")
+const channelIds = ['email', 'instagram', 'facebook', 'tiktok']
+
+function checkPublishedText(content, file) {
+  if (/hello@ranto\.co\.th/i.test(content)) fail(file, 'Retired unverified email address remains')
+}
+
+function checkLink(value, file, { href = false } = {}) {
+  const link = decodeHtml(value).trim()
+  if (href && (!link || link === '#' || /^javascript\s*:/i.test(link))) {
+    fail(file, 'Empty or javascript placeholder href: ' + JSON.stringify(value))
+  }
+  if (!/^(?:https?:)?\/\//i.test(link)) return
+  try {
+    const url = new URL(link, siteUrl)
+    const platform = /(^|\.)(?:instagram\.com|facebook\.com|tiktok\.com|line\.me|shopee\.[a-z.]+|lazada\.[a-z.]+)$/i.test(url.hostname)
+    if (platform && /^(?:\/*|\/@\/*)$/.test(url.pathname)) {
+      fail(file, 'Platform homepage used as a placeholder: ' + value)
+    }
+  } catch {
+    if (href) fail(file, 'Invalid link URL: ' + value)
+  }
+}
+
+async function checkContactChannels() {
+  const sourcePath = path.join(projectDir, 'src/contact-channels.ts')
+  const source = await readFile(sourcePath, 'utf8')
+  const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } }).outputText
+  const { contactChannels } = await import('data:text/javascript;base64,' + Buffer.from(compiled).toString('base64'))
+  if (!Array.isArray(contactChannels)) throw new Error('contactChannels must be an array')
+  const seen = new Set()
+  for (const channel of contactChannels) {
+    if (!channel || typeof channel.id !== 'string' || seen.has(channel.id)) {
+      fail(sourcePath, 'Contact channels must have unique ids')
+      continue
+    }
+    seen.add(channel.id)
+    if (channel.status === 'pending') {
+      if (Object.hasOwn(channel, 'href')) fail(sourcePath, 'Pending channel must not define href: ' + channel.id)
+    } else if (channel.status === 'active') {
+      if (typeof channel.href !== 'string' || !channel.href.trim()) {
+        fail(sourcePath, 'Active channel requires a real destination: ' + channel.id)
+        continue
+      }
+      checkPublishedText(channel.href, sourcePath)
+      checkLink(channel.href, sourcePath, { href: true })
+      if (channel.id === 'email' ? !/^mailto:[^\s@?]+@[^\s@?]+\.[^\s@?]+(?:\?[^\s]*)?$/i.test(channel.href) : !/^https:\/\//i.test(channel.href)) {
+        fail(sourcePath, 'Active email must use an addressed mailto link; social profiles must use HTTPS: ' + channel.id)
+      }
+    } else fail(sourcePath, 'Unknown contact status: ' + channel.id)
+  }
+  for (const id of channelIds) if (!seen.has(id)) fail(sourcePath, 'Missing contact channel: ' + id)
+}
 
 async function collectFiles(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -92,6 +144,7 @@ async function checkHtml(file, page) {
     fail(file, 'Missing page')
     return
   }
+  checkPublishedText(html, file)
   const tags = [...html.matchAll(/<([a-z][\w:-]*)\b[^>]*>/gi)]
     .map(([tag, name]) => ({ name: name.toLowerCase(), attrs: attributes(tag) }))
   const root = tags.find(({ attrs }) => attrs.id === 'root')
@@ -150,7 +203,10 @@ async function checkHtml(file, page) {
     if (name === 'link' && attrs.href && !/^(?:canonical|preconnect|dns-prefetch)$/.test(attrs.rel ?? '')) {
       checks.push(checkReference(attrs.href, file))
     }
-    if (name === 'a' && attrs.href) checks.push(checkReference(attrs.href, file))
+    if (name === 'a' && Object.hasOwn(attrs, 'href')) {
+      checkLink(attrs.href, file, { href: true })
+      if (attrs.href) checks.push(checkReference(attrs.href, file))
+    }
     if (attrs.srcset && !attrs.srcset.startsWith('data:')) {
       for (const candidate of attrs.srcset.split(',')) {
         checks.push(checkReference(candidate.trim().split(/\s+/)[0], file))
@@ -175,6 +231,7 @@ async function checkCss(css, file) {
 }
 
 async function checkJavaScript(content, file) {
+  checkPublishedText(content, file)
   const source = ts.createSourceFile(file, content, ts.ScriptTarget.Latest, true, ts.ScriptKind.JS)
   const checks = []
   const literal = (node) => node && (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) ? node.text : undefined
@@ -196,7 +253,23 @@ async function checkJavaScript(content, file) {
     // UI asset strings resolve against the document. Imports and
     // new URL(..., import.meta.url) resolve against the JavaScript file.
     const value = literal(node)
-    if (value && /^(?:(?:\.\/)?(?:images|fonts|assets)\/|\/(?:ranto\/)?(?:images|fonts|assets)\/)/.test(value)) {
+    if (value !== undefined) checkLink(value, file)
+    if (ts.isPropertyAssignment(node) && (ts.isIdentifier(node.name) ? node.name.text : literal(node.name)) === 'href') {
+      const href = literal(node.initializer)
+      if (href !== undefined) checkLink(href, file, { href: true })
+    }
+    if (ts.isCallExpression(node) && ts.isPropertyAccessExpression(node.expression) && node.expression.name.text === 'setAttribute' && literal(node.arguments[0]) === 'href') {
+      const href = literal(node.arguments[1])
+      if (href !== undefined) checkLink(href, file, { href: true })
+    }
+    if (ts.isObjectLiteralExpression(node)) {
+      const properties = Object.fromEntries(node.properties.filter(ts.isPropertyAssignment)
+        .map((property) => [ts.isIdentifier(property.name) ? property.name.text : literal(property.name), property.initializer]))
+      if (channelIds.includes(literal(properties.id)) && literal(properties.status) === 'pending' && Object.hasOwn(properties, 'href')) {
+        fail(file, 'Bundled pending contact channel must not define href: ' + literal(properties.id))
+      }
+    }
+    if (value && (/^(?:(?:\.\/)?(?:images|fonts|assets|documents)\/|\/(?:ranto\/)?(?:images|fonts|assets|documents)\/)/.test(value) || value.startsWith(siteUrl.href))) {
       checks.push(checkReference(value, file, { documentRelative: true }))
     }
     ts.forEachChild(node, visit)
@@ -206,6 +279,7 @@ async function checkJavaScript(content, file) {
 }
 
 try {
+  await checkContactChannels()
   const flatten = (value, prefix = '') => Object.entries(value).flatMap(([key, item]) => {
     const field = prefix ? prefix + '.' + key : key
     return typeof item === 'string' ? [[field, item]] : flatten(item, field)
@@ -221,6 +295,14 @@ try {
   await checkReference('./.nojekyll', path.join(outputDir, 'index.html'))
   for (const file of files) {
     const extension = path.extname(file)
+    if (extension === '.html' && !Object.hasOwn(pages, label(file))) {
+      const html = await readFile(file, 'utf8')
+      checkPublishedText(html, file)
+      for (const [tag] of html.matchAll(/<a\b[^>]*>/gi)) {
+        const attrs = attributes(tag)
+        if (Object.hasOwn(attrs, 'href')) checkLink(attrs.href, file, { href: true })
+      }
+    }
     if (['.js', '.mjs', '.css'].includes(extension)) {
       const content = await readFile(file, 'utf8')
       if (extension === '.css') await checkCss(content, file)
@@ -235,5 +317,5 @@ if (errors.size) {
   console.error('Build verification failed (' + errors.size + ' problems):\n' + [...errors].sort().map((error) => '- ' + error).join('\n'))
   process.exitCode = 1
 } else {
-  console.log('Build verified: ' + Object.keys(pages).length + ' pages and ' + resources.size + ' local resources. Metadata and resource references are consistent.')
+  console.log('Build verified: ' + Object.keys(pages).length + ' pages and ' + resources.size + ' local resources. Four-language content, contact configuration, public links, metadata and resource references are consistent.')
 }

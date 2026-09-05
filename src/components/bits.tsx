@@ -15,6 +15,14 @@ export function useCopy(page: PageId = 'home') {
   const [locale, setLocale] = useState<Locale>(detectLocale)
   const t = copy[locale]
   useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      // Static HTML mounts before its section targets exist.
+      const target = document.getElementById(location.hash.slice(1))
+      target?.scrollIntoView({ behavior: 'instant', block: 'start' })
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [page])
+  useEffect(() => {
     document.documentElement.lang = locale
     document.title = t.meta[page].title
     const values = [

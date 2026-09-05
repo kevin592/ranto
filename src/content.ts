@@ -1,6 +1,255 @@
 import type { Locale, SiteCopy } from './types'
 export type { Locale } from './types'
 
+type CoreCopy = Omit<SiteCopy, 'visual'>
+
+const visualCopy: Record<Locale, SiteCopy['visual']> = {
+  "en": {
+    "conceptCaption": "Concept scene · Care and home inspiration",
+    "productPreviewCaption": "Product packaging preview",
+    "detailTitle": "A closer look at the pack.",
+    "detailIntro": "The bottle shapes, closures and label layouts in the current design previews.",
+    "details": {
+      "multipurpose": [
+        {
+          "title": "Trigger and contoured bottle",
+          "body": "A white trigger head sits above a bottle with a shaped grip. The silhouette is shared with the bathroom cleaner."
+        },
+        {
+          "title": "A kitchen reference on the label",
+          "body": "The front brings together the product name, a kitchen image and the 500 ml size. The reverse carries the product information."
+        }
+      ],
+      "bathroom": [
+        {
+          "title": "A familiar bottle shape",
+          "body": "The design uses the same white trigger format as the multipurpose cleaner, with a separate product label."
+        },
+        {
+          "title": "The bathroom on the front",
+          "body": "The Bathroom Cleaner name and bathroom image distinguish this product within the pair of sprays."
+        }
+      ],
+      "lingerie": [
+        {
+          "title": "Rounded shoulders, flip-top cap",
+          "body": "A broad cap and rounded bottle distinguish the lingerie detergent from the two spray products."
+        },
+        {
+          "title": "Blue lettering on white",
+          "body": "The Thai product name, vertical Japanese text and 500 ml volume sit on a white bottle, with blue as the main lettering colour."
+        }
+      ]
+    },
+    "designTitle": "How the pack takes shape.",
+    "designIntro": "Packaging design references for the Multi-Purpose Cleaner: a bottle, trigger and front-label layout. These show the proposed pack, not a completed production run.",
+    "designSteps": [
+      {
+        "title": "Contoured bottle",
+        "body": "An unlabelled bottle with a screw cap shows the shaped waist and grooves in the bottle body."
+      },
+      {
+        "title": "Trigger sprayer",
+        "body": "A separate white trigger head with its dip tube shows the sprayer component in the packaging reference."
+      },
+      {
+        "title": "Front-label layout",
+        "body": "Flat front-label artwork shows the arrangement of the name, imagery and product information."
+      }
+    ],
+    "sceneLabels": {
+      "multipurpose": "Kitchen setting",
+      "bathroom": "Bathroom setting",
+      "lingerie": "Laundry setting"
+    },
+    "spaceTitle": "Order, through small details.",
+    "spaceBody": "Clear counters, folded fabrics and tools set in place are visual references for the RANTO idea of care. This concept scene expresses that inspiration."
+  },
+  "zh": {
+    "conceptCaption": "概念场景图 · 表达护理与居家灵感",
+    "productPreviewCaption": "产品包装预览",
+    "detailTitle": "把包装看近一点。",
+    "detailIntro": "看看当前设计预览中的瓶型、开盖方式与标签版面。",
+    "details": {
+      "multipurpose": [
+        {
+          "title": "喷头与收腰瓶身",
+          "body": "白色扳机喷头搭配带握持凹槽的瓶身，与浴室清洁剂采用相同的瓶型轮廓。"
+        },
+        {
+          "title": "标签上的厨房场景",
+          "body": "正面结合产品名称、厨房图片与 500 ml 容量，背面安排产品相关信息。"
+        }
+      ],
+      "bathroom": [
+        {
+          "title": "相同瓶型，不同用途",
+          "body": "与多功能清洁剂共用白色扳机喷雾的外观形式，以独立标签区分产品。"
+        },
+        {
+          "title": "一眼辨认浴室用途",
+          "body": "Bathroom Cleaner 品名与浴室图片，共同区分这款清洁剂在两款喷雾中的用途。"
+        }
+      ],
+      "lingerie": [
+        {
+          "title": "圆肩瓶身与翻盖",
+          "body": "宽盖与圆润瓶肩，让内衣洗衣液在外观上区别于两款喷雾产品。"
+        },
+        {
+          "title": "白底上的蓝色排版",
+          "body": "泰文品名、竖排日文与 500 ml 容量置于白色瓶身上，主要文字采用蓝色。"
+        }
+      ]
+    },
+    "designTitle": "包装，如何成形。",
+    "designIntro": "以下是多功能清洁剂的瓶型、喷头与正面标签设计参考，呈现包装方案，不代表已完成量产。",
+    "designSteps": [
+      {
+        "title": "收腰瓶型方案",
+        "body": "未贴标的空瓶配有螺帽，展示收腰轮廓与瓶身凹槽。"
+      },
+      {
+        "title": "扳机喷头",
+        "body": "独立的白色扳机喷头带有吸管，用于查看包装方案中的喷头部件。"
+      },
+      {
+        "title": "正面标签版面",
+        "body": "正面标签展开图，呈现品名、场景图片与产品信息的排布。"
+      }
+    ],
+    "sceneLabels": {
+      "multipurpose": "厨房场景",
+      "bathroom": "浴室场景",
+      "lingerie": "洗衣场景"
+    },
+    "spaceTitle": "秩序，藏在小细节里。",
+    "spaceBody": "清楚的台面、叠好的织物、放置有序的工具，是 RANTO 护理理念的视觉参照。这张概念场景表达的是这份灵感。"
+  },
+  "th": {
+    "conceptCaption": "ภาพแนวคิด · สื่อแรงบันดาลใจในการดูแลและชีวิตที่บ้าน",
+    "productPreviewCaption": "ภาพตัวอย่างบรรจุภัณฑ์",
+    "detailTitle": "ดูบรรจุภัณฑ์ให้ใกล้ขึ้น",
+    "detailIntro": "รูปทรงขวด ฝาปิด และการจัดวางฉลากในภาพตัวอย่างการออกแบบปัจจุบัน",
+    "details": {
+      "multipurpose": [
+        {
+          "title": "หัวสเปรย์และทรงขวด",
+          "body": "หัวสเปรย์แบบไกสีขาวอยู่เหนือขวดที่มีส่วนเว้าสำหรับจับ โดยใช้รูปทรงเดียวกับผลิตภัณฑ์ห้องน้ำ"
+        },
+        {
+          "title": "ภาพครัวบนฉลาก",
+          "body": "ด้านหน้ารวมชื่อผลิตภัณฑ์ ภาพครัว และปริมาณ 500 มล. ส่วนด้านหลังเป็นข้อมูลเกี่ยวกับผลิตภัณฑ์"
+        }
+      ],
+      "bathroom": [
+        {
+          "title": "รูปทรงขวดที่เข้าชุดกัน",
+          "body": "ใช้ขวดสเปรย์แบบไกสีขาวเช่นเดียวกับผลิตภัณฑ์อเนกประสงค์ และแยกผลิตภัณฑ์ด้วยฉลากของตัวเอง"
+        },
+        {
+          "title": "บอกการใช้ในห้องน้ำ",
+          "body": "ชื่อ Bathroom Cleaner และภาพห้องน้ำช่วยแยกผลิตภัณฑ์นี้ออกจากสเปรย์อีกขวดในคอลเลกชัน"
+        }
+      ],
+      "lingerie": [
+        {
+          "title": "ไหล่ขวดโค้งและฝาเปิด",
+          "body": "ฝาทรงกว้างและไหล่ขวดโค้งทำให้ผลิตภัณฑ์ซักชุดชั้นในมีรูปทรงต่างจากผลิตภัณฑ์สเปรย์ทั้งสองขวด"
+        },
+        {
+          "title": "ตัวอักษรสีน้ำเงินบนพื้นขาว",
+          "body": "ชื่อภาษาไทย ข้อความภาษาญี่ปุ่นแนวตั้ง และปริมาณ 500 มล. อยู่บนขวดสีขาว โดยใช้สีน้ำเงินเป็นสีหลักของข้อความ"
+        }
+      ]
+    },
+    "designTitle": "กว่าจะเป็นภาพบรรจุภัณฑ์",
+    "designIntro": "เอกสารอ้างอิงการออกแบบบรรจุภัณฑ์ของผลิตภัณฑ์ทำความสะอาดอเนกประสงค์ แสดงขวด หัวสเปรย์ และฉลากด้านหน้า เป็นแนวทางการออกแบบ ไม่ใช่บันทึกการผลิตเสร็จแล้ว",
+    "designSteps": [
+      {
+        "title": "ขวดทรงเว้า",
+        "body": "ขวดเปล่าที่ยังไม่มีฉลากพร้อมฝาเกลียว แสดงส่วนเอวและร่องบนตัวขวด"
+      },
+      {
+        "title": "หัวสเปรย์แบบไก",
+        "body": "หัวสเปรย์สีขาวแยกชิ้นพร้อมสายดูด แสดงส่วนประกอบหัวฉีดในเอกสารอ้างอิงบรรจุภัณฑ์"
+      },
+      {
+        "title": "แบบฉลากด้านหน้า",
+        "body": "งานฉลากด้านหน้าแบบคลี่ แสดงการจัดวางชื่อ ภาพ และข้อมูลผลิตภัณฑ์"
+      }
+    ],
+    "sceneLabels": {
+      "multipurpose": "บรรยากาศในครัว",
+      "bathroom": "บรรยากาศในห้องน้ำ",
+      "lingerie": "บรรยากาศการดูแลผ้า"
+    },
+    "spaceTitle": "ความเป็นระเบียบในรายละเอียด",
+    "spaceBody": "เคาน์เตอร์ที่จัดไว้เรียบร้อย ผ้าที่พับไว้ และเครื่องมือที่วางเป็นที่ คือภาพอ้างอิงแนวคิดการดูแลของ RANTO ภาพแนวคิดนี้สื่อถึงแรงบันดาลใจดังกล่าว"
+  },
+  "ja": {
+    "conceptCaption": "コンセプトシーン · ケアと住まいの着想を表現",
+    "productPreviewCaption": "パッケージのデザインイメージ",
+    "detailTitle": "パッケージを、近くで見る。",
+    "detailIntro": "現在のデザインイメージから、ボトルの形、開け方、表示の配置をご紹介します。",
+    "details": {
+      "multipurpose": [
+        {
+          "title": "トリガーとくびれのある形",
+          "body": "白いトリガーヘッドと、握る部分にくぼみのあるボトル。浴室用クリーナーと共通の輪郭です。"
+        },
+        {
+          "title": "ラベルにキッチンのイメージを",
+          "body": "正面に製品名、キッチンの画像、500 mlの内容量を組み合わせ、裏面に製品情報を配置しています。"
+        }
+      ],
+      "bathroom": [
+        {
+          "title": "揃えたボトルの形",
+          "body": "多目的クリーナーと共通の白いトリガーボトルを使い、製品ごとのラベルで区別しています。"
+        },
+        {
+          "title": "浴室用とわかる正面",
+          "body": "Bathroom Cleaner の名前と浴室の画像で、2つのスプレーのうちどちらを選ぶかがわかる構成です。"
+        }
+      ],
+      "lingerie": [
+        {
+          "title": "丸い肩とフリップトップ",
+          "body": "幅のあるキャップと丸い肩で、ランジェリー用洗剤を2つのスプレー製品と形で分けています。"
+        },
+        {
+          "title": "白地に青い文字",
+          "body": "タイ語の製品名、縦組みの日本語、500 mlの内容量を白いボトルに配置し、文字は青を中心にしています。"
+        }
+      ]
+    },
+    "designTitle": "パッケージのかたち。",
+    "designIntro": "多目的クリーナーのボトル、トリガー、正面ラベルのデザイン参考です。包装の提案を示すもので、量産完了の記録ではありません。",
+    "designSteps": [
+      {
+        "title": "くびれのあるボトル案",
+        "body": "ラベルのない空ボトルにスクリューキャップを付け、くびれと本体の溝を示しています。"
+      },
+      {
+        "title": "トリガースプレー",
+        "body": "吸い上げチューブの付いた白いトリガーヘッドを単体で示した、部品の参考です。"
+      },
+      {
+        "title": "正面ラベルの配置",
+        "body": "正面ラベルの展開図で、製品名、画像、製品情報の配置をご覧いただけます。"
+      }
+    ],
+    "sceneLabels": {
+      "multipurpose": "キッチンのシーン",
+      "bathroom": "浴室のシーン",
+      "lingerie": "洗濯のシーン"
+    },
+    "spaceTitle": "細部から生まれる秩序。",
+    "spaceBody": "整えたカウンター、畳んだ布、定位置にある道具。RANTO のケアの考え方を表す視覚的な着想を、このコンセプトシーンに込めています。"
+  }
+}
+
 export const localeNames: Record<Locale, string> = {
   "en": "English",
   "zh": "中文",
@@ -8,7 +257,7 @@ export const localeNames: Record<Locale, string> = {
   "ja": "日本語"
 }
 
-const en: SiteCopy = {
+const en: CoreCopy = {
   "nav": {
     "products": "Products",
     "quality": "Our approach",
@@ -24,7 +273,7 @@ const en: SiteCopy = {
     "skip": "Skip to content",
     "home": "Home",
     "explore": "Explore",
-    "contact": "Contact us",
+    "contact": "Contact updates",
     "back": "Back to products"
   },
   "hero": {
@@ -57,100 +306,111 @@ const en: SiteCopy = {
     ]
   },
   "philosophy": {
-    "eyebrow": "THE RANTO APPROACH",
-    "title": "Attention you can see.",
-    "body": "The feeling of a well-kept space comes from small decisions. We bring that attention to choosing, understanding and placing everyday care.",
+    "eyebrow": "THE PACKAGING APPROACH",
+    "title": "A collection you can tell apart.",
+    "body": "Two trigger bottles for cleaning. One rounded bottle for lingerie laundry. A shared white palette brings the three together.",
     "points": [
       {
-        "title": "A purpose for each bottle",
-        "body": "Choose separately for household cleaning, the bathroom and lingerie laundry."
+        "title": "Different forms",
+        "body": "The cleaners and the laundry product have distinct bottle and closure formats."
       },
       {
-        "title": "Know what is in your hand",
-        "body": "Look closely at the pack and read the instructions for the product you choose."
+        "title": "Names that guide the choice",
+        "body": "Each label identifies the product, with its own use information and 500 ml volume."
       },
       {
-        "title": "A place in the home",
-        "body": "White bottles and coordinated details sit naturally alongside everyday household objects."
+        "title": "A shared presence",
+        "body": "White packaging and the blue-green RANTO mark connect the collection without making the three labels identical."
       }
     ]
   },
   "story": {
-    "title": "The details make the difference.",
-    "intro": "RANTO is a cleaning and fabric-care brand for Thai homes, inspired by the attention found in Japanese salon and spa spaces.",
+    "title": "The shape of everyday care.",
+    "intro": "Japanese salon and spa spaces inspire our sense of order. The collection takes that visual starting point into cleaning and fabric care for Thai homes.",
     "paragraphs": [
-      "What stays with us about a well-kept salon or spa is often a small detail: a clear counter, tools set in place, folded fabrics ready for use. These are signs that someone has thought about the space and the person in it.",
-      "Japanese salons and spas are a source of inspiration for RANTO. We take from them an interest in clean surroundings, order and attention to individual needs. It is an approach to care that we want to bring into everyday homes.",
-      "At home, that attention begins with recognising different tasks. A kitchen, a bathroom and a lingerie wash each need their own choice. Our first collection pairs these familiar routines with three clearly identified 500 ml products.",
-      "We want you to recognise the product you need, see its packaging clearly and know where to find its directions. White bottles and coordinated details give the collection a place among the objects you already live with.",
-      "Thailand is where we are preparing to launch. Our focus is the household consumer, from someone setting up a condo to someone looking after a shared family home. The idea is the same: bring more attention to the details of everyday care."
+      "A clear counter, folded fabrics and tools set in place make a care space feel ordered. RANTO takes these details from Japanese salon and spa spaces as inspiration for the way everyday products can sit together at home.",
+      "We begin with three household routines: kitchen and household cleaning, the bathroom, and a small lingerie wash. The two cleaners share a trigger-bottle shape, while the lingerie detergent uses rounded shoulders and a flip-top cap.",
+      "Keeping the bottles white gives the collection a common starting point. The product names, pictures and lettering then do the work of distinguishing what is inside each 500 ml pack.",
+      "These choices shape the collection we are preparing for Thailand. The packaging images and design references let you look closely at the bottles, while product documents add specific information where it is available."
     ],
     "principles": [
       {
-        "title": "Start with the setting",
-        "body": "See what the space or garment needs before choosing the product."
+        "title": "Shape",
+        "body": "A recognisable difference between spray cleaning and lingerie laundry."
       },
       {
-        "title": "Keep choices clear",
-        "body": "Give each task a recognisable place in the collection."
+        "title": "Label",
+        "body": "Product identity and volume are the starting points for comparison."
       },
       {
-        "title": "Notice the small things",
-        "body": "A readable pack and a clear next step are part of attentive care."
+        "title": "Setting",
+        "body": "A coordinated collection that can sit among the objects of everyday life."
       }
     ],
-    "closing": "Bring a little more attention home."
+    "closing": "Order in the space. Attention in the details."
   },
   "quality": {
-    "title": "A clear way to choose care.",
-    "intro": "We take inspiration from the attention of a professional care space. At home, it should be visible in the information and choices in front of you.",
+    "title": "Details you can check.",
+    "intro": "Explore the packaging and product-specific documents behind the first collection.",
     "items": [
       {
-        "title": "See the purpose first",
-        "body": "Start with the intended use and the 500 ml volume. Each product has its own role in the household."
+        "title": "Product identity",
+        "body": "Compare the product name, intended use and 500 ml pack shown on its page."
       },
       {
-        "title": "Look closely at the pack",
-        "body": "Open the packaging image for a closer view of the bottle and its information."
+        "title": "A closer view",
+        "body": "Inspect the bottle, closure and label through the full-size packaging image."
       },
       {
-        "title": "Keep the instructions close",
-        "body": "Read the final pack before use, together with the care guidance for the surface or garment."
+        "title": "Product-specific records",
+        "body": "Read the available notification information for the multipurpose cleaner and lingerie detergent."
       },
       {
-        "title": "Have a place to ask",
-        "body": "Use our official contact for product questions and launch information when you need more detail."
+        "title": "The instructions on your pack",
+        "body": "For directions and precautions, follow the final pack supplied with your product."
       }
     ],
-    "readLabelTitle": "Your product, its instructions.",
-    "readLabelBody": "The final pack sets out the directions and precautions for the product you have. Follow those instructions and check suitability for your intended use."
+    "readLabelTitle": "Before you use the product.",
+    "readLabelBody": "Read the directions and precautions on the final pack, and check the care guidance for the surface or garment.",
+    "evidenceTitle": "Product documents",
+    "evidenceIntro": "Selected information from product notifications and packaging design references.",
+    "evidenceScope": "Notifications record submitted product information; they are not efficacy tests or performance certifications. Listed key ingredients are not the complete formula. Design references show the proposed pack.",
+    "evidenceOpen": "View document excerpt",
+    "evidenceTypes": {
+      "notification": "Product notification",
+      "design": "Packaging design reference"
+    }
   },
   "global": {
-    "title": "Japanese inspiration. Thai homes.",
-    "intro": "RANTO brings an international point of view to a local starting place: everyday household life in Thailand.",
-    "visionTitle": "Our ambition, over time.",
-    "visionBody": "We hope to bring this approach to more homes in the future, learning from the routines and needs of each place.",
-    "marketTitle": "Preparing to launch in Thailand.",
-    "marketBody": "Our first three 500 ml products are coming soon. Thailand is our launch focus; contact RANTO for release and purchase information.",
-    "languagesTitle": "Choose a familiar language.",
-    "languagesBody": "This website is available in English, Chinese, Thai and Japanese, so you can explore the same collection in the language you prefer."
+    "title": "Japanese inspiration. A Thai launch.",
+    "intro": "Our starting point is a collection for households in Thailand, shaped around three familiar settings.",
+    "visionTitle": "Where we hope to go",
+    "visionBody": "We hope to reach more homes over time. For now, our focus is preparing the first three products for Thailand.",
+    "marketTitle": "Three products in preparation",
+    "marketBody": "All three are 500 ml and coming soon. Launch and purchase information will be published on this website.",
+    "languagesTitle": "One collection, four languages",
+    "languagesBody": "Read the same product collection in English, Chinese, Thai or Japanese."
   },
   "contact": {
-    "title": "Let us help you choose.",
-    "intro": "Questions about the collection or its launch in Thailand? Start with our official email.",
+    "title": "Official channels, coming soon.",
+    "intro": "We are preparing the contact channels for our first launch in Thailand. Their details will be published on this page.",
+    "channelsTitle": "Our four contact channels",
+    "pending": "Coming soon",
+    "pendingBody": "Official details for each channel will appear here when available.",
+    "emailName": "Email",
     "consumerTitle": "For your home",
-    "consumerBody": "Ask about a product, its intended use, the packaging information or when it will be available. Tell us which bottle you are interested in.",
-    "emailLabel": "Official contact",
-    "emailBody": "Send your product or launch enquiry to the RANTO team.",
+    "consumerBody": "Product pages cover the intended use, volume and current packaging. Check this page for future consumer contact details.",
+    "emailLabel": "Email",
+    "emailBody": "The official email address will be announced here.",
     "cooperationTitle": "Retail and distribution",
-    "cooperationBody": "For business enquiries, introduce your company, your market and the cooperation you have in mind.",
-    "prepareTitle": "Tell us a little about your question.",
+    "cooperationBody": "The contact details for business enquiries will be published here when available.",
+    "prepareTitle": "Information to look for",
     "prepareItems": [
-      "The product or household task you want to ask about",
-      "Your country or region",
-      "For a business enquiry, your company and proposed cooperation"
+      "The three products and their intended uses",
+      "Launch dates and purchase information",
+      "Official consumer and business contact details"
     ],
-    "availability": "Three 500 ml products are coming soon in Thailand. Contact us for launch updates and purchase information."
+    "availability": "Three 500 ml products are coming soon in Thailand. Launch and purchase information will be added to this website."
   },
   "productUI": {
     "title": "The first collection.",
@@ -165,7 +425,15 @@ const en: SiteCopy = {
     "origin": "Made in",
     "packView": "Product preview",
     "fullImage": "View full-size packaging",
-    "labelNote": "Product images show the planned packaging. Follow the information on the final pack."
+    "labelNote": "Product images show the planned packaging. Follow the information on the final pack.",
+    "ingredients": "Key ingredients listed in the notification",
+    "suitability": "Use information",
+    "technicalTitle": "Product information",
+    "gallery": {
+      "pack": "Packaging",
+      "scene": "Setting",
+      "detail": "Details"
+    }
   },
   "products": {
     "multipurpose": {
@@ -179,7 +447,9 @@ const en: SiteCopy = {
       ],
       "directions": "Follow the directions on the pack before use.",
       "precautions": "Read the precautions on the pack and check suitability for your intended use.",
-      "origin": "Made in Thailand."
+      "origin": "Made in Thailand. Manufacturer: บริษัท จิ่วซือ กรุ๊ป จำกัด.",
+      "ingredients": "Alkyl polyglycoside 2.0% w/w; Polyoxyethylene lauryl ether 2.0% w/w; Sodium alpha olefin sulfonate 1.0% w/w; Sodium dodecanoyloxybenzene sulfonate 1.5% w/w.",
+      "suitability": "For household cleaning. Check the final pack for use on specific surfaces and materials."
     },
     "bathroom": {
       "name": "Bathroom Cleaner",
@@ -202,13 +472,15 @@ const en: SiteCopy = {
       ],
       "directions": "Follow the directions on the pack before use.",
       "precautions": "Read the product precautions and the care instructions on your garments before use.",
-      "origin": "Made in Thailand."
+      "origin": "Made in Thailand. Manufacturer: บริษัท จิ่วซือ กรุ๊ป จำกัด.",
+      "ingredients": "Alkyl polyglycoside 1.0% w/w; Coconut diethanolamide 1.0% w/w; Polyoxyethylene lauryl ether 1.0% w/w; Sodium dodecanoyloxybenzene sulfonate 4.0% w/w; Sodium lauryl ether sulfate 5.0% w/w; Cocamidopropyl betaine 2.0% w/w.",
+      "suitability": "For laundering lingerie. Check the garment care label together with the product directions."
     }
   },
   "footer": {
     "headline": "Clean spaces. Considered care.",
     "body": "Cleaning and fabric care for homes in Thailand.",
-    "contact": "Ask RANTO",
+    "contact": "Contact updates",
     "legal": "All rights reserved."
   },
   "meta": {
@@ -222,19 +494,19 @@ const en: SiteCopy = {
     },
     "quality": {
       "title": "Our approach | RANTO",
-      "description": "How RANTO makes everyday care clear: product uses, packaging, instructions and a direct place to ask."
+      "description": "Explore the packaging and product-specific documents behind the first collection."
     },
     "story": {
       "title": "About RANTO",
-      "description": "Meet RANTO, a brand for households in Thailand inspired by the orderly spaces and attentive care of Japanese salons and spas."
+      "description": "Japanese salon and spa spaces inspire our sense of order. The collection takes that visual starting point into cleaning and fabric care for Thai homes."
     },
     "global": {
       "title": "International | RANTO",
-      "description": "Japanese inspiration and a Thai launch focus. Learn about RANTO today and our ambition for the future."
+      "description": "Our starting point is a collection for households in Thailand, shaped around three familiar settings."
     },
     "official": {
       "title": "Contact | RANTO",
-      "description": "Contact RANTO for product questions, launch updates and retail or distribution enquiries."
+      "description": "Official RANTO contact details are being prepared. Check this page for the four channels and launch information when announced."
     }
   },
   "inspiration": {
@@ -310,35 +582,35 @@ const en: SiteCopy = {
       },
       {
         "title": "When can I buy the collection?",
-        "body": "The first three 500 ml products are coming soon in Thailand. Contact RANTO for the launch date and purchase information."
+        "body": "The first three 500 ml products are coming soon in Thailand. Launch dates and purchase information will be published on this website."
       },
       {
-        "title": "Where can I find information or ask a question?",
-        "body": "See the product details and packaging images, and follow the final pack when using a product. Our official email is the contact for product questions and launch enquiries."
+        "title": "Where will product and contact information appear?",
+        "body": "Product pages show packaging and available product information. Follow the final pack when using the product. Details for our four official contact channels are coming soon on the contact page."
       }
     ]
   },
   "localLife": {
-    "title": "For the way home feels here.",
-    "intro": "We are preparing the collection for households in Thailand, with room for different spaces and daily routines.",
+    "title": "Three settings, different choices.",
+    "intro": "We keep the kitchen, bathroom and lingerie wash distinct because they play different parts in household life.",
     "items": [
       {
-        "title": "A condo or a family home",
-        "body": "The amount of space may change, but choosing care for the task still matters. Our first collection keeps three uses easy to tell apart."
+        "title": "A working kitchen",
+        "body": "The counter is used before and after meals. The multipurpose design pairs a trigger bottle with a kitchen reference on the label."
       },
       {
-        "title": "Days out, care at home",
-        "body": "Rainy trips and warm afternoons are part of many days here. Back at home, the bathroom and lingerie laundry each have a place in the routine."
+        "title": "A bathroom put back in order",
+        "body": "After washing, towels are hung and bottles return to their places. The bathroom cleaner shares the spray format, with a label of its own."
       },
       {
-        "title": "Information in Thai",
-        "body": "Explore product uses and launch information in Thai. You can also switch this website to English, Chinese or Japanese."
+        "title": "A personal part of the laundry",
+        "body": "A few pieces of lingerie call for their own place in the routine. Rounded shoulders and a flip-top cap distinguish the laundry bottle."
       }
     ]
   }
 }
 
-const zh: SiteCopy = {
+const zh: CoreCopy = {
   "nav": {
     "products": "产品",
     "quality": "品牌理念",
@@ -354,7 +626,7 @@ const zh: SiteCopy = {
     "skip": "跳至正文",
     "home": "首页",
     "explore": "了解更多",
-    "contact": "联系我们",
+    "contact": "联系渠道动态",
     "back": "返回产品系列"
   },
   "hero": {
@@ -387,100 +659,111 @@ const zh: SiteCopy = {
     ]
   },
   "philosophy": {
-    "eyebrow": "RANTO 的护理态度",
-    "title": "用心，是看得见的。",
-    "body": "一个被认真照顾的空间，来自许多小小的选择。我们把这份细致，放进日常护理用品的选择、了解与摆放之中。",
+    "eyebrow": "包装的取舍",
+    "title": "放在一起，也分得清楚。",
+    "body": "两款清洁剂采用扳机喷雾瓶，内衣洗衣液采用圆肩瓶。共同的白色基调，将三款产品联系起来。",
     "points": [
       {
-        "title": "一款，对应一种需要",
-        "body": "家居清洁、浴室清洁与贴身衣物洗护，分别选择对应产品。"
+        "title": "瓶型有所区别",
+        "body": "清洁剂与洗衣液采用不同的瓶身与开盖形式。"
       },
       {
-        "title": "了解手中的产品",
-        "body": "仔细看看包装，阅读这款产品自己的使用说明。"
+        "title": "通过标签选择",
+        "body": "每款标签标明产品身份，呈现各自用途信息与 500 ml 容量。"
       },
       {
-        "title": "自然融入家",
-        "body": "白色瓶身与相互呼应的细节，与日常相伴的物品放在一起。"
+        "title": "共同的系列感",
+        "body": "白色包装与蓝绿 RANTO 标识连接整个系列，同时保留三款标签各自的特点。"
       }
     ]
   },
   "story": {
-    "title": "细节里，看见照顾。",
-    "intro": "RANTO 是面向泰国家庭的清洁与织物护理品牌，以日本沙龙与 SPA 空间中的细致照顾为灵感。",
+    "title": "日常护理，也有自己的样子。",
+    "intro": "日本沙龙与 SPA 的有序空间，给了我们视觉灵感。这套系列将这一起点，带入泰国家庭的清洁与织物护理。",
     "paragraphs": [
-      "一个被认真打理的沙龙或 SPA，留在记忆里的往往是小细节：清楚的台面、放置有序的工具、叠好备用的织物。这些细节让人感到，有人在认真照顾这个空间，也在留意来到这里的人。",
-      "日本沙龙与 SPA 是 RANTO 的灵感来源。我们借鉴的是对整洁环境、秩序与不同需要的关注，希望把这份护理态度带回平常的家。",
-      "回到家里，细致从分清用途开始。厨房、浴室与贴身衣物，有各自的护理需要。首发系列用三款用途明确的 500 ml 产品，对应这三种熟悉的日常。",
-      "我们希望你能认出需要的那一款，看清包装，也知道去哪里了解使用方法。白色瓶身与相互呼应的细节，让它们自然放在家里，与已有的物品相处。",
-      "泰国是我们正在筹备的首发市场，家庭消费者是我们的关注所在。从刚布置好的公寓，到一家人共同生活的家，我们希望把更多用心，放进每日清洁与织物护理的细节。"
+      "清楚的台面、叠好的织物、摆放有序的工具，让护理空间显得井然。RANTO 从日本沙龙与 SPA 的这些细节中获得灵感，思考日常用品如何自然地放在家里。",
+      "我们从三种家务开始：厨房与日常家居清洁、浴室清洁，以及小份的内衣洗涤。两款清洁剂共用扳机喷雾瓶的轮廓，内衣洗衣液则采用圆肩与翻盖。",
+      "保持白色瓶身，为系列建立共同的基调。产品名称、图片与文字排版，再帮助你辨认每一瓶 500 ml 包装中的产品。",
+      "这些取舍组成了我们正在为泰国筹备的首发系列。包装图片与设计资料让你看近一点，相关产品文件则在有依据的地方补充具体信息。"
     ],
     "principles": [
       {
-        "title": "先理解需要",
-        "body": "选择产品前，先看看要照顾的空间或衣物。"
+        "title": "看瓶型",
+        "body": "喷雾清洁与贴身衣物洗护，在外观上有所区别。"
       },
       {
-        "title": "让选择有序",
-        "body": "让每一种家务，都能找到容易辨认的产品。"
+        "title": "读标签",
+        "body": "从产品身份与容量开始比较，再了解各自信息。"
       },
       {
-        "title": "留意小细节",
-        "body": "看得清的包装、找得到的说明，也是细致照顾的一部分。"
+        "title": "放进日常",
+        "body": "相互呼应的外观，与家里已有的物品一起相处。"
       }
     ],
-    "closing": "把专业空间里的细致态度，带回日常的家。"
+    "closing": "空间有秩序，细节有照顾。"
   },
   "quality": {
-    "title": "认真选择，看得清楚。",
-    "intro": "我们从专业护理空间的细致态度中获得灵感。回到家里，这份用心应该体现在你看得见的信息与选择上。",
+    "title": "细节，有处可查。",
+    "intro": "了解首发系列的包装设计，以及各款产品对应的资料。",
     "items": [
       {
-        "title": "先看用途与容量",
-        "body": "从指定用途与 500 ml 容量开始了解。每款产品在家庭日常中各有角色。"
+        "title": "产品身份",
+        "body": "对照产品名称、指定用途与页面所示的 500 ml 包装。"
       },
       {
-        "title": "把包装看清楚",
-        "body": "打开完整包装图，仔细查看瓶身及其标示信息。"
+        "title": "近看包装",
+        "body": "通过完整包装图查看瓶身、开盖方式与标签细节。"
       },
       {
-        "title": "让说明在手边",
-        "body": "使用前阅读最终包装，也查看所清洁表面或衣物本身的护理指引。"
+        "title": "每款对应的记录",
+        "body": "查看多功能清洁剂与内衣洗衣液已有的产品申报信息。"
       },
       {
-        "title": "需要时，有处可问",
-        "body": "想进一步了解产品或上市安排，可以通过官方联系方式询问。"
+        "title": "手中的使用说明",
+        "body": "使用方法与注意事项，请遵循随实际产品提供的最终包装说明。"
       }
     ],
-    "readLabelTitle": "手中的产品，有自己的说明。",
-    "readLabelBody": "具体使用方法与注意事项，以你手中产品的最终包装为准。请遵循说明，并确认适合预期用途。"
+    "readLabelTitle": "使用之前，读包装。",
+    "readLabelBody": "请阅读最终包装上的使用方法与注意事项，也查看所清洁表面或衣物的护理指引。",
+    "evidenceTitle": "产品资料",
+    "evidenceIntro": "来自产品事实申报与包装设计参考资料的相关摘录。",
+    "evidenceScope": "申报资料记录所提交的产品信息，不是功效检测或性能认证。所列主要成分不是完整配方；设计参考呈现的是包装方案。",
+    "evidenceOpen": "查看资料摘录",
+    "evidenceTypes": {
+      "notification": "产品事实申报资料",
+      "design": "包装设计参考"
+    }
   },
   "global": {
-    "title": "日本灵感，泰国家庭。",
-    "intro": "RANTO 以国际视野看待护理，从泰国家庭的真实日常开始。",
-    "visionTitle": "未来，期待走得更远。",
-    "visionBody": "我们希望未来逐步走进更多家庭，在了解不同地方的生活习惯与需要中，继续思考日常护理。",
-    "marketTitle": "正在筹备泰国首发。",
-    "marketBody": "首批三款 500 ml 产品即将上市。泰国是当前的首发重点，欢迎联系 RANTO 了解发布与购买信息。",
-    "languagesTitle": "选择熟悉的语言。",
-    "languagesBody": "本网站提供英文、中文、泰文与日文，你可以用习惯的语言了解同一套产品系列。"
+    "title": "日本灵感，泰国首发。",
+    "intro": "我们从泰国家庭的三种熟悉场景出发，筹备第一套产品系列。",
+    "visionTitle": "未来的方向",
+    "visionBody": "我们希望未来走进更多家庭。当前的重点，是准备在泰国推出首批三款产品。",
+    "marketTitle": "三款新品筹备中",
+    "marketBody": "三款容量均为 500 ml，即将上市。发布与购买信息将在本网站公布。",
+    "languagesTitle": "同一套系列，四种语言",
+    "languagesBody": "你可以用英文、中文、泰文或日文，了解同一套产品系列。"
   },
   "contact": {
-    "title": "让我们帮你了解。",
-    "intro": "想了解哪款适合眼前的家务，或想知道泰国上市安排？欢迎通过官方邮箱与我们联系。",
+    "title": "官方联系渠道，即将公布。",
+    "intro": "我们正在筹备泰国首发的联系渠道，具体信息将在本页公布。",
+    "channelsTitle": "四个官方联系渠道",
+    "pending": "即将公布",
+    "pendingBody": "各渠道的官方信息将在准备就绪后显示于此。",
+    "emailName": "邮箱",
     "consumerTitle": "为你的日常家庭",
-    "consumerBody": "产品用途、包装信息、上市时间，都可以向我们询问。请告诉我们你关注的是哪一款。",
-    "emailLabel": "官方联系",
-    "emailBody": "欢迎向 RANTO 团队咨询产品与上市信息。",
+    "consumerBody": "产品页面提供用途、容量与当前包装信息。后续消费者联系渠道，请关注本页公布。",
+    "emailLabel": "邮箱",
+    "emailBody": "官方邮箱地址将在此公布。",
     "cooperationTitle": "零售与分销合作",
-    "cooperationBody": "如有商务合作意向，请介绍你的企业、所在市场与希望开展的合作。",
-    "prepareTitle": "告诉我们你的具体问题。",
+    "cooperationBody": "商务咨询的联系方式将在准备就绪后于本页公布。",
+    "prepareTitle": "后续可以关注的信息",
     "prepareItems": [
-      "你关注的产品，或准备处理的家庭清洁任务",
-      "你所在的国家或地区",
-      "商务咨询请提供企业信息与合作意向"
+      "三款产品与各自用途",
+      "上市日期与购买信息",
+      "消费者与商务合作的官方联系方式"
     ],
-    "availability": "三款 500 ml 产品即将在泰国上市。欢迎联系我们，了解上市动态与购买信息。"
+    "availability": "三款 500 ml 产品即将在泰国上市，发布与购买信息将更新于本网站。"
   },
   "productUI": {
     "title": "首发产品系列。",
@@ -495,7 +778,15 @@ const zh: SiteCopy = {
     "origin": "生产地",
     "packView": "产品预览",
     "fullImage": "查看完整包装图",
-    "labelNote": "产品图片为计划包装的预览，实际使用请以最终包装信息为准。"
+    "labelNote": "产品图片为计划包装的预览，实际使用请以最终包装信息为准。",
+    "ingredients": "申报所列主要成分",
+    "suitability": "用途说明",
+    "technicalTitle": "产品信息",
+    "gallery": {
+      "pack": "包装",
+      "scene": "场景",
+      "detail": "细节"
+    }
   },
   "products": {
     "multipurpose": {
@@ -509,7 +800,9 @@ const zh: SiteCopy = {
       ],
       "directions": "使用前，请阅读并遵循包装上的使用说明。",
       "precautions": "请阅读包装注意事项，并确认产品适合预期用途。",
-      "origin": "泰国制造。"
+      "origin": "泰国制造。制造方：บริษัท จิ่วซือ กรุ๊ป จำกัด。",
+      "ingredients": "Alkyl polyglycoside 2.0% w/w; Polyoxyethylene lauryl ether 2.0% w/w; Sodium alpha olefin sulfonate 1.0% w/w; Sodium dodecanoyloxybenzene sulfonate 1.5% w/w.",
+      "suitability": "用于家居清洁。具体表面与材质的适用性，请查看最终包装说明。"
     },
     "bathroom": {
       "name": "浴室清洁剂",
@@ -532,13 +825,15 @@ const zh: SiteCopy = {
       ],
       "directions": "使用前，请阅读并遵循包装上的使用说明。",
       "precautions": "使用前，请阅读产品注意事项与衣物的洗护标签。",
-      "origin": "泰国制造。"
+      "origin": "泰国制造。制造方：บริษัท จิ่วซือ กรุ๊ป จำกัด。",
+      "ingredients": "Alkyl polyglycoside 1.0% w/w; Coconut diethanolamide 1.0% w/w; Polyoxyethylene lauryl ether 1.0% w/w; Sodium dodecanoyloxybenzene sulfonate 4.0% w/w; Sodium lauryl ether sulfate 5.0% w/w; Cocamidopropyl betaine 2.0% w/w.",
+      "suitability": "用于贴身衣物洗涤。请结合衣物洗护标签与产品说明确认使用。"
     }
   },
   "footer": {
     "headline": "整洁有序，照顾入微。",
     "body": "为泰国家庭而来的清洁与织物护理。",
-    "contact": "咨询 RANTO",
+    "contact": "查看联系渠道",
     "legal": "版权所有。"
   },
   "meta": {
@@ -552,19 +847,19 @@ const zh: SiteCopy = {
     },
     "quality": {
       "title": "品牌理念 | RANTO",
-      "description": "从产品用途、包装、说明到咨询入口，了解 RANTO 如何让日常护理的选择更清楚。"
+      "description": "了解首发系列的包装设计，以及各款产品对应的资料。"
     },
     "story": {
       "title": "关于 RANTO",
-      "description": "认识 RANTO，以日本沙龙与 SPA 的整洁秩序与细致照顾为灵感，面向泰国家庭的清洁与织物护理品牌。"
+      "description": "日本沙龙与 SPA 的有序空间，给了我们视觉灵感。这套系列将这一起点，带入泰国家庭的清洁与织物护理。"
     },
     "global": {
       "title": "国际视野 | RANTO",
-      "description": "了解 RANTO 的日本灵感、泰国首发重点与未来愿景。"
+      "description": "我们从泰国家庭的三种熟悉场景出发，筹备第一套产品系列。"
     },
     "official": {
       "title": "联系我们 | RANTO",
-      "description": "联系 RANTO，咨询产品、上市动态、零售或分销合作。"
+      "description": "RANTO 官方联系方式正在筹备中。本页将公布四个联系渠道及相关上市信息。"
     }
   },
   "inspiration": {
@@ -640,35 +935,35 @@ const zh: SiteCopy = {
       },
       {
         "title": "什么时候可以买到？",
-        "body": "首发三款 500 ml 产品即将在泰国上市。具体日期与购买信息，欢迎直接向 RANTO 咨询。"
+        "body": "首发三款 500 ml 产品即将在泰国上市，具体日期与购买信息将在本网站公布。"
       },
       {
-        "title": "在哪里查看信息或咨询？",
-        "body": "你可以查看产品详情与包装图片，实际使用请遵循最终包装说明。如有产品或上市相关问题，欢迎通过官方邮箱联系我们。"
+        "title": "在哪里查看产品与联系信息？",
+        "body": "产品页面展示包装与已有的产品信息，实际使用请遵循最终包装。四个官方联系渠道的具体信息即将于联系页面公布。"
       }
     ]
   },
   "localLife": {
-    "title": "走进这里的日常。",
-    "intro": "我们正为泰国家庭筹备首发，关注不同居住空间与日常习惯中的护理需要。",
+    "title": "三个场景，各有取舍。",
+    "intro": "厨房、浴室与内衣洗涤，在家庭生活中扮演不同角色，我们也让它们各有选择。",
     "items": [
       {
-        "title": "公寓，或一家人的家",
-        "body": "空间大小可以不同，按家务选择护理用品的需要相通。首发系列把三种用途清楚区分。"
+        "title": "反复使用的厨房",
+        "body": "餐前准备与餐后收拾，让台面成为日常照料的一部分。多功能清洁剂的设计，将扳机喷雾瓶与标签上的厨房场景结合。"
       },
       {
-        "title": "出门之后，回到家里",
-        "body": "雨天的出行、温热的午后，是这里许多日子的片段。回到家，浴室与贴身衣物各有自己的护理日常。"
+        "title": "重新整理的浴室",
+        "body": "用水之后，毛巾挂好，瓶罐归位。浴室清洁剂延续喷雾瓶型，用自己的标签区分用途。"
       },
       {
-        "title": "用熟悉的泰文了解",
-        "body": "你可以用泰文查看产品用途与上市信息，也可以将网站切换为英文、中文或日文。"
+        "title": "贴近个人的小份洗衣",
+        "body": "几件内衣，在洗衣日常中有自己的位置。圆肩瓶身与翻盖，让这款洗衣液与两款喷雾有所区别。"
       }
     ]
   }
 }
 
-const th: SiteCopy = {
+const th: CoreCopy = {
   "nav": {
     "products": "ผลิตภัณฑ์",
     "quality": "แนวคิดของเรา",
@@ -684,7 +979,7 @@ const th: SiteCopy = {
     "skip": "ข้ามไปยังเนื้อหา",
     "home": "หน้าหลัก",
     "explore": "ดูเพิ่มเติม",
-    "contact": "ติดต่อเรา",
+    "contact": "ข่าวช่องทางติดต่อ",
     "back": "กลับไปหน้าผลิตภัณฑ์"
   },
   "hero": {
@@ -717,100 +1012,111 @@ const th: SiteCopy = {
     ]
   },
   "philosophy": {
-    "eyebrow": "แนวคิดการดูแลของ RANTO",
-    "title": "ความใส่ใจที่มองเห็นได้",
-    "body": "พื้นที่ที่ได้รับการดูแลเกิดจากการตัดสินใจเล็ก ๆ เรานำความใส่ใจนั้นมาสู่การเลือก ทำความเข้าใจ และจัดวางของใช้ดูแลบ้าน",
+    "eyebrow": "แนวทางของบรรจุภัณฑ์",
+    "title": "เข้าชุดกัน แต่แยกแยะได้",
+    "body": "ผลิตภัณฑ์ทำความสะอาดสองรายการใช้ขวดสเปรย์แบบไก ส่วนผลิตภัณฑ์ซักชุดชั้นในใช้ขวดไหล่โค้ง สีขาวเป็นจุดร่วมที่เชื่อมทั้งสามขวด",
     "points": [
       {
-        "title": "แต่ละขวดมีหน้าที่",
-        "body": "แยกเลือกผลิตภัณฑ์สำหรับทำความสะอาดบ้าน ห้องน้ำ และซักชุดชั้นใน"
+        "title": "รูปทรงที่ต่างกัน",
+        "body": "ผลิตภัณฑ์ทำความสะอาดและผลิตภัณฑ์ซักผ้าใช้รูปทรงขวดและฝาที่ต่างกัน"
       },
       {
-        "title": "รู้จักสิ่งที่อยู่ในมือ",
-        "body": "ดูบรรจุภัณฑ์ให้ชัด และอ่านวิธีใช้ของผลิตภัณฑ์ที่คุณเลือก"
+        "title": "เลือกจากฉลาก",
+        "body": "ฉลากแต่ละรายการระบุผลิตภัณฑ์ ข้อมูลการใช้งาน และปริมาณ 500 มล."
       },
       {
-        "title": "เป็นส่วนหนึ่งของบ้าน",
-        "body": "ขวดสีขาวและรายละเอียดที่เข้ากัน อยู่ร่วมกับของใช้ประจำวันได้อย่างเป็นธรรมชาติ"
+        "title": "เอกลักษณ์ร่วมกัน",
+        "body": "บรรจุภัณฑ์สีขาวและตรา RANTO สีน้ำเงินเขียวเชื่อมทั้งคอลเลกชัน โดยแต่ละฉลากยังมีลักษณะของตัวเอง"
       }
     ]
   },
   "story": {
-    "title": "รายละเอียดที่บอกถึงความใส่ใจ",
-    "intro": "RANTO คือแบรนด์ผลิตภัณฑ์ทำความสะอาดและดูแลผ้าสำหรับบ้านในไทย ด้วยแรงบันดาลใจจากความใส่ใจในพื้นที่ซาลอนและสปาญี่ปุ่น",
+    "title": "รูปแบบของการดูแลทุกวัน",
+    "intro": "พื้นที่ที่เป็นระเบียบของซาลอนและสปาญี่ปุ่นเป็นแรงบันดาลใจด้านภาพให้เรา ก่อนนำมาคิดต่อเป็นผลิตภัณฑ์ทำความสะอาดและดูแลผ้าสำหรับบ้านในไทย",
     "paragraphs": [
-      "สิ่งที่เราจดจำจากซาลอนหรือสปาที่ดูแลอย่างดี มักเป็นรายละเอียดเล็ก ๆ เช่น เคาน์เตอร์ที่จัดไว้เรียบร้อย เครื่องมือที่มีที่อยู่ และผ้าที่พับเตรียมไว้ สิ่งเหล่านี้บอกว่ามีคนใส่ใจทั้งพื้นที่และผู้ที่มาใช้บริการ",
-      "ซาลอนและสปาญี่ปุ่นเป็นแหล่งแรงบันดาลใจของ RANTO เราหยิบแนวคิดเรื่องพื้นที่สะอาด ความเป็นระเบียบ และการสังเกตความต้องการที่ต่างกัน มาเป็นมุมมองในการดูแลบ้านทุกวัน",
-      "ที่บ้าน ความใส่ใจเริ่มจากการแยกแยะงาน ครัว ห้องน้ำ และการซักชุดชั้นในมีความต้องการของตัวเอง คอลเลกชันแรกของเราจึงมี 3 ผลิตภัณฑ์ ขนาด 500 มล. ที่ระบุการใช้งานชัดเจน",
-      "เราอยากให้คุณจดจำผลิตภัณฑ์ที่ต้องการ ดูบรรจุภัณฑ์ได้ชัด และรู้ว่าจะหาวิธีใช้ได้จากที่ไหน ขวดสีขาวและรายละเอียดที่เข้ากัน ทำให้คอลเลกชันอยู่ร่วมกับของใช้ที่คุณมีอยู่แล้ว",
-      "ประเทศไทยคือตลาดที่เรากำลังเตรียมเปิดตัว โดยให้ความสำคัญกับผู้ใช้ในครัวเรือน ตั้งแต่คนที่เพิ่งจัดคอนโดไปจนถึงคนที่ดูแลบ้านของครอบครัว ความตั้งใจคือใส่ใจรายละเอียดของการทำความสะอาดและดูแลผ้าในทุกวัน"
+      "เคาน์เตอร์ที่จัดเรียบร้อย ผ้าที่พับไว้ และเครื่องมือที่มีตำแหน่ง ทำให้พื้นที่ดูแลมีความเป็นระเบียบ RANTO ได้แรงบันดาลใจจากรายละเอียดเหล่านี้ในซาลอนและสปาญี่ปุ่น เพื่อคิดว่าของใช้ประจำวันจะอยู่ร่วมกันในบ้านอย่างไร",
+      "เราเริ่มจากงานสามอย่าง: ทำความสะอาดครัวและบ้าน ดูแลห้องน้ำ และซักชุดชั้นในจำนวนน้อย ผลิตภัณฑ์ทำความสะอาดทั้งสองใช้รูปทรงขวดสเปรย์แบบไกร่วมกัน ส่วนผลิตภัณฑ์ซักชุดชั้นในใช้ไหล่ขวดโค้งและฝาเปิด",
+      "ขวดสีขาวเป็นจุดร่วมของคอลเลกชัน จากนั้นชื่อผลิตภัณฑ์ ภาพ และการจัดวางข้อความช่วยแยกสิ่งที่อยู่ในแต่ละบรรจุภัณฑ์ขนาด 500 มล.",
+      "การเลือกเหล่านี้เป็นส่วนหนึ่งของคอลเลกชันแรกที่เรากำลังเตรียมสำหรับไทย ภาพบรรจุภัณฑ์และเอกสารการออกแบบให้คุณดูรายละเอียดใกล้ขึ้น ส่วนเอกสารผลิตภัณฑ์ช่วยเพิ่มข้อมูลเฉพาะในส่วนที่มีแหล่งอ้างอิง"
     ],
     "principles": [
       {
-        "title": "เข้าใจสิ่งที่ต้องดูแล",
-        "body": "ดูความต้องการของพื้นที่หรือเสื้อผ้าก่อนเลือกผลิตภัณฑ์"
+        "title": "ดูรูปทรง",
+        "body": "แยกผลิตภัณฑ์สเปรย์และผลิตภัณฑ์ซักชุดชั้นในได้จากรูปลักษณ์"
       },
       {
-        "title": "จัดทางเลือกให้ชัดเจน",
-        "body": "ให้งานแต่ละอย่างมีผลิตภัณฑ์ที่จดจำและแยกแยะได้"
+        "title": "อ่านฉลาก",
+        "body": "เริ่มเปรียบเทียบจากชื่อผลิตภัณฑ์และปริมาณ"
       },
       {
-        "title": "สังเกตรายละเอียดเล็ก ๆ",
-        "body": "ฉลากที่อ่านได้และคำแนะนำที่หาเจอ เป็นส่วนหนึ่งของการดูแลอย่างใส่ใจ"
+        "title": "อยู่ร่วมกับบ้าน",
+        "body": "รูปลักษณ์ที่เข้ากัน วางอยู่กับของใช้ประจำวันที่มีอยู่แล้วได้"
       }
     ],
-    "closing": "นำแนวคิดความใส่ใจจากพื้นที่ดูแลระดับมืออาชีพ มาสู่บ้านในทุกวัน"
+    "closing": "พื้นที่เป็นระเบียบ รายละเอียดได้รับความใส่ใจ"
   },
   "quality": {
-    "title": "เลือกการดูแลอย่างเข้าใจ",
-    "intro": "เราได้แรงบันดาลใจจากความใส่ใจของพื้นที่ดูแลระดับมืออาชีพ เมื่ออยู่ที่บ้าน ความใส่ใจนั้นควรเห็นได้ในข้อมูลและทางเลือกตรงหน้า",
+    "title": "รายละเอียดที่ตรวจดูได้",
+    "intro": "รู้จักบรรจุภัณฑ์และเอกสารเฉพาะผลิตภัณฑ์ของคอลเลกชันแรก",
     "items": [
       {
-        "title": "เห็นการใช้งานก่อน",
-        "body": "เริ่มจากวัตถุประสงค์การใช้และขนาด 500 มล. แต่ละผลิตภัณฑ์มีหน้าที่ของตัวเองในบ้าน"
+        "title": "ข้อมูลประจำผลิตภัณฑ์",
+        "body": "เปรียบเทียบชื่อ วัตถุประสงค์การใช้งาน และบรรจุภัณฑ์ขนาด 500 มล. ที่แสดงบนหน้าแต่ละผลิตภัณฑ์"
       },
       {
-        "title": "ดูบรรจุภัณฑ์ให้ชัด",
-        "body": "เปิดภาพบรรจุภัณฑ์ขนาดเต็ม เพื่อดูขวดและข้อมูลที่ระบุให้ใกล้ขึ้น"
+        "title": "ดูบรรจุภัณฑ์ใกล้ขึ้น",
+        "body": "เปิดภาพขนาดเต็มเพื่อดูขวด ฝา และรายละเอียดฉลาก"
       },
       {
-        "title": "มีคำแนะนำอยู่ใกล้มือ",
-        "body": "อ่านฉลากจริงก่อนใช้ พร้อมตรวจสอบวิธีดูแลพื้นผิวหรือเสื้อผ้าที่ต้องการทำความสะอาด"
+        "title": "เอกสารของแต่ละรายการ",
+        "body": "อ่านข้อมูลการแจ้งข้อเท็จจริงที่มีสำหรับผลิตภัณฑ์อเนกประสงค์และผลิตภัณฑ์ซักชุดชั้นใน"
       },
       {
-        "title": "มีช่องทางให้ถาม",
-        "body": "ติดต่อช่องทางทางการเมื่อต้องการทราบรายละเอียดผลิตภัณฑ์หรือข้อมูลการเปิดตัวเพิ่มเติม"
+        "title": "วิธีใช้บนขวดที่มี",
+        "body": "ปฏิบัติตามวิธีใช้และคำเตือนบนบรรจุภัณฑ์จริงที่มากับผลิตภัณฑ์"
       }
     ],
-    "readLabelTitle": "แต่ละผลิตภัณฑ์มีวิธีใช้ของตัวเอง",
-    "readLabelBody": "ดูวิธีใช้และคำเตือนบนบรรจุภัณฑ์จริงของผลิตภัณฑ์ที่คุณมี ปฏิบัติตามคำแนะนำและตรวจสอบความเหมาะสมกับงานที่ต้องการ"
+    "readLabelTitle": "อ่านฉลากก่อนใช้งาน",
+    "readLabelBody": "อ่านวิธีใช้และคำเตือนบนบรรจุภัณฑ์จริง พร้อมตรวจสอบคำแนะนำการดูแลพื้นผิวหรือเสื้อผ้า",
+    "evidenceTitle": "เอกสารผลิตภัณฑ์",
+    "evidenceIntro": "ข้อมูลบางส่วนจากเอกสารแจ้งข้อเท็จจริงและเอกสารอ้างอิงการออกแบบบรรจุภัณฑ์",
+    "evidenceScope": "เอกสารแจ้งข้อเท็จจริงบันทึกข้อมูลผลิตภัณฑ์ที่ยื่น ไม่ใช่ผลทดสอบหรือใบรับรองประสิทธิภาพ รายการสารสำคัญไม่ใช่สูตรทั้งหมด ส่วนเอกสารการออกแบบแสดงแนวทางบรรจุภัณฑ์",
+    "evidenceOpen": "ดูข้อมูลจากเอกสาร",
+    "evidenceTypes": {
+      "notification": "เอกสารแจ้งข้อเท็จจริง",
+      "design": "เอกสารอ้างอิงการออกแบบบรรจุภัณฑ์"
+    }
   },
   "global": {
-    "title": "แรงบันดาลใจจากญี่ปุ่น เพื่อบ้านในไทย",
-    "intro": "RANTO มองการดูแลด้วยมุมมองสากล โดยเริ่มจากชีวิตประจำวันของครัวเรือนในประเทศไทย",
-    "visionTitle": "สิ่งที่หวังไว้ในอนาคต",
-    "visionBody": "เราหวังว่าจะค่อย ๆ นำแนวคิดนี้ไปสู่บ้านอีกหลายแห่งในอนาคต พร้อมเรียนรู้กิจวัตรและความต้องการของแต่ละพื้นที่",
-    "marketTitle": "เตรียมเปิดตัวในประเทศไทย",
-    "marketBody": "ผลิตภัณฑ์ 3 รายการแรก ขนาด 500 มล. กำลังจะเปิดตัว โดยเริ่มที่ประเทศไทย ติดต่อ RANTO เพื่อสอบถามข่าวและข้อมูลการซื้อ",
-    "languagesTitle": "เลือกภาษาที่คุ้นเคย",
-    "languagesBody": "เว็บไซต์นี้มีภาษาอังกฤษ จีน ไทย และญี่ปุ่น ให้คุณรู้จักคอลเลกชันเดียวกันในภาษาที่เลือก"
+    "title": "แรงบันดาลใจจากญี่ปุ่น เปิดตัวที่ไทย",
+    "intro": "เราเริ่มจากคอลเลกชันสำหรับครัวเรือนในประเทศไทย ผ่านพื้นที่ที่คุ้นเคยสามแบบ",
+    "visionTitle": "สิ่งที่มองไว้ในอนาคต",
+    "visionBody": "เราหวังว่าจะเข้าถึงบ้านอีกหลายแห่งในอนาคต ขณะนี้เรามุ่งเตรียมผลิตภัณฑ์สามรายการแรกสำหรับประเทศไทย",
+    "marketTitle": "เตรียมผลิตภัณฑ์ใหม่ 3 รายการ",
+    "marketBody": "ทุกรายการมีขนาด 500 มล. และกำลังจะเปิดตัว โดยจะประกาศข่าวและข้อมูลการซื้อบนเว็บไซต์นี้",
+    "languagesTitle": "คอลเลกชันเดียวใน 4 ภาษา",
+    "languagesBody": "อ่านเกี่ยวกับคอลเลกชันเดียวกันได้ในภาษาอังกฤษ จีน ไทย หรือญี่ปุ่น"
   },
   "contact": {
-    "title": "ให้เราช่วยคุณรู้จักผลิตภัณฑ์",
-    "intro": "มีคำถามเกี่ยวกับคอลเลกชันหรือการเปิดตัวในไทย ติดต่อผ่านอีเมลทางการของเราได้",
+    "title": "ช่องทางติดต่อทางการ เร็ว ๆ นี้",
+    "intro": "เรากำลังเตรียมช่องทางติดต่อสำหรับการเปิดตัวในไทย โดยจะประกาศรายละเอียดบนหน้านี้",
+    "channelsTitle": "ช่องทางติดต่อทางการทั้ง 4 ช่องทาง",
+    "pending": "จะประกาศเร็ว ๆ นี้",
+    "pendingBody": "ข้อมูลทางการของแต่ละช่องทางจะแสดงที่นี่เมื่อพร้อม",
+    "emailName": "อีเมล",
     "consumerTitle": "สำหรับบ้านของคุณ",
-    "consumerBody": "สอบถามเรื่องผลิตภัณฑ์ การใช้งาน ข้อมูลบนบรรจุภัณฑ์ หรือกำหนดวางจำหน่ายได้ โดยแจ้งขวดที่คุณสนใจ",
-    "emailLabel": "ช่องทางติดต่อทางการ",
-    "emailBody": "ส่งคำถามเรื่องผลิตภัณฑ์หรือการเปิดตัวถึงทีม RANTO",
+    "consumerBody": "หน้าผลิตภัณฑ์มีข้อมูลการใช้งาน ปริมาณ และบรรจุภัณฑ์ปัจจุบัน ติดตามหน้านี้สำหรับช่องทางติดต่อผู้บริโภคที่จะประกาศต่อไป",
+    "emailLabel": "อีเมล",
+    "emailBody": "จะประกาศอีเมลทางการที่นี่",
     "cooperationTitle": "การค้าปลีกและการจัดจำหน่าย",
-    "cooperationBody": "สำหรับธุรกิจ กรุณาแนะนำบริษัท ตลาดที่ดำเนินงาน และรูปแบบความร่วมมือที่สนใจ",
-    "prepareTitle": "บอกเราเกี่ยวกับคำถามของคุณ",
+    "cooperationBody": "รายละเอียดการติดต่อสำหรับธุรกิจจะประกาศบนหน้านี้เมื่อพร้อม",
+    "prepareTitle": "ข้อมูลที่จะติดตามได้",
     "prepareItems": [
-      "ผลิตภัณฑ์หรืองานบ้านที่ต้องการสอบถาม",
-      "ประเทศหรือภูมิภาคของคุณ",
-      "สำหรับธุรกิจ กรุณาระบุบริษัทและรูปแบบความร่วมมือ"
+      "ผลิตภัณฑ์ทั้ง 3 รายการและการใช้งาน",
+      "วันวางจำหน่ายและข้อมูลการซื้อ",
+      "ช่องทางติดต่อทางการสำหรับผู้บริโภคและธุรกิจ"
     ],
-    "availability": "ผลิตภัณฑ์ 3 รายการ ขนาด 500 มล. กำลังจะเปิดตัวในไทย ติดต่อเราเพื่อรับข่าวและข้อมูลการซื้อ"
+    "availability": "ผลิตภัณฑ์ 3 รายการ ขนาด 500 มล. กำลังจะเปิดตัวในไทย โดยจะอัปเดตข่าวและข้อมูลการซื้อบนเว็บไซต์นี้"
   },
   "productUI": {
     "title": "คอลเลกชันแรกของเรา",
@@ -825,7 +1131,15 @@ const th: SiteCopy = {
     "origin": "ประเทศที่ผลิต",
     "packView": "ภาพตัวอย่างผลิตภัณฑ์",
     "fullImage": "ดูภาพบรรจุภัณฑ์ขนาดเต็ม",
-    "labelNote": "ภาพแสดงบรรจุภัณฑ์ที่วางแผนไว้ โปรดปฏิบัติตามข้อมูลบนบรรจุภัณฑ์จริง"
+    "labelNote": "ภาพแสดงบรรจุภัณฑ์ที่วางแผนไว้ โปรดปฏิบัติตามข้อมูลบนบรรจุภัณฑ์จริง",
+    "ingredients": "สารสำคัญที่ระบุในเอกสารแจ้ง",
+    "suitability": "ข้อมูลการใช้งาน",
+    "technicalTitle": "ข้อมูลผลิตภัณฑ์",
+    "gallery": {
+      "pack": "บรรจุภัณฑ์",
+      "scene": "บรรยากาศ",
+      "detail": "รายละเอียด"
+    }
   },
   "products": {
     "multipurpose": {
@@ -839,7 +1153,9 @@ const th: SiteCopy = {
       ],
       "directions": "อ่านและปฏิบัติตามวิธีใช้บนบรรจุภัณฑ์ก่อนใช้งาน",
       "precautions": "อ่านคำเตือนบนบรรจุภัณฑ์ และตรวจสอบความเหมาะสมกับการใช้งานที่ต้องการ",
-      "origin": "ผลิตในประเทศไทย"
+      "origin": "ผลิตในประเทศไทย ผู้ผลิต: บริษัท จิ่วซือ กรุ๊ป จำกัด",
+      "ingredients": "Alkyl polyglycoside 2.0% w/w; Polyoxyethylene lauryl ether 2.0% w/w; Sodium alpha olefin sulfonate 1.0% w/w; Sodium dodecanoyloxybenzene sulfonate 1.5% w/w.",
+      "suitability": "สำหรับทำความสะอาดในบ้าน ตรวจสอบการใช้กับพื้นผิวและวัสดุเฉพาะจากฉลากจริง"
     },
     "bathroom": {
       "name": "ผลิตภัณฑ์ทำความสะอาดห้องน้ำ",
@@ -862,13 +1178,15 @@ const th: SiteCopy = {
       ],
       "directions": "อ่านและปฏิบัติตามวิธีใช้บนบรรจุภัณฑ์ก่อนใช้งาน",
       "precautions": "อ่านคำเตือนของผลิตภัณฑ์และป้ายคำแนะนำการดูแลเสื้อผ้าก่อนใช้งาน",
-      "origin": "ผลิตในประเทศไทย"
+      "origin": "ผลิตในประเทศไทย ผู้ผลิต: บริษัท จิ่วซือ กรุ๊ป จำกัด",
+      "ingredients": "Alkyl polyglycoside 1.0% w/w; Coconut diethanolamide 1.0% w/w; Polyoxyethylene lauryl ether 1.0% w/w; Sodium dodecanoyloxybenzene sulfonate 4.0% w/w; Sodium lauryl ether sulfate 5.0% w/w; Cocamidopropyl betaine 2.0% w/w.",
+      "suitability": "สำหรับซักชุดชั้นใน อ่านป้ายการดูแลเสื้อผ้าควบคู่กับวิธีใช้ผลิตภัณฑ์"
     }
   },
   "footer": {
     "headline": "บ้านเป็นระเบียบ ใส่ใจทุกการดูแล",
     "body": "ผลิตภัณฑ์ทำความสะอาดและดูแลผ้าเพื่อบ้านในไทย",
-    "contact": "สอบถาม RANTO",
+    "contact": "ดูช่องทางติดต่อ",
     "legal": "สงวนลิขสิทธิ์"
   },
   "meta": {
@@ -882,19 +1200,19 @@ const th: SiteCopy = {
     },
     "quality": {
       "title": "แนวคิดของเรา | RANTO",
-      "description": "รู้จักการเลือกผลิตภัณฑ์ RANTO ผ่านการใช้งาน บรรจุภัณฑ์ วิธีใช้ และช่องทางสอบถาม"
+      "description": "รู้จักบรรจุภัณฑ์และเอกสารเฉพาะผลิตภัณฑ์ของคอลเลกชันแรก"
     },
     "story": {
       "title": "เกี่ยวกับ RANTO",
-      "description": "รู้จัก RANTO แบรนด์สำหรับบ้านในไทย ด้วยแรงบันดาลใจจากพื้นที่เป็นระเบียบและความใส่ใจของซาลอนและสปาญี่ปุ่น"
+      "description": "พื้นที่ที่เป็นระเบียบของซาลอนและสปาญี่ปุ่นเป็นแรงบันดาลใจด้านภาพให้เรา ก่อนนำมาคิดต่อเป็นผลิตภัณฑ์ทำความสะอาดและดูแลผ้าสำหรับบ้านในไทย"
     },
     "global": {
       "title": "มุมมองสากล | RANTO",
-      "description": "แรงบันดาลใจจากญี่ปุ่น การเตรียมเปิดตัวในไทย และสิ่งที่ RANTO หวังไว้ในอนาคต"
+      "description": "เราเริ่มจากคอลเลกชันสำหรับครัวเรือนในประเทศไทย ผ่านพื้นที่ที่คุ้นเคยสามแบบ"
     },
     "official": {
       "title": "ติดต่อเรา | RANTO",
-      "description": "ติดต่อ RANTO เพื่อสอบถามผลิตภัณฑ์ ข่าวการเปิดตัว และความร่วมมือด้านการค้าปลีกหรือการจัดจำหน่าย"
+      "description": "ช่องทางติดต่อทางการของ RANTO อยู่ระหว่างเตรียมการ ติดตามหน้านี้สำหรับข้อมูลทั้ง 4 ช่องทางและข่าวเปิดตัว"
     }
   },
   "inspiration": {
@@ -970,35 +1288,35 @@ const th: SiteCopy = {
       },
       {
         "title": "จะซื้อได้เมื่อไร",
-        "body": "ผลิตภัณฑ์ 3 รายการแรก ขนาด 500 มล. กำลังจะเปิดตัวในประเทศไทย ติดต่อ RANTO เพื่อสอบถามวันวางจำหน่ายและช่องทางซื้อ"
+        "body": "ผลิตภัณฑ์ 3 รายการแรก ขนาด 500 มล. กำลังจะเปิดตัวในไทย โดยจะประกาศวันวางจำหน่ายและข้อมูลการซื้อบนเว็บไซต์นี้"
       },
       {
-        "title": "ดูข้อมูลหรือสอบถามได้ที่ไหน",
-        "body": "ดูรายละเอียดผลิตภัณฑ์และภาพบรรจุภัณฑ์ได้บนเว็บไซต์ และปฏิบัติตามฉลากจริงเมื่อใช้งาน หากมีคำถามเรื่องผลิตภัณฑ์หรือการเปิดตัว ติดต่อเราผ่านอีเมลทางการได้"
+        "title": "จะดูข้อมูลผลิตภัณฑ์และช่องทางติดต่อได้ที่ไหน",
+        "body": "หน้าผลิตภัณฑ์แสดงบรรจุภัณฑ์และข้อมูลที่มี เมื่อใช้จริงให้ปฏิบัติตามฉลาก ช่องทางติดต่อทางการทั้ง 4 ช่องทางจะประกาศบนหน้าติดต่อเร็ว ๆ นี้"
       }
     ]
   },
   "localLife": {
-    "title": "สำหรับชีวิตที่บ้านในไทย",
-    "intro": "เรากำลังเตรียมคอลเลกชันสำหรับครัวเรือนในประเทศไทย โดยคำนึงถึงพื้นที่และกิจวัตรที่หลากหลาย",
+    "title": "3 พื้นที่ ทางเลือกต่างกัน",
+    "intro": "ครัว ห้องน้ำ และการซักชุดชั้นในมีบทบาทต่างกันในชีวิตที่บ้าน เราจึงแยกทางเลือกให้แต่ละงาน",
     "items": [
       {
-        "title": "คอนโดหรือบ้านของครอบครัว",
-        "body": "ขนาดพื้นที่อาจต่างกัน แต่การเลือกของใช้ให้ตรงกับงานยังสำคัญ คอลเลกชันแรกแยกการใช้งาน 3 อย่างให้เห็นชัด"
+        "title": "ครัวที่ใช้งานทุกวัน",
+        "body": "ก่อนและหลังมื้ออาหาร เคาน์เตอร์เป็นส่วนหนึ่งของงานดูแลประจำวัน การออกแบบผลิตภัณฑ์อเนกประสงค์จึงจับคู่ขวดสเปรย์กับภาพครัวบนฉลาก"
       },
       {
-        "title": "ออกไปใช้ชีวิต แล้วกลับมาดูแลบ้าน",
-        "body": "ไม่ว่าจะเป็นวันฝนตกหรือวันที่อากาศร้อน เมื่อกลับถึงบ้าน ห้องน้ำและการซักชุดชั้นในก็ต่างมีส่วนในกิจวัตรดูแลบ้าน"
+        "title": "ห้องน้ำที่จัดกลับเข้าที่",
+        "body": "หลังใช้น้ำ ผ้าขนหนูถูกแขวนและขวดถูกเก็บเข้าที่ ผลิตภัณฑ์ห้องน้ำใช้ขวดสเปรย์เช่นกัน แต่แยกด้วยฉลากของตัวเอง"
       },
       {
-        "title": "ข้อมูลในภาษาไทย",
-        "body": "อ่านการใช้งานผลิตภัณฑ์และข่าวเปิดตัวเป็นภาษาไทยได้ หรือเปลี่ยนเว็บไซต์เป็นภาษาอังกฤษ จีน หรือญี่ปุ่น"
+        "title": "ผ้าส่วนน้อยที่ใกล้ตัว",
+        "body": "ชุดชั้นในไม่กี่ชิ้นมีที่ทางของตัวเองในงานซักผ้า ไหล่ขวดโค้งและฝาเปิดช่วยให้รูปแบบขวดนี้ต่างจากสเปรย์สองขวด"
       }
     ]
   }
 }
 
-const ja: SiteCopy = {
+const ja: CoreCopy = {
   "nav": {
     "products": "製品",
     "quality": "大切にすること",
@@ -1014,7 +1332,7 @@ const ja: SiteCopy = {
     "skip": "本文へ移動",
     "home": "ホーム",
     "explore": "詳しく見る",
-    "contact": "お問い合わせ",
+    "contact": "連絡先のご案内",
     "back": "製品一覧へ戻る"
   },
   "hero": {
@@ -1047,100 +1365,111 @@ const ja: SiteCopy = {
     ]
   },
   "philosophy": {
-    "eyebrow": "RANTO のケアへの姿勢",
-    "title": "心配りを、見えるかたちに。",
-    "body": "手入れの行き届いた空間は、小さな選択から生まれます。私たちはその心配りを、毎日使うものの選び方、確かめ方、置き方へつなげたいと考えています。",
+    "eyebrow": "パッケージの考え方",
+    "title": "揃えて置いても、見分けられる。",
+    "body": "掃除には2つのトリガーボトル。下着の洗濯には丸い肩のボトル。共通の白で、3つの製品をつなぎます。",
     "points": [
       {
-        "title": "それぞれのボトルに用途を",
-        "body": "住まいの掃除、浴室の掃除、下着の洗濯を分けて選ぶ。"
+        "title": "形を分ける",
+        "body": "クリーナーと洗剤で、ボトルの形と開け方を変えています。"
       },
       {
-        "title": "手にした製品を知る",
-        "body": "パッケージをよく見て、選んだ製品の使い方を確かめる。"
+        "title": "ラベルで選ぶ",
+        "body": "それぞれのラベルに製品名、用途の情報、500 mlの内容量を記載しています。"
       },
       {
-        "title": "暮らしの中に置く",
-        "body": "白いボトルと揃えた細部で、いつもの道具のそばに自然になじむ。"
+        "title": "共通の表情を持たせる",
+        "body": "白いパッケージと青緑の RANTO マークでつなぎながら、ラベルには製品ごとの特徴を残しています。"
       }
     ]
   },
   "story": {
-    "title": "細部に表れる、心配り。",
-    "intro": "RANTO は、日本のサロンやスパの心配りに着想を得た、タイの家庭のための清掃・衣類ケアブランドです。",
+    "title": "日々のケアのかたち。",
+    "intro": "日本のサロンやスパの整った空間を、視覚的な着想源に。タイの家庭のための清掃と衣類ケアへ、その考え方をつなげています。",
     "paragraphs": [
-      "手入れの行き届いたサロンやスパで記憶に残るのは、小さな細部かもしれません。すっきりしたカウンター、定位置にある道具、使うために畳まれた布。その空間にも、訪れる人にも、心が配られていると感じるものです。",
-      "日本のサロンやスパは、RANTO の着想源です。清潔な環境、整った秩序、一つひとつ異なる必要への気配り。そのケアへの姿勢を、日常の住まいへつなげたいと考えています。",
-      "家では、用途を見分けることから始まります。キッチン、浴室、下着の洗濯には、それぞれ違う必要がある。最初のコレクションは、用途が明確な3つの500 ml製品で、これらの身近な家事に向き合います。",
-      "必要な製品を見分け、パッケージをよく見て、使い方を確かめられることを大切に。白いボトルと揃えた細部で、すでに家にある道具のそばになじむコレクションを目指します。",
-      "最初の発売を準備しているのは、タイです。新しくコンドミニアムを整える人から、家族の家を守る人まで、家庭で使う人が私たちの中心にいます。毎日の掃除と衣類のケアに、より細やかな気配りを添えたいと考えています。"
+      "整えたカウンター、畳んだ布、定位置にある道具。こうした細部がケアの空間を整えます。RANTO は日本のサロンやスパから着想を得て、毎日使う製品が家でどう並ぶかを考えています。",
+      "出発点は3つの家事です。キッチンと住まいの掃除、浴室の掃除、少量の下着の洗濯。2つのクリーナーはトリガーボトルの形を共有し、ランジェリー用洗剤は丸い肩とフリップトップを使っています。",
+      "ボトルを白で揃え、コレクションに共通の表情を持たせました。製品名、画像、文字の配置で、それぞれの500 mlパックの中身を見分ける構成です。",
+      "これらの選択が、タイに向けて準備している最初のコレクションを形づくっています。パッケージ画像とデザイン資料で細部をご覧いただき、該当する製品資料で具体的な情報を補っています。"
     ],
     "principles": [
       {
-        "title": "必要なケアを知る",
-        "body": "製品を選ぶ前に、空間や衣類に目を向ける。"
+        "title": "形を見る",
+        "body": "スプレーでの掃除と下着の洗濯を、見た目で分ける。"
       },
       {
-        "title": "選び方をわかりやすく",
-        "body": "家事ごとに、見分けられる製品を用意する。"
+        "title": "ラベルを読む",
+        "body": "製品名と内容量から比較を始める。"
       },
       {
-        "title": "小さなことに気づく",
-        "body": "読めるパッケージ、見つけられる説明も、丁寧なケアの一部です。"
+        "title": "暮らしに置く",
+        "body": "揃えた見た目で、いつもの道具のそばに並ぶ。"
       }
     ],
-    "closing": "プロの空間の心配りを、家庭でのケアへの姿勢に。"
+    "closing": "空間には秩序を、細部には心配りを。"
   },
   "quality": {
-    "title": "ケアを、わかりやすく選ぶ。",
-    "intro": "着想源は、プロのケア空間の細やかな心配り。家庭では、その姿勢が目の前の情報と選択肢に表れることを大切にします。",
+    "title": "確かめられる、製品の細部。",
+    "intro": "最初のコレクションのパッケージと、製品ごとの資料をご案内します。",
     "items": [
       {
-        "title": "用途を最初に確かめる",
-        "body": "指定された用途と500 mlの容量から。それぞれの製品に、家庭での役割があります。"
+        "title": "製品を見分ける情報",
+        "body": "各ページで製品名、指定用途、表示されている500 mlパックを比較できます。"
       },
       {
-        "title": "パッケージをよく見る",
-        "body": "画像を開いて、ボトルと記載されている情報を詳しくご覧ください。"
+        "title": "パッケージを近くで",
+        "body": "原寸画像を開き、ボトル、キャップ、ラベルの細部をご覧ください。"
       },
       {
-        "title": "説明を手元に置く",
-        "body": "使用前に最終パッケージを読み、対象の面や衣類のケア方法もご確認ください。"
+        "title": "製品ごとの記録",
+        "body": "多目的クリーナーとランジェリー用洗剤について、届出資料の情報をご覧いただけます。"
       },
       {
-        "title": "聞ける窓口がある",
-        "body": "製品や発売についてさらに知りたいときは、公式窓口へお問い合わせください。"
+        "title": "手元の製品の使い方",
+        "body": "使用方法と注意事項は、実際の製品に付属する最終パッケージの表示に従ってください。"
       }
     ],
-    "readLabelTitle": "製品ごとの使い方を。",
-    "readLabelBody": "使用方法と注意事項は、お手元の製品の最終パッケージに記載されています。表示に従い、目的の用途に使えるかをご確認ください。"
+    "readLabelTitle": "使う前に、表示を確認。",
+    "readLabelBody": "最終パッケージの使用方法と注意事項を読み、対象の面や衣類のケア方法もご確認ください。",
+    "evidenceTitle": "製品資料",
+    "evidenceIntro": "製品の届出資料とパッケージのデザイン参考から、関連情報を抜粋しています。",
+    "evidenceScope": "届出資料は提出された製品情報の記録であり、効能試験や性能認証ではありません。記載の主要成分は全処方ではなく、デザイン資料はパッケージの提案を示しています。",
+    "evidenceOpen": "資料の抜粋を見る",
+    "evidenceTypes": {
+      "notification": "製品の届出資料",
+      "design": "パッケージのデザイン参考"
+    }
   },
   "global": {
-    "title": "日本の着想を、タイの住まいへ。",
-    "intro": "国を越えた視点でケアを考え、タイの家庭の日常から始める。それが RANTO の出発点です。",
-    "visionTitle": "これから目指すこと。",
-    "visionBody": "将来は、その土地の習慣や必要から学びながら、この考え方をより多くの家庭へ届けたいと考えています。",
-    "marketTitle": "タイでの発売を準備中。",
-    "marketBody": "最初の3つの500 ml製品を発売予定です。現在の発売準備はタイが中心です。発売情報や購入方法は RANTO へお問い合わせください。",
-    "languagesTitle": "読みやすい言語で。",
-    "languagesBody": "このウェブサイトは英語、中国語、タイ語、日本語に対応。同じコレクションを、お好きな言語でご覧いただけます。"
+    "title": "日本の着想、タイでの発売。",
+    "intro": "タイの家庭に向けたコレクションを、身近な3つの場面から準備しています。",
+    "visionTitle": "これから目指すこと",
+    "visionBody": "将来はより多くの住まいへ届けたいと考えています。現在は、タイに向けた最初の3製品の準備に取り組んでいます。",
+    "marketTitle": "3つの新製品を準備中",
+    "marketBody": "すべて500 mlで、発売予定です。発売情報と購入方法は、このウェブサイトでご案内します。",
+    "languagesTitle": "同じコレクションを4言語で",
+    "languagesBody": "英語、中国語、タイ語、日本語で、同じコレクションをご覧いただけます。"
   },
   "contact": {
-    "title": "製品選びのご相談を。",
-    "intro": "コレクションやタイでの発売についてのご質問は、公式メールアドレスへお寄せください。",
+    "title": "公式連絡先は、近日ご案内。",
+    "intro": "タイでの初回発売に向けて、お問い合わせ窓口を準備しています。詳細はこのページでお知らせします。",
+    "channelsTitle": "4つの公式連絡先",
+    "pending": "近日ご案内",
+    "pendingBody": "各窓口の公式情報は、準備が整い次第こちらに掲載します。",
+    "emailName": "メール",
     "consumerTitle": "ご家庭で使う方へ",
-    "consumerBody": "製品の用途、パッケージの情報、発売時期についてご相談いただけます。気になる製品をお知らせください。",
-    "emailLabel": "公式お問い合わせ窓口",
-    "emailBody": "製品や発売に関するご質問を、RANTO チームへお送りください。",
-    "cooperationTitle": "小売・販売代理店のご相談",
-    "cooperationBody": "ビジネスのご相談は、会社紹介、活動する市場、ご希望の協業内容をお知らせください。",
-    "prepareTitle": "ご質問の内容をお知らせください。",
+    "consumerBody": "製品ページで用途、容量、現在のパッケージをご案内しています。今後の消費者向け連絡先は、このページをご確認ください。",
+    "emailLabel": "メール",
+    "emailBody": "公式メールアドレスはこちらでご案内します。",
+    "cooperationTitle": "小売・販売代理店について",
+    "cooperationBody": "ビジネスのお問い合わせ先は、準備が整い次第このページに掲載します。",
+    "prepareTitle": "今後ご案内する情報",
     "prepareItems": [
-      "対象の製品、または予定している家事",
-      "お住まいの国・地域",
-      "ビジネスのご相談は、会社名とご希望の協業内容"
+      "3つの製品とそれぞれの用途",
+      "発売日と購入方法",
+      "消費者・ビジネス向けの公式連絡先"
     ],
-    "availability": "3つの500 ml製品をタイで発売予定です。発売情報や購入方法は、お問い合わせください。"
+    "availability": "タイで3つの500 ml製品を発売予定です。発売情報と購入方法は、このウェブサイトでご案内します。"
   },
   "productUI": {
     "title": "最初のコレクション。",
@@ -1155,7 +1484,15 @@ const ja: SiteCopy = {
     "origin": "製造国",
     "packView": "製品プレビュー",
     "fullImage": "パッケージ画像を原寸で見る",
-    "labelNote": "画像は予定しているパッケージのイメージです。ご使用の際は、最終パッケージの表示に従ってください。"
+    "labelNote": "画像は予定しているパッケージのイメージです。ご使用の際は、最終パッケージの表示に従ってください。",
+    "ingredients": "届出に記載された主要成分",
+    "suitability": "用途について",
+    "technicalTitle": "製品情報",
+    "gallery": {
+      "pack": "パッケージ",
+      "scene": "シーン",
+      "detail": "細部"
+    }
   },
   "products": {
     "multipurpose": {
@@ -1169,7 +1506,9 @@ const ja: SiteCopy = {
       ],
       "directions": "使用前にパッケージの使用方法を読み、記載の方法に従ってください。",
       "precautions": "パッケージの注意事項を読み、目的の用途に適しているかをご確認ください。",
-      "origin": "タイ製。"
+      "origin": "タイ製。製造者：บริษัท จิ่วซือ กรุ๊ป จำกัด。",
+      "ingredients": "Alkyl polyglycoside 2.0% w/w; Polyoxyethylene lauryl ether 2.0% w/w; Sodium alpha olefin sulfonate 1.0% w/w; Sodium dodecanoyloxybenzene sulfonate 1.5% w/w.",
+      "suitability": "住まいの掃除に。個別の面や素材に使用できるかは、最終パッケージでご確認ください。"
     },
     "bathroom": {
       "name": "浴室用クリーナー",
@@ -1192,13 +1531,15 @@ const ja: SiteCopy = {
       ],
       "directions": "使用前にパッケージの使用方法を読み、記載の方法に従ってください。",
       "precautions": "使用前に、製品の注意事項と衣類の洗濯表示をご確認ください。",
-      "origin": "タイ製。"
+      "origin": "タイ製。製造者：บริษัท จิ่วซือ กรุ๊ป จำกัด。",
+      "ingredients": "Alkyl polyglycoside 1.0% w/w; Coconut diethanolamide 1.0% w/w; Polyoxyethylene lauryl ether 1.0% w/w; Sodium dodecanoyloxybenzene sulfonate 4.0% w/w; Sodium lauryl ether sulfate 5.0% w/w; Cocamidopropyl betaine 2.0% w/w.",
+      "suitability": "下着の洗濯に。製品の使い方と衣類の洗濯表示をあわせてご確認ください。"
     }
   },
   "footer": {
     "headline": "整った空間に、細やかなケアを。",
     "body": "タイの家庭のための、住まいと衣類のケア。",
-    "contact": "RANTO に相談する",
+    "contact": "連絡先のご案内",
     "legal": "無断転載・複製を禁じます。"
   },
   "meta": {
@@ -1212,19 +1553,19 @@ const ja: SiteCopy = {
     },
     "quality": {
       "title": "大切にすること | RANTO",
-      "description": "用途、パッケージ、使用方法、問い合わせ先。RANTO の製品をわかりやすく選ぶためのご案内です。"
+      "description": "最初のコレクションのパッケージと、製品ごとの資料をご案内します。"
     },
     "story": {
       "title": "RANTO について",
-      "description": "日本のサロンやスパの整った空間と細やかな心配りに着想を得た、タイの家庭向けブランド RANTO をご紹介します。"
+      "description": "日本のサロンやスパの整った空間を、視覚的な着想源に。タイの家庭のための清掃と衣類ケアへ、その考え方をつなげています。"
     },
     "global": {
       "title": "世界への視点 | RANTO",
-      "description": "日本からの着想、タイでの初回発売、将来の目標。RANTO の現在とこれからをご紹介します。"
+      "description": "タイの家庭に向けたコレクションを、身近な3つの場面から準備しています。"
     },
     "official": {
       "title": "お問い合わせ | RANTO",
-      "description": "製品に関するご質問、発売情報、小売・販売代理店としてのご相談は、RANTO へお問い合わせください。"
+      "description": "RANTO の公式連絡先を準備しています。4つの窓口と発売情報は、このページでご案内します。"
     }
   },
   "inspiration": {
@@ -1300,32 +1641,37 @@ const ja: SiteCopy = {
       },
       {
         "title": "いつ購入できますか？",
-        "body": "3つの500 ml製品をタイで発売予定です。発売日や購入方法は RANTO へお問い合わせください。"
+        "body": "3つの500 ml製品をタイで発売予定です。発売日と購入方法は、このウェブサイトでご案内します。"
       },
       {
-        "title": "製品情報や問い合わせ先はどこにありますか？",
-        "body": "製品ページとパッケージ画像をご覧ください。実際に使う際は最終パッケージの表示に従ってください。製品や発売についてのご質問は、公式メールアドレスで受け付けています。"
+        "title": "製品情報と連絡先はどこに掲載されますか？",
+        "body": "製品ページでパッケージと公開できる製品情報をご覧いただけます。使用時は最終パッケージの表示に従ってください。4つの公式連絡先は、お問い合わせページで近日ご案内します。"
       }
     ]
   },
   "localLife": {
-    "title": "タイの日々の暮らしへ。",
-    "intro": "タイの家庭に向けて、最初のコレクションを準備しています。さまざまな住まいと、そこで続く習慣に目を向けて。",
+    "title": "3つの場面、それぞれの選択。",
+    "intro": "キッチン、浴室、下着の洗濯は、日々の暮らしで役割が異なります。それぞれの用途を分けて考えています。",
     "items": [
       {
-        "title": "コンドミニアムでも、家族の家でも",
-        "body": "広さが違っても、用途に合うものを選ぶことは同じ。最初のコレクションは、3つの用途をわかりやすく分けています。"
+        "title": "繰り返し使うキッチン",
+        "body": "食事の前後に使う作業台は、日々の手入れの一部。多目的クリーナーはトリガーボトルとキッチンの画像を組み合わせています。"
       },
       {
-        "title": "外で過ごし、家に帰る",
-        "body": "雨の日の外出や、暖かな午後も、ここでの日常の一部。帰宅後の暮らしには、浴室の掃除と下着の洗濯、それぞれの時間があります。"
+        "title": "整え直す浴室",
+        "body": "水を使ったあとはタオルを掛け、ボトルを元の場所へ。浴室用クリーナーは共通のスプレー形状に、独自のラベルを合わせています。"
       },
       {
-        "title": "タイ語でわかる情報",
-        "body": "用途や発売情報をタイ語でご覧いただけます。このウェブサイトは、英語、中国語、日本語への切り替えも可能です。"
+        "title": "身近な少量の洗濯",
+        "body": "数枚の下着にも、洗濯の中でひとつの役割があります。丸い肩とフリップトップで、2つのスプレーとの違いを示しています。"
       }
     ]
   }
 }
 
-export const copy: Record<Locale, SiteCopy> = { en, zh, th, ja }
+export const copy: Record<Locale, SiteCopy> = {
+  en: { ...en, visual: visualCopy.en },
+  zh: { ...zh, visual: visualCopy.zh },
+  th: { ...th, visual: visualCopy.th },
+  ja: { ...ja, visual: visualCopy.ja },
+}

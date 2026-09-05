@@ -4,6 +4,7 @@ import Chrome from '../components/Chrome'
 import { useCopy } from '../components/bits'
 import { ContactBand, ProductCards } from '../components/Brand'
 import { SelectionGuide } from '../components/Editorial'
+import { ProductGallery, SceneStories } from '../components/Visuals'
 import { isProductId, products } from '../products'
 import { keepDialogFocus } from '../lib/dialog'
 import type { ProductId } from '../types'
@@ -39,9 +40,10 @@ export default function Products() {
     <section className="page-intro section-wrap"><p className="eyebrow">{t.nav.products}</p><h1>{t.productUI.title}</h1><p>{t.productUI.intro}</p></section>
     <section className="section-wrap product-catalog"><ProductCards t={t} onSelect={open} /><div className="collection-note"><span className="availability">{t.productUI.comingSoon}</span><p>{t.contact.availability}</p></div></section>
     <SelectionGuide t={t} onSelect={open} />
+    <SceneStories t={t} />
     <ContactBand t={t} />
     <dialog className="product-dialog" ref={dialog} aria-labelledby="product-dialog-title" onKeyDown={keepDialogFocus} onCancel={event => { event.preventDefault(); close() }} onClick={event => { if (event.target === event.currentTarget) close() }}>
-      {selected && product && <><div className="product-dialog-toolbar"><button className="dialog-close icon-button" onClick={close} aria-label={t.common.close} autoFocus><X size={24} /></button></div><div className="product-dialog-content"><div className="product-detail-photograph"><img src={products[selected].image} alt={`${product.name} · ${t.productUI.packView}`} /><p>{t.productUI.labelNote}</p><a className="text-link packaging-link" href={products[selected].image} target="_blank" rel="noopener noreferrer">{t.productUI.fullImage}<ArrowUpRight size={16} /></a></div><div className="product-detail-copy"><p className="eyebrow">{product.category}</p><h2 id="product-dialog-title">{product.name}</h2><div className="product-detail-status"><span>{products[selected].volume}</span><span className="availability">{t.productUI[products[selected].status]}</span></div><p className="detail-intro">{product.description}</p><dl><div><dt>{t.productUI.usage}</dt><dd>{product.uses.join(' / ')}</dd></div><div><dt>{t.productUI.directions}</dt><dd>{product.directions}</dd></div><div><dt>{t.productUI.precautions}</dt><dd>{product.precautions}</dd></div>{product.origin && <div><dt>{t.productUI.origin}</dt><dd>{product.origin}</dd></div>}</dl><a href="./official.html" className="button button--blue">{t.common.contact}<ArrowUpRight size={18} /></a></div></div></>}
+      {selected && product && <><div className="product-dialog-toolbar"><button className="dialog-close icon-button" onClick={close} aria-label={t.common.close} autoFocus><X size={24} /></button></div><div className="product-dialog-content"><ProductGallery key={selected} id={selected} t={t} /><div className="product-detail-copy"><p className="eyebrow">{product.category}</p><h2 id="product-dialog-title">{product.name}</h2><div className="product-detail-status"><span>{products[selected].volume}</span><span className="availability">{t.productUI[products[selected].status]}</span></div><p className="detail-intro">{product.description}</p><h3 className="technical-heading">{t.productUI.technicalTitle}</h3><dl>{product.ingredients && <div><dt>{t.productUI.ingredients}</dt><dd>{product.ingredients}</dd></div>}{product.suitability && <div><dt>{t.productUI.suitability}</dt><dd>{product.suitability}</dd></div>}<div><dt>{t.productUI.usage}</dt><dd>{product.uses.join(' / ')}</dd></div><div><dt>{t.productUI.directions}</dt><dd>{product.directions}</dd></div><div><dt>{t.productUI.precautions}</dt><dd>{product.precautions}</dd></div>{product.origin && <div><dt>{t.productUI.origin}</dt><dd>{product.origin}</dd></div>}</dl><a href="./official.html" className="button button--blue">{t.common.contact}<ArrowUpRight size={18} /></a></div></div></>}
     </dialog>
   </Chrome>
 }

@@ -2,6 +2,8 @@ import { useEffect, useRef, type ReactNode } from 'react'
 import { ArrowUpRight, Menu, X, Globe2 } from 'lucide-react'
 import { localeNames } from '../content'
 import { keepDialogFocus } from '../lib/dialog'
+import { ContactChannels } from './ContactChannels'
+import '../visuals.css'
 import type { Locale, PageId, SiteCopy } from '../types'
 
 export type { PageId } from '../types'
@@ -47,7 +49,8 @@ export default function Chrome({ page, locale, setLocale, t, children }: {
     <main id="main-content" tabIndex={-1}>{children}</main>
     <footer className="site-footer">
       <div className="footer-top"><a href="./index.html" aria-label={t.common.home}><img src="./images/logo.svg" alt="RANTO" width="150" height="75" /></a><p>{t.footer.body}</p><nav aria-label={t.common.navigation}>{links()}</nav></div>
-      <div className="footer-bottom"><span>© {new Date().getFullYear()} RANTO</span><span>{t.footer.legal}</span><a href="mailto:hello@ranto.co.th">hello@ranto.co.th <ArrowUpRight size={13} aria-hidden="true" /></a></div>
+      <ContactChannels t={t} compact />
+      <div className="footer-bottom"><span>© {new Date().getFullYear()} RANTO</span><span>{t.footer.legal}</span></div>
     </footer>
   </div>
 }
